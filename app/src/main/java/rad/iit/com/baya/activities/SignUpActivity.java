@@ -1,17 +1,16 @@
 package rad.iit.com.baya.activities;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -156,6 +155,11 @@ public class SignUpActivity extends TemplateActivity {
                 }
                 try {
                     JSONObject jsonObject = new JSONObject(response);
+                    if (jsonObject.has(ApplicationConstants.SUCCESS_KEY)){
+                        if (jsonObject.has(ApplicationConstants.TOKEN_KEY) && jsonObject.has(ApplicationConstants.ID_KEY)){
+                            saveTokenAndID((String)jsonObject.get(ApplicationConstants.TOKEN_KEY),(long)jsonObject.get(ApplicationConstants.ID_KEY));
+                        }
+                    }
                     Log.d("Res",jsonObject.toString());
                     customToast.showLongToast(jsonObject.toString());
                 } catch (JSONException e) {
@@ -184,4 +188,16 @@ public class SignUpActivity extends TemplateActivity {
         Volley.newRequestQueue(SignUpActivity.this).add(loginRequest);
     }
 
+    /**
+     * save token and id of a user
+     * @param token
+     * @param id
+     */
+    public void saveTokenAndID(String token, long id){
+        SharedPreferences sharedPreferences = getSharedPreferences(ApplicationConstants.SHARED_PREFERENCE, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(ApplicationConstants.TOKEN_KEY,token);
+        editor.putLong(ApplicationConstants.ID_KEY,id);
+        editor.commit();
+    }
 }

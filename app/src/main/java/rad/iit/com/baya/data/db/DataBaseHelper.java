@@ -51,7 +51,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 /**
      * @param iTableList is the rows of a table from remote server
      * @param iTableType defines the table name
-     * @return true if the data is inserted right otherwise false if  error
+     * @return true if the data is inserted right otherwise false if  ERROR_VALUE
      *//*
 
     public boolean insertRowsFromServer(List<ITable> iTableList, ITable iTableType) {
