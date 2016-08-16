@@ -54,7 +54,7 @@ public class SignUpActivity extends TemplateActivity {
             @Override
             public void onClick(View view) {
                 final User user = new User();
-                user.userName ="Dipok";
+                user.userName ="Dipok5";
                 user.password ="iit123";
                 final ProgressDialog progressDialog = new ProgressDialog(SignUpActivity.this);
                 progressDialog.setMessage("Loading");
@@ -68,9 +68,10 @@ public class SignUpActivity extends TemplateActivity {
                             progressDialog.dismiss();
                         }
                         try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            Log.d("Res",jsonObject.toString());
-                            customToast.showLongToast(jsonObject.toString());
+                            JSONObject jsonObject = new JSONObject(user.toString());
+                            Log.d("Res",response.toString());
+//                            customToast.showLongToast(jsonObject.toString());
+                            customToast.showLongToast(response);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -88,8 +89,8 @@ public class SignUpActivity extends TemplateActivity {
                     @Override
                     protected Map<String, String> getParams() throws AuthFailureError {
                         Map<String,String> params = new HashMap<String, String>();
-                        params.put(User.Variable.USER_NAME,"DIPOK12");
-                        params.put(User.Variable.PASS_WORD,"iit1234");
+                        Log.d("M",user.toString());
+                       params.put(ApplicationConstants.USER_MODEL,user.toString());
                         return  params;
 
                     }

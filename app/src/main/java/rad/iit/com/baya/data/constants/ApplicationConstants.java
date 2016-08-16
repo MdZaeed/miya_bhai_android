@@ -22,4 +22,5 @@ public class ApplicationConstants {
     public static  String ERROR_VALUE ="null";
 
     public static final String SHARED_PREFERENCE = "maya_clone";
+    public static final String USER_MODEL ="user_model";
 }
