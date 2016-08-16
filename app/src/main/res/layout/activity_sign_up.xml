@@ -10,12 +10,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="@string/create_a_free_private_secure_account_in_3_easy_steps"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:textSize="20sp"
         android:gravity="center"
-        android:textColor="@android:color/black"/>
+        android:text="@string/create_a_free_private_secure_account_in_3_easy_steps"
+        android:textColor="@android:color/black"
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/et_user_name"
