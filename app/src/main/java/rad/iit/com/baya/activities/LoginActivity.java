@@ -8,18 +8,18 @@ import android.widget.EditText;
 import rad.iit.com.baya.R;
 import rad.iit.com.baya.activities.template.TemplateActivity;
 
-public class SignUpActivity extends TemplateActivity implements View.OnClickListener {
+/**
+ * Created by Zayed on 16-Aug-16.
+ */
+public class LoginActivity extends TemplateActivity implements View.OnClickListener {
 
     EditText userNameEditText;
     EditText passwordEditText;
-    Button signUpButton;
-
-    Button hitButton;
+    Button logInButton;
 
     @Override
     public void initView() {
-        setContentView(R.layout.activity_sign_up);
-        hitButton = (Button) findViewById(R.id.button_hit);
+
     }
 
     @Override
@@ -43,16 +43,16 @@ public class SignUpActivity extends TemplateActivity implements View.OnClickList
 
         userNameEditText=(EditText) findViewById(R.id.et_user_name);
         passwordEditText=(EditText) findViewById(R.id.et_password);
-        signUpButton=(Button) findViewById(R.id.btn_sign_up);
+        logInButton=(Button) findViewById(R.id.btn_login);
 
-        signUpButton.setOnClickListener(this);
+        logInButton.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId())
         {
-            case R.id.btn_sign_up:
+            case R.id.btn_login:
                 break;
         }
     }

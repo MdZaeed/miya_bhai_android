@@ -1,19 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="rad.iit.com.baya.activities.SignUpActivity">
+    android:orientation="vertical"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/create_a_free_private_secure_account_in_3_easy_steps"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="@android:color/black"/>
+
+    <EditText
+        android:id="@+id/et_user_name"
+        style="@style/AccountPagEditTextStyles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/username" />
+
+    <EditText
+        android:id="@+id/et_password"
+        style="@style/AccountPagEditTextStyles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/password"
+        android:inputType="textPassword" />
 
     <Button
-        android:layout_width="180dp"
-        android:layout_height="20dp"
-        android:text="HIT IT"
-        android:id="@+id/button_hit"
-        />
+        android:id="@+id/btn_sign_up"
+        style="@style/AccountPagEditTextStyles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_edge_red_background"
+        android:text="@string/sign_up"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
 
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:text="@string/already_a_user" />
+
+        <TextView
+            android:id="@+id/tv_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:text="@string/login"
+            android:textColor="@color/colorPrimary" />
+    </LinearLayout>
+</LinearLayout>

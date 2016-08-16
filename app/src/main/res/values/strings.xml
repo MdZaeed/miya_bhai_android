@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Baya</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="click_here"><u>Click Here</u></string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="sign_up_in_less_than_a_minute">Sign up in less than a minute</string>
+    <string name="username">Username</string>
+    <string name="already_a_user">Already a user?</string>
+    <string name="create_a_free_private_secure_account_in_3_easy_steps">Create a free, private, secure account in 3 easy steps</string>
+    <string name="sign_up">Sign Up</string>
 </resources>
