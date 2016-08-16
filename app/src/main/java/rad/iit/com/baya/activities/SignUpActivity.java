@@ -1,6 +1,8 @@
 package rad.iit.com.baya.activities;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -58,50 +60,7 @@ public class SignUpActivity extends TemplateActivity implements View.OnClickList
 
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {/*
-                final User user = new User();
-                user.userName = userNameEditText.getText().toString();
-                user.password = passwordEditText.getText().toString();
-                final ProgressDialog progressDialog = new ProgressDialog(SignUpActivity.this);
-                progressDialog.setMessage("Loading");
-                progressDialog.show();
-                final CustomToast customToast = new CustomToast(SignUpActivity.this);
-                StringRequest addUserRequest = new StringRequest(Request.Method.POST, ApplicationConstants.ADD_USER_URL, new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-
-                        if (progressDialog.isShowing()) {
-                            progressDialog.dismiss();
-                        }
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            Log.d("Res", jsonObject.toString());
-                            customToast.showLongToast(jsonObject.toString());
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError volleyError) {
-                        if (progressDialog.isShowing()) {
-                            progressDialog.dismiss();
-                        }
-                        Log.d("Err", volleyError.toString());
-                        customToast.showLongToast(volleyError.toString());
-                    }
-                }) {
-                    @Override
-                    protected Map<String, String> getParams() throws AuthFailureError {
-                        Map<String, String> params = new HashMap<String, String>();
-                        params.put(User.Variable.USER_NAME, user.userName);
-                        params.put(User.Variable.PASS_WORD, user.password);
-                        return params;
-
-                    }
-                };
-                Volley.newRequestQueue(SignUpActivity.this).add(addUserRequest);
-                */
+            public void onClick(View view) {
 
                 final User user = new User();
                 user.userName = userNameEditText.getText().toString();
@@ -151,6 +110,14 @@ public class SignUpActivity extends TemplateActivity implements View.OnClickList
             }
         };
         Volley.newRequestQueue(SignUpActivity.this).add(addUserRequest);
+    }
+
+    public void saveTokenAndID(String token, long id){
+        SharedPreferences sharedPreferences = getSharedPreferences(ApplicationConstants.SHARED_PREFERENCE, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(ApplicationConstants.TOKEN_KEY,token);
+        editor.putLong(ApplicationConstants.ID_KEY,id);
+        editor.commit();
     }
 
     @Override

@@ -14,4 +14,8 @@ public class User extends JSONObject{
         public static final String PASS_WORD ="Password";
     }
 
+    @Override
+    public String toString() {
+        return "{"+"\"Username\":\""+userName+"\",\"Password\":\""+password+"\"}";
+    }
 }
