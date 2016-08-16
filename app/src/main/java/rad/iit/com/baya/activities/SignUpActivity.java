@@ -100,4 +100,88 @@ public class SignUpActivity extends TemplateActivity {
         });
     }
 
+
+    public void addUser(final User user){
+        final ProgressDialog progressDialog = new ProgressDialog(SignUpActivity.this);
+        progressDialog.setMessage("Loading");
+        progressDialog.show();
+        final CustomToast customToast = new CustomToast(SignUpActivity.this);
+        StringRequest addUserRequest = new StringRequest(Request.Method.POST, ApplicationConstants.ADD_USER_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                if (progressDialog.isShowing()){
+                    progressDialog.dismiss();
+                }
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    Log.d("Res",jsonObject.toString());
+                    customToast.showLongToast(jsonObject.toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                if (progressDialog.isShowing()){
+                    progressDialog.dismiss();
+                }
+                Log.d("Err",volleyError.toString());
+                customToast.showLongToast(volleyError.toString());
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String, String>();
+                params.put(User.Variable.USER_NAME,user.userName);
+                params.put(User.Variable.PASS_WORD,user.password);
+                return  params;
+
+            }
+        };
+        Volley.newRequestQueue(SignUpActivity.this).add(addUserRequest);
+    }
+    public void loginUser(final User user){
+        final ProgressDialog progressDialog = new ProgressDialog(SignUpActivity.this);
+        progressDialog.setMessage("Loading");
+        progressDialog.show();
+        final CustomToast customToast = new CustomToast(SignUpActivity.this);
+        StringRequest loginRequest = new StringRequest(Request.Method.POST, ApplicationConstants.LOGIN_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                if (progressDialog.isShowing()){
+                    progressDialog.dismiss();
+                }
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    Log.d("Res",jsonObject.toString());
+                    customToast.showLongToast(jsonObject.toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                if (progressDialog.isShowing()){
+                    progressDialog.dismiss();
+                }
+                Log.d("Err",volleyError.toString());
+                customToast.showLongToast(volleyError.toString());
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String, String>();
+                params.put(User.Variable.USER_NAME,user.userName);
+                params.put(User.Variable.PASS_WORD,user.password);
+                return  params;
+
+            }
+        };
+        Volley.newRequestQueue(SignUpActivity.this).add(loginRequest);
+    }
+
 }
