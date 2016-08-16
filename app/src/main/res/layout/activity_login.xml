@@ -92,27 +92,4 @@
             android:textColor="@color/colorPrimary" />
 
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:text="@string/already_a_user" />
-
-        <TextView
-            android:id="@+id/tv_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:text="@string/login"
-            android:textColor="@color/colorPrimary" />
-    </LinearLayout>
 </LinearLayout>

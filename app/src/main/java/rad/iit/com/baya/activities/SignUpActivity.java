@@ -2,11 +2,13 @@ package rad.iit.com.baya.activities;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -31,6 +33,8 @@ public class SignUpActivity extends TemplateActivity implements View.OnClickList
 
     EditText userNameEditText;
     EditText passwordEditText;
+    TextView loginButton;
+
     Button signUpButton;
     String userName, password;
 
@@ -40,6 +44,8 @@ public class SignUpActivity extends TemplateActivity implements View.OnClickList
 
         userNameEditText = (EditText) findViewById(R.id.et_user_name);
         passwordEditText = (EditText) findViewById(R.id.et_password);
+        loginButton=(TextView) findViewById(R.id.tv_login);
+
         signUpButton = (Button) findViewById(R.id.btn_sign_up);
 
         signUpButton.setOnClickListener(this);
@@ -68,9 +74,11 @@ public class SignUpActivity extends TemplateActivity implements View.OnClickList
                 addUser(user);
             }
         });
+
+        loginButton.setOnClickListener(this);
     }
 
-    public void addUser(final User user){
+    public void addUser(final User user) {
         final ProgressDialog progressDialog = new ProgressDialog(SignUpActivity.this);
         progressDialog.setMessage("Loading");
         progressDialog.show();
@@ -79,12 +87,12 @@ public class SignUpActivity extends TemplateActivity implements View.OnClickList
             @Override
             public void onResponse(String response) {
 
-                if (progressDialog.isShowing()){
+                if (progressDialog.isShowing()) {
                     progressDialog.dismiss();
                 }
                 try {
                     JSONObject jsonObject = new JSONObject(response);
-                    Log.d("Res",jsonObject.toString());
+                    Log.d("Res", jsonObject.toString());
                     customToast.showLongToast(jsonObject.toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -93,35 +101,32 @@ public class SignUpActivity extends TemplateActivity implements View.OnClickList
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-                if (progressDialog.isShowing()){
+                if (progressDialog.isShowing()) {
                     progressDialog.dismiss();
                 }
-                Log.d("Err",volleyError.toString());
+                Log.d("Err", volleyError.toString());
                 customToast.showLongToast(volleyError.toString());
             }
-        }){
+        }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> params = new HashMap<String, String>();
-                params.put(User.Variable.USER_NAME,user.userName);
-                params.put(User.Variable.PASS_WORD,user.password);
-                return  params;
+                Map<String, String> params = new HashMap<String, String>();
+                params.put(ApplicationConstants.USER_MODEL, user.toString());
+                return params;
 
             }
         };
         Volley.newRequestQueue(SignUpActivity.this).add(addUserRequest);
     }
 
-    public void saveTokenAndID(String token, long id){
-        SharedPreferences sharedPreferences = getSharedPreferences(ApplicationConstants.SHARED_PREFERENCE, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(ApplicationConstants.TOKEN_KEY,token);
-        editor.putLong(ApplicationConstants.ID_KEY,id);
-        editor.commit();
-    }
-
     @Override
     public void onClick(View view) {
-
+        switch (view.getId())
+        {
+            case R.id.tv_login:
+                Intent intent=new Intent(SignUpActivity.this,LoginActivity.class);
+                startActivity(intent);
+                break;
+        }
     }
 }
