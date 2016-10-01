@@ -6,12 +6,29 @@
     android:paddingBottom="10dp"
     android:paddingTop="10dp">
 
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center_horizontal"
-        android:src="@drawable/mock_logo" />
-
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:src="@drawable/mock_logo" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:text="Sign In"/>
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/unique_name_label"
+        style="@style/NormalTextViewStyles"
+        android:id="@+id/tv_unique_name"
+        />
     <EditText
         android:id="@+id/et_user_name"
         style="@style/AccountPagEditTextStyles"
@@ -19,17 +36,25 @@
         android:layout_height="wrap_content"
         android:hint="@string/username" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/mobile_label"
+        style="@style/NormalTextViewStyles"
+        android:id="@+id/tv_mobile"
+        />
     <EditText
         android:id="@+id/et_password"
         style="@style/AccountPagEditTextStyles"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/password"
+        android:layout_marginBottom="50dp"
         android:inputType="textPassword" />
 
     <Button
         android:id="@+id/btn_login"
-        style="@style/AccountPagEditTextStyles"
+        style="@style/ButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_edge_red_background"

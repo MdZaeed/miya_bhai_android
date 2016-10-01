@@ -5,25 +5,57 @@
     android:orientation="vertical"
     android:paddingBottom="10dp"
     android:paddingTop="10dp">
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:src="@drawable/mock_logo" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:text="Sign Up"/>
+    </LinearLayout>
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:gravity="center"
-        android:text="@string/create_a_free_private_secure_account_in_3_easy_steps"
-        android:textColor="@android:color/black"
-        android:textSize="20sp" />
-
+        android:text="@string/unique_name_label"
+        style="@style/NormalTextViewStyles"
+        android:id="@+id/tv_unique_name"
+        />
     <EditText
         android:id="@+id/et_user_name"
         style="@style/AccountPagEditTextStyles"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/username" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/bday_label"
+        style="@style/NormalTextViewStyles"
+        android:id="@+id/tv_bday"
+        />
+    <EditText
+        android:id="@+id/et_bday"
+        style="@style/AccountPagEditTextStyles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/bday"
+        android:inputType="textPassword" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/mobile_label"
+        style="@style/NormalTextViewStyles"
+        android:id="@+id/tv_mobile"
+        />
     <EditText
         android:id="@+id/et_password"
         style="@style/AccountPagEditTextStyles"
@@ -31,16 +63,50 @@
         android:layout_height="wrap_content"
         android:hint="@string/password"
         android:inputType="textPassword" />
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sex_label"
+        style="@style/NormalTextViewStyles"
+        android:id="@+id/tv_sex"
+        />
+         <RadioGroup
+            android:layout_width="match_parent"
+            android:id="@+id/rg_sex"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:weightSum="3.0"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:id="@+id/rb_male"
+                android:text="Male"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:id="@+id/rb_female"
+                android:text="Female"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:id="@+id/rb_others"
+                android:text="Others"/>
+        </RadioGroup>
     <Button
         android:id="@+id/btn_sign_up"
-        style="@style/AccountPagEditTextStyles"
+        style="@style/ButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_edge_red_background"
         android:text="@string/sign_up"
         android:textColor="@android:color/white"
         android:textStyle="bold" />
+
 
     <LinearLayout
         android:layout_width="wrap_content"
