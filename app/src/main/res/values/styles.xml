@@ -20,10 +20,10 @@
     </style>
 
     <style name="ButtonStyle">
-        <item name="android:background">@drawable/dark_black_border_transparent_background</item>
+        <item name="android:background">@drawable/rounded_edge_red_background</item>
         <item name="android:gravity">center_horizontal</item>
-        <item name="android:layout_marginTop">5dp</item>
-        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
         <item name="android:layout_marginLeft">30dp</item>
         <item name="android:layout_marginRight">30dp</item>
         <item name="android:paddingTop">10dp</item>

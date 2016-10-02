@@ -128,7 +128,6 @@ public class SignUpActivity extends TemplateActivity implements View.OnClickList
                 Map<String, String> params = new HashMap<String, String>();
                 params.put(ApplicationConstants.USER_MODEL, user.toString());
                 return params;
-
             }
         };
         Volley.newRequestQueue(SignUpActivity.this).add(addUserRequest);
