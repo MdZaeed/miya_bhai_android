@@ -25,6 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/unique_name_label"
+        android:lines="1"
         style="@style/NormalTextViewStyles"
         android:id="@+id/tv_unique_name"
         />
@@ -32,6 +33,7 @@
         android:id="@+id/et_user_name"
         style="@style/AccountPagEditTextStyles"
         android:layout_width="match_parent"
+        android:singleLine="true"
         android:layout_height="wrap_content"
         android:hint="@string/username" />
     <TextView
@@ -41,14 +43,13 @@
         style="@style/NormalTextViewStyles"
         android:id="@+id/tv_bday"
         />
-    <EditText
+    <TextView
         android:id="@+id/et_bday"
         style="@style/AccountPagEditTextStyles"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/bday"
-        android:inputType="textPassword" />
-
+        />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -57,12 +58,13 @@
         android:id="@+id/tv_mobile"
         />
     <EditText
-        android:id="@+id/et_password"
+        android:id="@+id/et_mobile"
         style="@style/AccountPagEditTextStyles"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/password"
-        android:inputType="textPassword" />
+        android:hint="@string/mobile"
+        android:maxLength="11"
+        android:inputType="number" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -106,8 +108,6 @@
         android:text="@string/sign_up"
         android:textColor="@android:color/white"
         android:textStyle="bold" />
-
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

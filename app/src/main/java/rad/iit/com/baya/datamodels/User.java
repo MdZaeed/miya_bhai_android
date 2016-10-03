@@ -7,15 +7,20 @@ import org.json.JSONObject;
  */
 public class User extends JSONObject{
     public String userName ="";
-    public String password ="";
+    public String mobileNumber ="";
+    public String bday="";
+    public String sex="";
 
     public static class Variable{
-        public static final String USER_NAME ="Username";
-        public static final String PASS_WORD ="Password";
+        public static final String USER_NAME ="name";
+        public static final String MOBILE ="mobile";
+        public static final String BIRTH_DAY ="bday";
+        public static final String SEX ="sex";
+
     }
 
     @Override
     public String toString() {
-        return "{"+"\"Username\":\""+userName+"\",\"Password\":\""+password+"\"}";
+        return "{"+"\"name\":\""+userName+"\",\"mobile\":\""+ mobileNumber +"\","+"\"bday\":\""+bday+"\",\"sex\":\""+ sex +"\""+"}";
     }
 }

@@ -1,20 +1,17 @@
 package rad.iit.com.baya.activities;
 
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
-import android.text.method.KeyListener;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -35,25 +32,36 @@ import rad.iit.com.baya.R;
 import rad.iit.com.baya.activities.template.TemplateActivity;
 import rad.iit.com.baya.data.constants.ApplicationConstants;
 import rad.iit.com.baya.datamodels.User;
+import rad.iit.com.baya.utils.CustomTime;
 import rad.iit.com.baya.utils.CustomToast;
 
-public class SignUpActivity extends TemplateActivity implements View.OnClickListener {
+public class SignUpActivity extends TemplateActivity implements View.OnClickListener{
 
     EditText userNameEditText;
-    EditText passwordEditText;
+    EditText mobileEditText;
+    TextView bdayEditText;
     TextView loginButton;
+    Calendar birthdayCalendar = Calendar.getInstance();
+
+    RadioGroup radioSexGroup;
+    RadioButton radioSexButton;
 
     Button signUpButton;
-    String userName, password;
+
+    User candidateUser;
 
     @Override
     public void initView() {
         setContentView(R.layout.activity_sign_up);
 
         userNameEditText = (EditText) findViewById(R.id.et_user_name);
-        passwordEditText = (EditText) findViewById(R.id.et_password);
+        mobileEditText = (EditText) findViewById(R.id.et_mobile);
+        bdayEditText = (TextView) findViewById(R.id.et_bday);
         loginButton=(TextView) findViewById(R.id.tv_login);
 
+        radioSexGroup = (RadioGroup) findViewById(R.id.rg_sex);
+        radioSexButton = (RadioButton) findViewById(R.id.rb_male);
+        radioSexButton.setChecked(true);
         signUpButton = (Button) findViewById(R.id.btn_sign_up);
 
         signUpButton.setOnClickListener(this);
@@ -75,22 +83,55 @@ public class SignUpActivity extends TemplateActivity implements View.OnClickList
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                final User user = new User();
-                user.userName = userNameEditText.getText().toString();
-                user.password = passwordEditText.getText().toString();
-                addUser(user);
+                if (isAllEditFieldNotNull()){
+                    insertCandidateUserInfo();
+                    CustomToast toast = new CustomToast(SignUpActivity.this);
+                    toast.showLongToast(candidateUser.toString());
+                    //addUser(candidateUser);
+                }
             }
         });
-
-        passwordEditText.setOnTouchListener(new View.OnTouchListener() {
+        bdayEditText.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                new DatePickerFragment().show(getSupportFragmentManager(), "Birthday");
-                return true;
+            public void onClick(View v) {
+                new DatePickerDialog(SignUpActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                        birthdayCalendar.set(Calendar.YEAR, year);
+                        birthdayCalendar.set(Calendar.MONTH, monthOfYear);
+                        birthdayCalendar.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+                        bdayEditText.setText(year+"-"+(monthOfYear+1)+"-"+dayOfMonth);
+                    }
+                }, birthdayCalendar.get(Calendar.YEAR), birthdayCalendar.get(Calendar.MONTH), birthdayCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+        radioSexGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                radioSexButton = (RadioButton) findViewById(checkedId);
+                Log.d("Sex",radioSexButton.getText().toString());
             }
         });
         loginButton.setOnClickListener(this);
+    }
+
+    private boolean isAllEditFieldNotNull() {
+        if (userNameEditText.getText().toString().equals("")){
+            customToast.showLongToast("Please Enter User Name");
+            userNameEditText.setFocusable(true);
+            return false;
+        }
+        else if(bdayEditText.getText().toString().equals("")){
+            customToast.showLongToast("Please Enter Birthday");
+            bdayEditText.setFocusable(true);
+            return false;
+        }
+        else if(mobileEditText.getText().toString().equals("")){
+            customToast.showLongToast("Please Enter Mobile Number");
+            mobileEditText.setFocusable(true);
+            return false;
+        }
+        return true;
     }
 
     public void addUser(final User user) {
@@ -143,23 +184,12 @@ public class SignUpActivity extends TemplateActivity implements View.OnClickList
                 break;
         }
     }
-    public static class DatePickerFragment extends DialogFragment
-            implements DatePickerDialog.OnDateSetListener {
-
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            // Use the current date as the default date in the picker
-            final Calendar c = Calendar.getInstance();
-            int year = c.get(Calendar.YEAR);
-            int month = c.get(Calendar.MONTH);
-            int day = c.get(Calendar.DAY_OF_MONTH);
-
-            // Create a new instance of DatePickerDialog and return it
-            return new DatePickerDialog(getActivity(), this, year, month, day);
-        }
-
-        public void onDateSet(DatePicker view, int year, int month, int day) {
-            // Do something with the date chosen by the user
-        }
+    private void insertCandidateUserInfo(){
+        candidateUser = new User();
+        candidateUser.userName = userNameEditText.getText().toString();
+        candidateUser.bday = CustomTime.toStandardFormat(birthdayCalendar);
+        candidateUser.mobileNumber = mobileEditText.getText().toString();
+        candidateUser.sex = radioSexButton.getText().toString();
     }
+
 }

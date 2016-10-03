@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Mamu</string>
     <string name="email">Email</string>
-    <string name="password">Enter Mobile Number</string>
+    <string name="mobile">Enter Mobile Number</string>
     <string name="login">Login</string>
     <string name="click_here"><u>Click Here</u></string>
     <string name="forgot_password">Forgot password?</string>

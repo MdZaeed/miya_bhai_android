@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -76,7 +75,7 @@ public class LoginActivity extends TemplateActivity implements View.OnClickListe
             case R.id.btn_login:
                 final User user = new User();
                 user.userName = userNameEditText.getText().toString();
-                user.password = passwordEditText.getText().toString();
+                user.mobileNumber = passwordEditText.getText().toString();
                 loginUser(user);
                 break;
 

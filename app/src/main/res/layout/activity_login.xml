@@ -48,7 +48,7 @@
         style="@style/AccountPagEditTextStyles"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/password"
+        android:hint="@string/mobile"
         android:layout_marginBottom="50dp"
         android:inputType="textPassword" />
 
