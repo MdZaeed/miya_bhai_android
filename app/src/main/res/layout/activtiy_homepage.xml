@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    android:id="@+id/fl_root_layout" xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.percent.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/tv_homepage_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_heightPercent="30%"
+            tools:text="Challenger Mamu"
+            android:gravity="center_horizontal"
+            android:textSize="40sp"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/colorPrimaryDark"
+            android:paddingTop="10dp" />
+
+        <android.support.percent.PercentRelativeLayout
+            android:id="@+id/prl_root_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_heightPercent="60%"
+            app:layout_widthPercent="90%"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/tv_homepage_header">
+
+            <Button
+                android:id="@+id/btn_expert_mamu_hmpgb1"
+                style="@style/HomePageButtonsStyle"
+                app:layout_widthPercent="50%"
+                app:layout_heightPercent="50%"
+                android:text="@string/expert_mamu"/>
+
+            <Button
+                android:id="@+id/btn_normal_mamu_hmpgb2"
+                style="@style/HomePageButtonsStyle"
+                app:layout_widthPercent="50%"
+                app:layout_heightPercent="50%"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:text="@string/my_question_mamu_answers"
+                android:textStyle="bold"
+                android:textSize="15sp"/>
+
+            <Button
+                android:id="@+id/btn_video_challenge_hmpgb3"
+                style="@style/HomePageButtonsStyle"
+                app:layout_widthPercent="50%"
+                app:layout_heightPercent="50%"
+                android:layout_alignParentBottom="true"
+                android:text="@string/video_challenge"/>
+
+            <Button
+                android:id="@+id/challenge_mamau_hmpgb4"
+                style="@style/HomePageButtonsStyle"
+                app:layout_widthPercent="50%"
+                app:layout_heightPercent="50%"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:text="@string/challenge_mamu"/>
+        </android.support.percent.PercentRelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_heightPercent="10%"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_contact_us_hmpgb5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/holo_blue_bright"
+                android:text="Contact us"/>
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/black"/>
+
+            <Button
+                android:id="@+id/btn_hotline_hmpgb6"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/holo_blue_bright"
+                android:text="Hotline"
+                android:drawablePadding="0dp"
+                android:drawableRight="@android:drawable/sym_action_call" />
+
+        </LinearLayout>
+
+    </android.support.percent.PercentRelativeLayout>
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/ic_mamu_png_new_new"
+        android:layout_marginTop="80dp"
+        android:scaleType="centerCrop"/>
+
+</FrameLayout>

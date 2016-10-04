@@ -16,5 +16,9 @@
     <string name="sex_label">Sex</string>
     <string name="bday_label">Birthday</string>
     <string name="bday">Enter Birthday</string>
+    <string name="expert_mamu">Expert Mamu</string>
+    <string name="my_question_mamu_answers">My Question Mamu Answers</string>
+    <string name="video_challenge">Video Challenge</string>
+    <string name="challenge_mamu">Challenge Mamu</string>
 
 </resources>
