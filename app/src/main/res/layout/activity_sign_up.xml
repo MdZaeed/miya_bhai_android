@@ -12,7 +12,7 @@
         <ImageView
             android:layout_width="200dp"
             android:layout_height="100dp"
-            android:src="@drawable/mock_logo" />
+            android:src="@drawable/rsz_1mamu_png" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="100dp"

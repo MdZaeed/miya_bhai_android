@@ -26,16 +26,18 @@ import java.util.Map;
 import rad.iit.com.baya.R;
 import rad.iit.com.baya.activities.template.TemplateActivity;
 import rad.iit.com.baya.data.constants.ApplicationConstants;
+import rad.iit.com.baya.datamodels.IFormValidation;
 import rad.iit.com.baya.datamodels.User;
 import rad.iit.com.baya.utils.CustomToast;
 
 /**
  * Created by Zayed on 16-Aug-16.
  */
-public class LoginActivity extends TemplateActivity implements View.OnClickListener {
+public class LoginActivity extends TemplateActivity implements View.OnClickListener, IFormValidation {
 
+    User candidateUser;
     EditText userNameEditText;
-    EditText passwordEditText;
+    EditText mobileNumberText;
     TextView registerTextView;
     Button logInButton;
 
@@ -45,7 +47,7 @@ public class LoginActivity extends TemplateActivity implements View.OnClickListe
         setContentView(R.layout.activity_login);
 
         userNameEditText = (EditText) findViewById(R.id.et_user_name);
-        passwordEditText = (EditText) findViewById(R.id.et_password);
+        mobileNumberText = (EditText) findViewById(R.id.et_mobile);
         registerTextView=(TextView) findViewById(R.id.tv_sign_up_now);
 
         logInButton = (Button) findViewById(R.id.btn_login);
@@ -73,10 +75,11 @@ public class LoginActivity extends TemplateActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_login:
-                final User user = new User();
-                user.userName = userNameEditText.getText().toString();
-                user.mobileNumber = passwordEditText.getText().toString();
-                loginUser(user);
+                    if (isAllInputFieldNotNull()){
+                        getAllInputFieldData();
+                        customToast.showLongToast(candidateUser.toString());
+//                loginUser(candidateUser);
+                    }
                 break;
 
             case  R.id.tv_sign_up_now:
@@ -86,7 +89,7 @@ public class LoginActivity extends TemplateActivity implements View.OnClickListe
         }
     }
 
-    public void loginUser(final User user) {
+    public void loginUser(User user) {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading");
         progressDialog.show();
@@ -125,7 +128,7 @@ public class LoginActivity extends TemplateActivity implements View.OnClickListe
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put(ApplicationConstants.USER_MODEL, user.toString());
+                params.put(ApplicationConstants.USER_MODEL, candidateUser.toString());
                 return params;
 
             }
@@ -139,5 +142,27 @@ public class LoginActivity extends TemplateActivity implements View.OnClickListe
         editor.putString(ApplicationConstants.TOKEN_KEY, token);
         editor.putLong(ApplicationConstants.ID_KEY, id);
         editor.commit();
+    }
+
+    @Override
+    public boolean isAllInputFieldNotNull() {
+        if (userNameEditText.getText().toString().equals("")){
+            customToast.showLongToast("Please Enter User Name");
+            userNameEditText.setFocusable(true);
+            return false;
+        }
+        else if(mobileNumberText.getText().toString().equals("")){
+            customToast.showLongToast("Please Enter Mobile Number");
+            mobileNumberText.setFocusable(true);
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public void getAllInputFieldData() {
+        candidateUser = new User();
+        candidateUser.userName = userNameEditText.getText().toString();
+        candidateUser.mobileNumber = mobileNumberText.getText().toString();
     }
 }

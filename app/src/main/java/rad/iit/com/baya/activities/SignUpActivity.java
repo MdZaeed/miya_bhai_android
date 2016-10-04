@@ -31,11 +31,12 @@ import java.util.Map;
 import rad.iit.com.baya.R;
 import rad.iit.com.baya.activities.template.TemplateActivity;
 import rad.iit.com.baya.data.constants.ApplicationConstants;
+import rad.iit.com.baya.datamodels.IFormValidation;
 import rad.iit.com.baya.datamodels.User;
 import rad.iit.com.baya.utils.CustomTime;
 import rad.iit.com.baya.utils.CustomToast;
 
-public class SignUpActivity extends TemplateActivity implements View.OnClickListener{
+public class SignUpActivity extends TemplateActivity implements View.OnClickListener, IFormValidation{
 
     EditText userNameEditText;
     EditText mobileEditText;
@@ -83,8 +84,8 @@ public class SignUpActivity extends TemplateActivity implements View.OnClickList
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (isAllEditFieldNotNull()){
-                    insertCandidateUserInfo();
+                if (isAllInputFieldNotNull()){
+                    getAllInputFieldData();
                     CustomToast toast = new CustomToast(SignUpActivity.this);
                     toast.showLongToast(candidateUser.toString());
                     //addUser(candidateUser);
@@ -105,6 +106,7 @@ public class SignUpActivity extends TemplateActivity implements View.OnClickList
                 }, birthdayCalendar.get(Calendar.YEAR), birthdayCalendar.get(Calendar.MONTH), birthdayCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
+
         radioSexGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -114,26 +116,6 @@ public class SignUpActivity extends TemplateActivity implements View.OnClickList
         });
         loginButton.setOnClickListener(this);
     }
-
-    private boolean isAllEditFieldNotNull() {
-        if (userNameEditText.getText().toString().equals("")){
-            customToast.showLongToast("Please Enter User Name");
-            userNameEditText.setFocusable(true);
-            return false;
-        }
-        else if(bdayEditText.getText().toString().equals("")){
-            customToast.showLongToast("Please Enter Birthday");
-            bdayEditText.setFocusable(true);
-            return false;
-        }
-        else if(mobileEditText.getText().toString().equals("")){
-            customToast.showLongToast("Please Enter Mobile Number");
-            mobileEditText.setFocusable(true);
-            return false;
-        }
-        return true;
-    }
-
     public void addUser(final User user) {
         final ProgressDialog progressDialog = new ProgressDialog(SignUpActivity.this);
         progressDialog.setMessage("Loading");
@@ -184,12 +166,32 @@ public class SignUpActivity extends TemplateActivity implements View.OnClickList
                 break;
         }
     }
-    private void insertCandidateUserInfo(){
+    @Override
+    public boolean isAllInputFieldNotNull() {
+        if (userNameEditText.getText().toString().equals("")){
+            customToast.showLongToast("Please Enter User Name");
+            userNameEditText.setFocusable(true);
+            return false;
+        }
+        else if(bdayEditText.getText().toString().equals("")){
+            customToast.showLongToast("Please Enter Birthday");
+            bdayEditText.setFocusable(true);
+            return false;
+        }
+        else if(mobileEditText.getText().toString().equals("")){
+            customToast.showLongToast("Please Enter Mobile Number");
+            mobileEditText.setFocusable(true);
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public void getAllInputFieldData() {
         candidateUser = new User();
         candidateUser.userName = userNameEditText.getText().toString();
         candidateUser.bday = CustomTime.toStandardFormat(birthdayCalendar);
         candidateUser.mobileNumber = mobileEditText.getText().toString();
         candidateUser.sex = radioSexButton.getText().toString();
     }
-
 }
