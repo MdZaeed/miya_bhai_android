@@ -12,7 +12,7 @@
         <ImageView
             android:layout_width="200dp"
             android:layout_height="100dp"
-            android:src="@drawable/rsz_1mamu_png" />
+            android:src="@drawable/ic_mamu_png" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="100dp"
@@ -48,6 +48,7 @@
         style="@style/AccountPagEditTextStyles"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:hint="@string/bday"
         />
     <TextView
@@ -72,33 +73,33 @@
         style="@style/NormalTextViewStyles"
         android:id="@+id/tv_sex"
         />
-         <RadioGroup
-            android:layout_width="match_parent"
-            android:id="@+id/rg_sex"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:weightSum="3.0"
-            android:orientation="horizontal"
-            android:layout_height="wrap_content">
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.0"
-                android:id="@+id/rb_male"
-                android:text="Male"/>
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.0"
-                android:id="@+id/rb_female"
-                android:text="Female"/>
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.0"
-                android:id="@+id/rb_others"
-                android:text="Others"/>
-        </RadioGroup>
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:id="@+id/rg_sex"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:weightSum="3.0"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:id="@+id/rb_male"
+            android:text="Male"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:id="@+id/rb_female"
+            android:text="Female"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:id="@+id/rb_others"
+            android:text="Others"/>
+    </RadioGroup>
     <Button
         android:id="@+id/btn_sign_up"
         style="@style/ButtonStyle"

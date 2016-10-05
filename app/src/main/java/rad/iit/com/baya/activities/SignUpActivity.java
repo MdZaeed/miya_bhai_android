@@ -18,6 +18,7 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -88,7 +89,7 @@ public class SignUpActivity extends TemplateActivity implements View.OnClickList
                     getAllInputFieldData();
                     CustomToast toast = new CustomToast(SignUpActivity.this);
                     toast.showLongToast(candidateUser.toString());
-                    //addUser(candidateUser);
+                    addUser(candidateUser);
                 }
             }
         });
@@ -120,23 +121,20 @@ public class SignUpActivity extends TemplateActivity implements View.OnClickList
         final ProgressDialog progressDialog = new ProgressDialog(SignUpActivity.this);
         progressDialog.setMessage("Loading");
         progressDialog.show();
-        final CustomToast customToast = new CustomToast(SignUpActivity.this);
-        StringRequest addUserRequest = new StringRequest(Request.Method.POST, ApplicationConstants.ADD_USER_URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
 
+        final CustomToast customToast = new CustomToast(SignUpActivity.this);
+        JsonObjectRequest addUserRequest = addUserRequest = new JsonObjectRequest(Request.Method.POST, ApplicationConstants.ADD_USER_URL, user.getSignUpJSON(),new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject jsonObject) {
                 if (progressDialog.isShowing()) {
                     progressDialog.dismiss();
                 }
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    Log.d("Res", jsonObject.toString());
-                    customToast.showLongToast(jsonObject.toString());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                Log.d("Res",jsonObject.toString());
+                Log.d("Res", jsonObject.toString());
+                customToast.showLongToast(jsonObject.toString());
             }
-        }, new Response.ErrorListener() {
+
+        },new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 if (progressDialog.isShowing()) {
@@ -145,14 +143,7 @@ public class SignUpActivity extends TemplateActivity implements View.OnClickList
                 Log.d("Err", volleyError.toString());
                 customToast.showLongToast(volleyError.toString());
             }
-        }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put(ApplicationConstants.USER_MODEL, user.toString());
-                return params;
-            }
-        };
+        }) ;
         Volley.newRequestQueue(SignUpActivity.this).add(addUserRequest);
     }
 
