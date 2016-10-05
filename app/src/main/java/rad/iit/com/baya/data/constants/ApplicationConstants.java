@@ -5,8 +5,8 @@ package rad.iit.com.baya.data.constants;
  */
 public class ApplicationConstants {
 
-    public static  final String INDEX_URL="http://10.100.107.157/mayaclone/";
-    public static final String ADD_USER_URL = INDEX_URL+"addUser.php/";
+    public static  final String INDEX_URL="http://10.100.107.5/mamu/";
+    public static final String ADD_USER_URL = INDEX_URL+"register.php/";
     public static final String LOGIN_URL = INDEX_URL+"login.php/";
     public static final String HELLO_URL=INDEX_URL+"annual.php/";
 
@@ -21,6 +21,6 @@ public class ApplicationConstants {
     public static  String SUCCESS_VALUE ="null";
     public static  String ERROR_VALUE ="null";
 
-    public static final String SHARED_PREFERENCE = "maya_clone";
+    public static final String SHARED_PREFERENCE = "mamu";
     public static final String USER_MODEL ="user_model";
 }

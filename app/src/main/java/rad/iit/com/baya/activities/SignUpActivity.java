@@ -18,6 +18,7 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -31,11 +32,12 @@ import java.util.Map;
 import rad.iit.com.baya.R;
 import rad.iit.com.baya.activities.template.TemplateActivity;
 import rad.iit.com.baya.data.constants.ApplicationConstants;
+import rad.iit.com.baya.datamodels.IFormValidation;
 import rad.iit.com.baya.datamodels.User;
 import rad.iit.com.baya.utils.CustomTime;
 import rad.iit.com.baya.utils.CustomToast;
 
-public class SignUpActivity extends TemplateActivity implements View.OnClickListener{
+public class SignUpActivity extends TemplateActivity implements View.OnClickListener, IFormValidation{
 
     EditText userNameEditText;
     EditText mobileEditText;
@@ -83,11 +85,11 @@ public class SignUpActivity extends TemplateActivity implements View.OnClickList
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (isAllEditFieldNotNull()){
-                    insertCandidateUserInfo();
+                if (isAllInputFieldNotNull()){
+                    getAllInputFieldData();
                     CustomToast toast = new CustomToast(SignUpActivity.this);
                     toast.showLongToast(candidateUser.toString());
-                    //addUser(candidateUser);
+                    addUser(candidateUser);
                 }
             }
         });
@@ -105,6 +107,7 @@ public class SignUpActivity extends TemplateActivity implements View.OnClickList
                 }, birthdayCalendar.get(Calendar.YEAR), birthdayCalendar.get(Calendar.MONTH), birthdayCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
+
         radioSexGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -114,8 +117,48 @@ public class SignUpActivity extends TemplateActivity implements View.OnClickList
         });
         loginButton.setOnClickListener(this);
     }
+    public void addUser(final User user) {
+        final ProgressDialog progressDialog = new ProgressDialog(SignUpActivity.this);
+        progressDialog.setMessage("Loading");
+        progressDialog.show();
 
-    private boolean isAllEditFieldNotNull() {
+        final CustomToast customToast = new CustomToast(SignUpActivity.this);
+        JsonObjectRequest addUserRequest = addUserRequest = new JsonObjectRequest(Request.Method.POST, ApplicationConstants.ADD_USER_URL, user.getSignUpJSON(),new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject jsonObject) {
+                if (progressDialog.isShowing()) {
+                    progressDialog.dismiss();
+                }
+                Log.d("Res",jsonObject.toString());
+                Log.d("Res", jsonObject.toString());
+                customToast.showLongToast(jsonObject.toString());
+            }
+
+        },new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                if (progressDialog.isShowing()) {
+                    progressDialog.dismiss();
+                }
+                Log.d("Err", volleyError.toString());
+                customToast.showLongToast(volleyError.toString());
+            }
+        }) ;
+        Volley.newRequestQueue(SignUpActivity.this).add(addUserRequest);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId())
+        {
+            case R.id.tv_login:
+                Intent intent=new Intent(SignUpActivity.this,LoginActivity.class);
+                startActivity(intent);
+                break;
+        }
+    }
+    @Override
+    public boolean isAllInputFieldNotNull() {
         if (userNameEditText.getText().toString().equals("")){
             customToast.showLongToast("Please Enter User Name");
             userNameEditText.setFocusable(true);
@@ -134,62 +177,12 @@ public class SignUpActivity extends TemplateActivity implements View.OnClickList
         return true;
     }
 
-    public void addUser(final User user) {
-        final ProgressDialog progressDialog = new ProgressDialog(SignUpActivity.this);
-        progressDialog.setMessage("Loading");
-        progressDialog.show();
-        final CustomToast customToast = new CustomToast(SignUpActivity.this);
-        StringRequest addUserRequest = new StringRequest(Request.Method.POST, ApplicationConstants.ADD_USER_URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-
-                if (progressDialog.isShowing()) {
-                    progressDialog.dismiss();
-                }
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    Log.d("Res", jsonObject.toString());
-                    customToast.showLongToast(jsonObject.toString());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError volleyError) {
-                if (progressDialog.isShowing()) {
-                    progressDialog.dismiss();
-                }
-                Log.d("Err", volleyError.toString());
-                customToast.showLongToast(volleyError.toString());
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put(ApplicationConstants.USER_MODEL, user.toString());
-                return params;
-            }
-        };
-        Volley.newRequestQueue(SignUpActivity.this).add(addUserRequest);
-    }
-
     @Override
-    public void onClick(View view) {
-        switch (view.getId())
-        {
-            case R.id.tv_login:
-                Intent intent=new Intent(SignUpActivity.this,LoginActivity.class);
-                startActivity(intent);
-                break;
-        }
-    }
-    private void insertCandidateUserInfo(){
+    public void getAllInputFieldData() {
         candidateUser = new User();
         candidateUser.userName = userNameEditText.getText().toString();
         candidateUser.bday = CustomTime.toStandardFormat(birthdayCalendar);
         candidateUser.mobileNumber = mobileEditText.getText().toString();
         candidateUser.sex = radioSexButton.getText().toString();
     }
-
 }

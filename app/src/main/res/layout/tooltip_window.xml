@@ -1,13 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="wrap_content"
+    android:orientation="vertical" android:layout_width="150dp"
     android:layout_height="wrap_content"
-    android:background="@android:color/black">
+    android:background="@drawable/rounded_edge_white_background"
+    android:padding="20dp">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_popup_text"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="ajsdujasdhjsa"
-        android:textSize="40sp"/>
+        android:textColor="@android:color/black"
+        android:maxLines="10"
+        android:textSize="10sp"
+        android:ellipsize="none"
+        android:scrollHorizontally="false"
+        android:singleLine="false"
+        android:minLines="4"/>
+
+    <Button
+        android:id="@+id/btn_popup_enter_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click Here to Enter"
+        android:background="@null"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:textColor="@android:color/holo_red_dark" />
 
 </LinearLayout>
