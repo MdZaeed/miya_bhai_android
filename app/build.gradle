@@ -26,5 +26,6 @@ dependencies {
     compile "com.android.support:percent:23.1.1"
 
     compile 'com.fenchtose:tooltip:0.1.5'
+    
     compile files('libs/volley.jar')
 }
