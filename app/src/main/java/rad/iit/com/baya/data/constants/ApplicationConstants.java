@@ -5,6 +5,7 @@ package rad.iit.com.baya.data.constants;
  */
 public class ApplicationConstants {
 
+    public static int CATEGORY_ID = 0;
     public static  final String INDEX_URL="http://10.100.107.5/mamu/";
     public static final String ADD_USER_URL = INDEX_URL+"register.php/";
     public static final String LOGIN_URL = INDEX_URL+"login.php/";
@@ -23,4 +24,10 @@ public class ApplicationConstants {
 
     public static final String SHARED_PREFERENCE = "mamu";
     public static final String USER_MODEL ="user_model";
+
+    /*
+     * demo question, answer, temporary
+     */
+    public static String demo_question="This is a demo question. This is a demo question. This is a demo question. This is a demo question.";
+    public static String demo_answer="This is a demo answer. This is a demo answer. This is a demo answer. This is a demo answer.";
 }

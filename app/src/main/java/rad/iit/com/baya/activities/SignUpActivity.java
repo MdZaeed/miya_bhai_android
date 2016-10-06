@@ -152,7 +152,12 @@ public class SignUpActivity extends TemplateActivity implements View.OnClickList
         switch (view.getId())
         {
             case R.id.tv_login:
-                Intent intent=new Intent(SignUpActivity.this,LoginActivity.class);
+
+                /*Intent intent=new Intent(SignUpActivity.this,LoginActivity.class);
+                startActivity(intent);
+                */
+                // testing
+                Intent intent=new Intent(SignUpActivity.this,ChallengerMamuActivity.class);
                 startActivity(intent);
                 break;
         }

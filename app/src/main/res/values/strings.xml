@@ -16,5 +16,14 @@
     <string name="sex_label">Sex</string>
     <string name="bday_label">Birthday</string>
     <string name="bday">Enter Birthday</string>
+    <string name="title_activity_challenger_mamu">ChallengerMamuActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="pull_to_refresh">No Products. Pull To Refresh</string>
+    <string name="demo_question">This is a demo question. This is a demo question. This is a demo question. This is a demo question.</string>
+    <string name="demo_answer">This is a demo answer. This is a demo answer. This is a demo answer. This is a demo answer. This is a demo answer. This is a demo answer</string>
 
 </resources>
