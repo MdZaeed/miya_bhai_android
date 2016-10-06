@@ -12,7 +12,11 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activities.SignUpActivity"></activity>
         <activity android:name=".activities.LoginActivity" />
-        <activity android:name=".activities.HomePageActivity">
+        <activity android:name=".activities.HomePageActivity">        </activity>
+        <activity android:name=".activities.VideoChallengeListActivity">
+        </activity>
+
+        <activity android:name=".activities.VideoChallengeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/youtube_image"
+        android:layout_above="@+id/btn_my_videos_button"/>
+
+    <Button
+        android:id="@+id/btn_my_videos_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_all_videos"
+        android:background="#FF9BCD"
+        android:text="My videos" />
+
+    <Button
+        android:id="@+id/btn_all_videos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_facebook_group_link"
+        android:layout_marginTop="10dp"
+        android:background="#FF9BCD"
+        android:text="All videos" />
+
+    <Button
+        android:id="@+id/btn_facebook_group_link"
+        style="@style/VideoChallengerButtonStyle"
+        android:layout_above="@+id/btn_youtube_chanel_link"
+        android:drawableLeft="@drawable/ic_facebook_logo"
+        android:drawableStart="@drawable/ic_facebook_logo"
+        android:text="https://www.facebook.com/BraveMenCampaign" />
+
+    <Button
+        android:id="@+id/btn_youtube_chanel_link"
+        style="@style/VideoChallengerButtonStyle"
+        android:layout_alignParentBottom="true"
+        android:drawableLeft="@drawable/ic_youtube_logo"
+        android:drawableStart="@drawable/ic_youtube_logo"
+        android:text="https://www.youtube.com/cmms" />
+
+</RelativeLayout>
