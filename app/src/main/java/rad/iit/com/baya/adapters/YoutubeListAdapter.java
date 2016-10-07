@@ -1,4 +1,4 @@
-package rad.iit.com.baya.Adapter;
+package rad.iit.com.baya.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import rad.iit.com.baya.R;
 import rad.iit.com.baya.datamodels.YoutubeVideoModel;

@@ -19,10 +19,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
-import rad.iit.com.baya.Adapter.YoutubeListAdapter;
+import rad.iit.com.baya.adapters.YoutubeListAdapter;
 import rad.iit.com.baya.R;
 import rad.iit.com.baya.data.constants.ApplicationConstants;
 import rad.iit.com.baya.datamodels.YoutubeVideoModel;
