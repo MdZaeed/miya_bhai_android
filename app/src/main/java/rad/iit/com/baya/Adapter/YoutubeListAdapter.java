@@ -2,6 +2,7 @@ package rad.iit.com.baya.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,10 +26,9 @@ public class YoutubeListAdapter extends RecyclerView.Adapter<YoutubeListAdapter.
     ArrayList<YoutubeVideoModel> youtubeVideoData;
     protected Context context;
 
-    public YoutubeListAdapter(Context context,ArrayList<YoutubeVideoModel> youtubeVideoData)
-    {
-        this.context=context;
-        this.youtubeVideoData=youtubeVideoData;
+    public YoutubeListAdapter(Context context, ArrayList<YoutubeVideoModel> youtubeVideoData) {
+        this.context = context;
+        this.youtubeVideoData = youtubeVideoData;
     }
 
     @Override
@@ -39,9 +39,9 @@ public class YoutubeListAdapter extends RecyclerView.Adapter<YoutubeListAdapter.
 
     @Override
     public void onBindViewHolder(YoutubeVideoHolder holder, int position) {
-        YoutubeVideoModel youtubeVideoModel=getItem(position);
-        String title=youtubeVideoModel.getTitle();
-        String url=youtubeVideoModel.getUrl();
+        YoutubeVideoModel youtubeVideoModel = getItem(position);
+        String title = youtubeVideoModel.getTitle();
+        String url = youtubeVideoModel.getUrl();
 
         holder.youtubeVideoNameTextView.setText(title);
         Picasso.with(context).load(url).fit().into(holder.youtubeVideoImageView);
@@ -69,13 +69,9 @@ public class YoutubeListAdapter extends RecyclerView.Adapter<YoutubeListAdapter.
 
         @Override
         public void onClick(View view) {
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-
-            String title = "Choose an app";
-            Intent chooser = Intent.createChooser(intent, title);
-            if (intent.resolveActivity(context.getPackageManager()) != null) {
-                context.startActivity(chooser);
-            }
+            String url = getItem(getAdapterPosition()).getUrl();
+            url = "https://www.youtube.com/watch?v=" + url;
+            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
         }
     }
 

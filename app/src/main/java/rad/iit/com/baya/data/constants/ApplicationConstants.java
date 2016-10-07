@@ -10,7 +10,8 @@ public class ApplicationConstants {
     public static final String LOGIN_URL = INDEX_URL+"login.php/";
     public static final String HELLO_URL=INDEX_URL+"annual.php/";
 
-    public static final String YOUTUBE_VIDEO_DETAILS_URL="https://www.googleapis.com/youtube/v3/videos?part=snippet&id=TXGTA3X99g0,Kf6MsltI7lQ,_xGhK6qgPtM&key=AIzaSyAeZwtQvxh4vrNag7InMh8KCxp2N3HeK-4";
+    public static final String YOUTUBE_VIDEO_DETAILS_URL="https://www.googleapis.com/youtube/v3/videos?part=snippet&key=AIzaSyAeZwtQvxh4vrNag7InMh8KCxp2N3HeK-4&id=";
+    public static final String YOUTBE_VIDEOS_LIST_URL="http://trimarkworld.com/mamu/getVideos.php";
 
     public static  final String TOKEN_KEY ="token";
     public static final String ID_KEY ="ID";

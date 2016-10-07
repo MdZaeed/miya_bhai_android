@@ -2,14 +2,10 @@ package rad.iit.com.baya.activities;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.drawable.BitmapDrawable;
 import android.support.percent.PercentRelativeLayout;
-import android.view.Gravity;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.fenchtose.tooltip.Tooltip;
