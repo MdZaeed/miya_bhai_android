@@ -12,7 +12,10 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activities.SignUpActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.HomePageActivity"/>
+        <activity android:name=".activities.VideoChallengeListActivity"/>
+        <activity android:name=".activities.VideoChallengeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,6 +34,7 @@
             android:theme="@style/AppTheme.NoActionBarNTitle" />
         <activity android:name=".activities.ComposeQuestionActivity"
             android:theme="@style/AppTheme.NoActionBarNTitle"></activity>
+
     </application>
 
 </manifest>

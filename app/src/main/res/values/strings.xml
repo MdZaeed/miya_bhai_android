@@ -25,5 +25,9 @@
     <string name="pull_to_refresh">No Products. Pull To Refresh</string>
     <string name="demo_question">This is a demo question. This is a demo question. This is a demo question. This is a demo question.</string>
     <string name="demo_answer">This is a demo answer. This is a demo answer. This is a demo answer. This is a demo answer. This is a demo answer. This is a demo answer</string>
-
+    <string name="expert_mamu">Expert Mamu</string>
+    <string name="my_question_mamu_answers">My Question Mamu Answers</string>
+    <string name="video_challenge">Video Challenge</string>
+    <string name="challenge_mamu">Challenge Mamu</string>
+    <string name="campus_hero_cafe">The Campus Hero Cafe<br/>email: <b>chllengermamu@gmail.com</b></string>
 </resources>
