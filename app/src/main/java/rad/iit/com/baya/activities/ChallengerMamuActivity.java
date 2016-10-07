@@ -1,43 +1,26 @@
 package rad.iit.com.baya.activities;
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.Gravity;
-import android.support.design.widget.NavigationView;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.ImageButton;
-import android.widget.ImageView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import rad.iit.com.baya.R;
-import rad.iit.com.baya.activities.template.DrawerTemplateActivity;
+import rad.iit.com.baya.activities.template.TemplateActivity;
 import rad.iit.com.baya.adapters.RecyclerViewListAdapter;
 import rad.iit.com.baya.data.constants.ApplicationConstants;
-import rad.iit.com.baya.datamodels.Category;
 import rad.iit.com.baya.datamodels.OnRecyclerViewItemListener;
 import rad.iit.com.baya.datamodels.QuestionAnswer;
 
-
-public class ChallengerMamuActivity extends DrawerTemplateActivity implements OnRecyclerViewItemListener {
+public class ChallengerMamuActivity extends TemplateActivity implements OnRecyclerViewItemListener {
 
     protected Toolbar templateToolbar;
     private static String LOG="ChallengerMamuActivity";
@@ -45,65 +28,80 @@ public class ChallengerMamuActivity extends DrawerTemplateActivity implements On
     List<QuestionAnswer> questionAnswerList = new ArrayList<QuestionAnswer>();
     RecyclerView myRecyclerView;
     TextView subTitleTextView;
+    FloatingActionButton questionAskFloatingActionButton;
+    Spinner topicSpinner;
+    ArrayAdapter<String> topicArrayAdapter;
+    List<String> topicStringList;
 
-    @Override
-    public void loadDataFromLocalDB(){
-        super.loadDataFromLocalDB();
-        // load all the questions and answers
-        demoQuestionAnswer();
-    }
+
     @Override
     public void onBackPressed() {
-
+        super.onBackPressed();
     }
 
     @Override
     public void initView() {
         setContentView(R.layout.activity_challenger_mamu);
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
         myRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view_challenger_mamu);
         productListSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout_home);
         subTitleTextView = (TextView) findViewById(R.id.text_subtitle);
+        questionAskFloatingActionButton = (FloatingActionButton) findViewById(R.id.ft_question_ask);
+        toolbarTitle = (TextView) findViewById(R.id.toolbar_title);
+        topicSpinner = (Spinner) findViewById(R.id.spinner_topic_list);
+
+        // temp method
+        setTopicList();
+
     }
+    /**
+     * Temp method
+     */
+    private void setTopicList() {
+        topicStringList = new ArrayList<String>();
+        topicStringList.add("Category One");
+        topicStringList.add("Category One");
+        topicStringList.add("Category One");
+        topicStringList.add("Category One");
+    }
+
 
     @Override
     public void loadData() {
-        loadDataFromLocalDB();
+        demoQuestionAnswer();
     }
 
     @Override
     public void initializeViewByData() {
         templateToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(templateToolbar);
-        toggle = new ActionBarDrawerToggle(
-                this, drawer, templateToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-        toggle.setDrawerIndicatorEnabled(false);
-        templateToolbar.setNavigationIcon(R.drawable.drawer_16);
-        templateToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setupNavigationHeader();
-                setUpNavigationDrawerMenu();
-                drawer.openDrawer(Gravity.LEFT);
-            }
-        });
-        navigationView.setNavigationItemSelectedListener(this);
-        setupNavigationHeader();
-        setUpNavigationDrawerMenu();
+        templateToolbar.setNavigationIcon(R.drawable.ic_mamu_home);
         myRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        myRecyclerView.setAdapter(new RecyclerViewListAdapter(ChallengerMamuActivity.this,R.layout.card_question,questionAnswerList.size()));
+        myRecyclerView.setAdapter(new RecyclerViewListAdapter(ChallengerMamuActivity.this, R.layout.card_question, questionAnswerList.size()));
         productListSwipeRefreshLayout.setColorSchemeResources(R.color.orange, R.color.green, R.color.red);
         if (subTitleTextView != null){
-            subTitleTextView.setText("Just Arrived");
+            subTitleTextView.setText("Category");
         }
+        topicArrayAdapter = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,topicStringList);
+        topicSpinner.setAdapter(topicArrayAdapter);
+        toolbarTitle.setText("Expert Mamu");
     }
 
     @Override
     public void listenView() {
-
+        templateToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO go to Home Activity
+                onBackPressed();
+            }
+        });
+        questionAskFloatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    Intent intent = new Intent(ChallengerMamuActivity.this, ComposeQuestionActivity.class);
+                    startActivity(intent);
+            }
+        });
         productListSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -119,6 +117,7 @@ public class ChallengerMamuActivity extends DrawerTemplateActivity implements On
             }
         });
     }
+
     @Override
     public void listenItem(View view, final int position) {
         TextView questionView = (TextView) view.findViewById(R.id.tv_question);
@@ -126,7 +125,7 @@ public class ChallengerMamuActivity extends DrawerTemplateActivity implements On
         questionView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ChallengerMamuActivity.this,ChallengerMamuQuestionAnswerActivity.class);
+                Intent intent = new Intent(ChallengerMamuActivity.this, ChallengerMamuQuestionAnswerActivity.class);
                 startActivity(intent);
             }
         });
@@ -163,7 +162,6 @@ public class ChallengerMamuActivity extends DrawerTemplateActivity implements On
         questionAnswerList.add(new QuestionAnswer(18,question,answer,1,3));
         questionAnswerList.add(new QuestionAnswer(19,question,answer,1,4));
         questionAnswerList.add(new QuestionAnswer(20,question,answer,1,5));
-
     }
 
 }

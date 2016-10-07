@@ -15,6 +15,7 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -25,7 +26,10 @@
             android:name=".activities.ChallengerMamuActivity"
             android:label="@string/title_activity_challenger_mamu"
             android:theme="@style/AppTheme.NoActionBarNTitle" />
-        <activity android:name=".activities.ChallengerMamuQuestionAnswerActivity"
+        <activity
+            android:name=".activities.ChallengerMamuQuestionAnswerActivity"
+            android:theme="@style/AppTheme.NoActionBarNTitle" />
+        <activity android:name=".activities.ComposeQuestionActivity"
             android:theme="@style/AppTheme.NoActionBarNTitle"></activity>
     </application>
 

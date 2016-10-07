@@ -20,6 +20,7 @@ import rad.iit.com.baya.utils.CustomToast;
 
 public abstract class TemplateActivity extends AppCompatActivity {
 
+    protected  TextView toolbarTitle;
     protected CustomToast customToast = new CustomToast(this);
 
     public abstract void initView();

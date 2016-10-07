@@ -4,21 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="2dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <TextView
+        <include layout="@layout/card_question"
+            android:id="@+id/card_question"/>
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/demo_question"
-            android:id="@+id/tv_question"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/demo_answer"
-            android:id="@+id/tv_answer"/>
+            android:layout_height="2dp"
+            android:background="@color/colorPrimary"/>
+        <include layout="@layout/card_answer"
+            android:id="@+id/card_answer"/>
     </LinearLayout>
-
 </android.support.design.widget.CoordinatorLayout>

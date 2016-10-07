@@ -20,6 +20,7 @@ public class ChallengerMamuQuestionAnswerActivity extends TemplateActivity {
         setContentView(R.layout.activity_challenger_mamu_question_answer);
         templateToolbar = (Toolbar) findViewById(R.id.toolbar);
         subTitleTextView = (TextView) findViewById(R.id.text_subtitle);
+        toolbarTitle = (TextView) findViewById(R.id.toolbar_title);
     }
 
     @Override
@@ -36,6 +37,8 @@ public class ChallengerMamuQuestionAnswerActivity extends TemplateActivity {
                 onBackPressed();
             }
         });
+        subTitleTextView.setText("Category");
+        toolbarTitle.setText("Answer of Expert Mamu");
     }
 
     @Override
