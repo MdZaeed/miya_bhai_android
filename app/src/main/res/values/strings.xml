@@ -8,26 +8,43 @@
     <string name="don_t_have_an_account">Don\'t have an account?</string>
     <string name="sign_up_in_less_than_a_minute">Sign up in less than a minute</string>
     <string name="username">Enter Name</string>
-    <string name="already_a_user">Already a user?</string>
-    <string name="create_a_free_private_secure_account_in_3_easy_steps">Create a free, private, secure account in 3 easy steps</string>
+    <string name="already_a_user" translatable="false">Already a user?</string>
+    <string name="create_a_free_private_secure_account_in_3_easy_steps" translatable="false">Create a free, private, secure account in 3 easy steps</string>
     <string name="sign_up">Sign Up</string>
     <string name="unique_name_label">Unique Name</string>
     <string name="mobile_label">Mobile Number</string>
     <string name="sex_label">Sex</string>
     <string name="bday_label">Birthday</string>
     <string name="bday">Enter Birthday</string>
-    <string name="title_activity_challenger_mamu">ChallengerMamuActivity</string>
+    <string name="title_activity_challenger_mamu" translatable="false">ChallengerMamuActivity</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_settings">Settings</string>
-    <string name="pull_to_refresh">No Products. Pull To Refresh</string>
-    <string name="demo_question">This is a demo question. This is a demo question. This is a demo question. This is a demo question.</string>
-    <string name="demo_answer">This is a demo answer. This is a demo answer. This is a demo answer. This is a demo answer. This is a demo answer. This is a demo answer</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+
+    <string name="action_settings" translatable="false">Settings</string>
+    <string name="pull_to_refresh" translatable="false">No Products. Pull To Refresh</string>
+    <string name="demo_question" translatable="false">This is a demo question. This is a demo question. This is a demo question. This is a demo question.</string>
+    <string name="demo_answer" translatable="false">This is a demo answer. This is a demo answer. This is a demo answer. This is a demo answer. This is a demo answer. This is a demo answer</string>
     <string name="expert_mamu">Expert Mamu</string>
     <string name="my_question_mamu_answers">My Question Mamu Answers</string>
     <string name="video_challenge">Video Challenge</string>
     <string name="challenge_mamu">Challenge Mamu</string>
-    <string name="campus_hero_cafe">The Campus Hero Cafe<br/>email: <b>chllengermamu@gmail.com</b></string>
+    <string name="campus_hero_cafe" translatable="false">The Campus Hero Cafe<br/>email: <b>chllengermamu@gmail.com</b></string>
+    <string name="first_button_tooltip_text">Want to talk about adolescence and sex, reproduction health? Openly discuss with our expert mamu.</string>
+    <string name="second_button_tooltip_text">Chat with mamu, Tell him anything</string>
+    <string name="third_button_tooltip_text">Find your answer via our videos, update your own videos</string>
+    <string name="fourth_buton_tooltip_text">Is your knowledge about sex and reproduction health correct? Challenge Mamu</string>
+    <string name="sixth_button_tooltip_text">Talk with mamu on our hotline number</string>
+    <string name="mail">Mail</string>
+    <string name="dial">Dial</string>
+    <string name="hotline_number" translatable="false">01815176477</string>
+    <string name="hotline">Hotline</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="challenger_mamu">Challenger Mamu</string>
+    <string name="my_videos">My videos</string>
+    <string name="all_videos">All videos</string>
+    <string name="facebook_group_link" translatable="false">https://www.facebook.com/BraveMenCampaign</string>
+    <string name="youtube_chanel_link" translatable="false">https://www.youtube.com/cmms</string>
+    <string name="sign_in">Sign In</string>
 </resources>

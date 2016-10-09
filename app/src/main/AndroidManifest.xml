@@ -9,22 +9,23 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:screenOrientation="portrait">
         <activity
             android:name=".activities.SignUpActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".activities.HomePageActivity"/>
         <activity android:name=".activities.VideoChallengeListActivity"/>
-        <activity android:name=".activities.VideoChallengeActivity">
+        <activity android:name=".activities.VideoChallengeActivity"/>
+        <activity
+            android:name=".activities.LoginActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activities.LoginActivity"
-            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.ChallengerMamuActivity"
             android:label="@string/title_activity_challenger_mamu"
@@ -33,7 +34,7 @@
             android:name=".activities.ChallengerMamuQuestionAnswerActivity"
             android:theme="@style/AppTheme.NoActionBarNTitle" />
         <activity android:name=".activities.ComposeQuestionActivity"
-            android:theme="@style/AppTheme.NoActionBarNTitle"></activity>
+            android:theme="@style/AppTheme.NoActionBarNTitle"/>
 
     </application>
 

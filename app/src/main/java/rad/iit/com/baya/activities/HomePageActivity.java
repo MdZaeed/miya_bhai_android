@@ -2,6 +2,7 @@ package rad.iit.com.baya.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.percent.PercentRelativeLayout;
 import android.view.View;
 import android.widget.Button;
@@ -82,33 +83,35 @@ public class HomePageActivity extends TemplateActivity implements View.OnClickLi
         switch (view.getId())
         {
             case R.id.btn_expert_mamu_hmpgb1:
-                textView.setText("Want to talk about adolescence and sex, reproduction health? Openly discuss with our expert mamu.");
+                textView.setText(R.string.first_button_tooltip_text);
                 popupButton.setOnClickListener(new popupButtonOnClickListener(view));
                 break;
 
             case R.id.btn_normal_mamu_hmpgb2:
-                textView.setText("Chat with mamu, Tell him anything");
+                textView.setText(R.string.second_button_tooltip_text);
                 popupButton.setOnClickListener(new popupButtonOnClickListener(view));
                 break;
 
             case R.id.btn_video_challenge_hmpgb3:
-                textView.setText("Find your answer via our videos, update your own videos");
+                textView.setText(R.string.third_button_tooltip_text);
                 popupButton.setOnClickListener(new popupButtonOnClickListener(view));
                 break;
 
             case R.id.challenge_mamau_hmpgb4:
-                textView.setText("Is your knowledge about sex and reproduction health correct? Challenge Mamu");
+                textView.setText(R.string.fourth_buton_tooltip_text);
                 popupButton.setOnClickListener(new popupButtonOnClickListener(view));
                 break;
 
             case R.id.btn_contact_us_hmpgb5:
                 textView.setText(R.string.campus_hero_cafe);
-                popupButton.setVisibility(View.GONE);
+                popupButton.setText(R.string.mail);
+                popupButton.setOnClickListener(new popupButtonOnClickListener(view));
                 break;
 
             case R.id.btn_hotline_hmpgb6:
-                textView.setText("Talk with mamu on our hotline number");
-                popupButton.setVisibility(View.GONE);
+                textView.setText(R.string.sixth_button_tooltip_text);
+                popupButton.setText(R.string.dial);
+                popupButton.setOnClickListener(new popupButtonOnClickListener(view));
                 break;
         }
 
@@ -133,26 +136,34 @@ public class HomePageActivity extends TemplateActivity implements View.OnClickLi
             switch (anchorView.getId())
             {
                 case R.id.btn_expert_mamu_hmpgb1:
-                    goToActivity(new LoginActivity());
+                    goToActivity(new ChallengerMamuActivity());
                     break;
 
                 case R.id.btn_normal_mamu_hmpgb2:
                     break;
 
                 case R.id.btn_video_challenge_hmpgb3:
+                    goToActivity(new VideoChallengeActivity());
                     break;
 
                 case R.id.challenge_mamau_hmpgb4:
+                    goToActivity(new ChallengerMamuQuestionAnswerActivity());
+                    break;
+
+                case R.id.btn_contact_us_hmpgb5:
+                    Intent intent = new Intent(Intent.ACTION_SEND);
+                    intent.setType("text/plain");
+                    intent.putExtra(Intent.EXTRA_EMAIL, "emailaddress@emailaddress.com");
+                    startActivity(Intent.createChooser(intent, "Send Email"));
+                    break;
+
+                case R.id.btn_hotline_hmpgb6:
+                    String phone_number=getString(R.string.hotline_number);
+                    startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel" , phone_number, null)));
                     break;
             }
 
         }
-    }
-
-    public void goToActivity(Activity activity)
-    {
-        Intent intent=new Intent(this,activity.getClass());
-        startActivity(intent);
     }
 
 /*    private void displayPopupWindow(View anchorView) {

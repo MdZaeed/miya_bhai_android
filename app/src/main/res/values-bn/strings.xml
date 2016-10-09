@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">মামু</string>
+    <string name="email">ই-মেইল</string>
+    <string name="mobile">মোবাইল নাম্বার</string>
+    <string name="login">লগ-ইন করুন</string>
+    <string name="click_here"><u>এখানে ক্লিক করুন</u></string>
+    <string name="forgot_password">পাসওয়ার্ড ভুলে গেছেন?</string>
+    <string name="don_t_have_an_account">এখনও এক্যাউন্ট নাই?</string>
+    <string name="sign_up_in_less_than_a_minute">১ মিনিটের ভিতরে রেজিস্ট্রেশন করুন</string>
+    <string name="username">নাম</string>
+    <string name="unique_name_label">ইউনিক নাম</string>
+    <string name="mobile_label">মোবাইল নাম্বার</string>
+    <string name="sex_label">লিঙ্গ</string>
+    <string name="bday_label">জন্ম তারিখ</string>
+    <string name="bday">জন্ম তারিখ</string>
+
+    <string name="expert_mamu">এক্সপার্ট মামু</string>
+    <string name="my_question_mamu_answers">আমার প্রশ্ন মামুর উত্তর</string>
+    <string name="video_challenge">ভিডিও চ্যালেঞ্জ</string>
+    <string name="challenge_mamu">চ্যালেঞ্জ কর</string>
+    <string name="first_button_tooltip_text">বয়ঃসন্ধি কালের পরিবর্তন এবং যৌন ও প্রজনন স্বাস্থ্য নিয়ে কারো সাথে কথা বলতে চাও? খোলাখুলি ভাবে কথা বল আমাদের এক্সপার্ট ডাক্তার মামুর সাথে।</string>
+    <string name="second_button_tooltip_text">চলে আসো মামুর সাথে চ্যাট বক্সে। কথা বল তোমার যে কোন জিজ্ঞাসা নিয়ে।</string>
+    <string name="third_button_tooltip_text">তোমাদের প্রস্নগুলো নিয়ে তৈরী করা ভিডিওগুলো দেখতে এইখানে কর। আপলোড কর তোমার ভিডিও গুলোও।</string>
+    <string name="fourth_buton_tooltip_text">যৌন ও প্রজনন স্বাস্থ্য নিয়ে তুমি যা জানো তাই কি ঠিক? চ্যালেঞ্জ কর মামুকে।</string>
+    <string name="sixth_button_tooltip_text">মামুর সাথে কথা বলতে ফোন কর আমাদের হটলাইন নাম্বারে। </string>
+    <string name="mail">মেইল করুন</string>
+    <string name="dial">ডায়াল করুন</string>
+    <string name="hotline">হট লাইন</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="challenger_mamu">Challenger Mamu</string>
+    <string name="sign_in">লগ ইন</string>
+
+
+    <string name="my_videos">আমার ভিডিও চ্যালেঞ্জ</string>
+    <string name="all_videos"> সংরক্ষিত ভিডিওসমূহ</string>
+
+    <string name="sign_up">সাইন আপ</string>
+
+
+</resources>

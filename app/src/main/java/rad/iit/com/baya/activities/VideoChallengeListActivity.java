@@ -19,6 +19,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.logging.StreamHandler;
 
 import rad.iit.com.baya.adapters.YoutubeListAdapter;
 import rad.iit.com.baya.R;
@@ -33,7 +34,8 @@ public class VideoChallengeListActivity extends AppCompatActivity {
 
     RecyclerView youtubeVideoRecyclerView;
 
-    ArrayList<String> mockUrls;
+    ArrayList<String> responseFromServer;
+    ArrayList<String> videoIds;
     ArrayList<YoutubeVideoModel> youtubeVideos;
 
     @Override
@@ -43,16 +45,10 @@ public class VideoChallengeListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_video_challenge_list);
 
         youtubeVideoRecyclerView = (RecyclerView) findViewById(R.id.rclv_youtube_videos);
-
-        mockUrls = new ArrayList<>();
-
-        mockUrls = loadDataInUrlList();
-
-        mockUrls=createYoutubeIdList(mockUrls);
-
         youtubeVideos = new ArrayList<>();
-
-        loadData();
+        responseFromServer = new ArrayList<>();
+        videoIds=new ArrayList<>();
+        responseFromServer = loadDataInUrlList();
     }
 
     public ArrayList<String> createYoutubeIdList(ArrayList<String> urls) {
@@ -65,7 +61,9 @@ public class VideoChallengeListActivity extends AppCompatActivity {
                 String[] parts = url.split("v=");
                 ids.add(parts[1]);
 
+/*
                 Toast.makeText(this,parts[1],Toast.LENGTH_LONG).show();
+*/
             }
         }
 
@@ -95,11 +93,17 @@ public class VideoChallengeListActivity extends AppCompatActivity {
                         String url = videoObject.getString("Link");
                         tempList.add(url);
 
+/*
                         Toast.makeText(VideoChallengeListActivity.this,"Urls: " + url, Toast.LENGTH_LONG).show();
+*/
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
+                videoIds =createYoutubeIdList(tempList);
+                loadData();
+
             }
 
         }, new Response.ErrorListener() {
@@ -122,9 +126,10 @@ public class VideoChallengeListActivity extends AppCompatActivity {
         String queryString = "";
         for (String temp :
                 urlStrings) {
-            queryString = queryString + urlStrings;
+            queryString = queryString + temp + ",";
         }
 
+        queryString= String.copyValueOf(queryString.toCharArray(),0,queryString.length()-1);
         return queryString;
     }
 
@@ -135,7 +140,10 @@ public class VideoChallengeListActivity extends AppCompatActivity {
         progressDialog.show();
 
         final CustomToast customToast = new CustomToast(VideoChallengeListActivity.this);
-        JsonObjectRequest addUserRequest = new JsonObjectRequest(ApplicationConstants.YOUTUBE_VIDEO_DETAILS_URL + getUrlsAsString(mockUrls), null, new Response.Listener<JSONObject>() {
+
+        Toast.makeText(VideoChallengeListActivity.this,"Ids:" + getUrlsAsString(videoIds),Toast.LENGTH_LONG).show();
+
+        JsonObjectRequest addUserRequest = new JsonObjectRequest(ApplicationConstants.YOUTUBE_VIDEO_DETAILS_URL + getUrlsAsString(videoIds), null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
                 if (progressDialog.isShowing()) {
@@ -153,6 +161,9 @@ public class VideoChallengeListActivity extends AppCompatActivity {
                         String title = snippetJsonObject.getString("title");
 
                         youtubeVideos.add(new YoutubeVideoModel(title, imageURL));
+
+                        Toast.makeText(VideoChallengeListActivity.this,"Vidoes:" + title,Toast.LENGTH_LONG).show();
+
                     }
 
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(VideoChallengeListActivity.this);
@@ -161,7 +172,9 @@ public class VideoChallengeListActivity extends AppCompatActivity {
                     YoutubeListAdapter youtubeListAdapter = new YoutubeListAdapter(VideoChallengeListActivity.this, youtubeVideos);
                     youtubeVideoRecyclerView.setAdapter(youtubeListAdapter);
 
-                    Toast.makeText(VideoChallengeListActivity.this,"Ids:" + getUrlsAsString(mockUrls),Toast.LENGTH_LONG).show();
+/*
+                    Toast.makeText(VideoChallengeListActivity.this,"Ids:" + getUrlsAsString(videoIds),Toast.LENGTH_LONG).show();
+*/
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

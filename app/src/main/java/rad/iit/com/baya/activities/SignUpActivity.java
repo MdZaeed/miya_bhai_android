@@ -132,6 +132,8 @@ public class SignUpActivity extends TemplateActivity implements View.OnClickList
                 Log.d("Res",jsonObject.toString());
                 Log.d("Res", jsonObject.toString());
                 customToast.showLongToast(jsonObject.toString());
+
+                goToActivity(new LoginActivity());
             }
 
         },new Response.ErrorListener() {
@@ -157,7 +159,7 @@ public class SignUpActivity extends TemplateActivity implements View.OnClickList
                 startActivity(intent);
                 */
                 // testing
-                Intent intent=new Intent(SignUpActivity.this,ChallengerMamuActivity.class);
+                Intent intent=new Intent(SignUpActivity.this,LoginActivity.class);
                 startActivity(intent);
                 break;
         }

@@ -108,6 +108,7 @@ public class LoginActivity extends TemplateActivity implements View.OnClickListe
                     if (jsonObject.has(ApplicationConstants.TOKEN_KEY) && jsonObject.has(ApplicationConstants.ID_KEY)) {
                         try {
                             saveTokenAndID((String) jsonObject.get(ApplicationConstants.TOKEN_KEY), (String) jsonObject.get(ApplicationConstants.ID_KEY));
+                            goToActivity(new HomePageActivity());
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

@@ -1,134 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingBottom="10dp"
-    android:paddingTop="10dp">
+    android:fillViewport="true">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:src="@drawable/ic_mamu_png" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="100dp"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:textAppearance="?android:textAppearanceLarge"
-            android:text="Sign Up"/>
-    </LinearLayout>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/unique_name_label"
-        android:lines="1"
-        style="@style/NormalTextViewStyles"
-        android:id="@+id/tv_unique_name"
-        />
-    <EditText
-        android:id="@+id/et_user_name"
-        style="@style/AccountPagEditTextStyles"
-        android:layout_width="match_parent"
-        android:singleLine="true"
-        android:layout_height="wrap_content"
-        android:hint="@string/username" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/bday_label"
-        style="@style/NormalTextViewStyles"
-        android:id="@+id/tv_bday"
-        />
-    <TextView
-        android:id="@+id/et_bday"
-        style="@style/AccountPagEditTextStyles"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:hint="@string/bday"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/mobile_label"
-        style="@style/NormalTextViewStyles"
-        android:id="@+id/tv_mobile"
-        />
-    <EditText
-        android:id="@+id/et_mobile"
-        style="@style/AccountPagEditTextStyles"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/mobile"
-        android:maxLength="11"
-        android:inputType="number" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/sex_label"
-        style="@style/NormalTextViewStyles"
-        android:id="@+id/tv_sex"
-        />
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:id="@+id/rg_sex"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:weightSum="3.0"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content">
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.0"
-            android:id="@+id/rb_male"
-            android:text="Male"/>
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.0"
-            android:id="@+id/rb_female"
-            android:text="Female"/>
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.0"
-            android:id="@+id/rb_others"
-            android:text="Others"/>
-    </RadioGroup>
-    <Button
-        android:id="@+id/btn_sign_up"
-        style="@style/ButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_edge_red_background"
-        android:text="@string/sign_up"
-        android:textColor="@android:color/white"
-        android:textStyle="bold" />
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_mamu_png" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Sign Up"
+                android:textAppearance="?android:textAppearanceLarge" />
+        </LinearLayout>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_unique_name"
+            style="@style/NormalTextViewStyles"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@null"
-            android:text="@string/already_a_user" />
+            android:lines="1"
+            android:text="@string/unique_name_label" />
+
+        <EditText
+            android:id="@+id/et_user_name"
+            style="@style/AccountPagEditTextStyles"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/username"
+            android:singleLine="true" />
 
         <TextView
-            android:id="@+id/tv_login"
+            android:id="@+id/tv_bday"
+            style="@style/NormalTextViewStyles"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/bday_label" />
+
+        <TextView
+            android:id="@+id/et_bday"
+            style="@style/AccountPagEditTextStyles"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/bday"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/tv_mobile"
+            style="@style/NormalTextViewStyles"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/mobile_label" />
+
+        <EditText
+            android:id="@+id/et_mobile"
+            style="@style/AccountPagEditTextStyles"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/mobile"
+            android:inputType="number"
+            android:maxLength="11" />
+
+        <TextView
+            android:id="@+id/tv_sex"
+            style="@style/NormalTextViewStyles"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sex_label" />
+
+        <RadioGroup
+            android:id="@+id/rg_sex"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:orientation="horizontal"
+            android:weightSum="3.0">
+
+            <RadioButton
+                android:id="@+id/rb_male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:text="Male" />
+
+            <RadioButton
+                android:id="@+id/rb_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:text="Female" />
+
+            <RadioButton
+                android:id="@+id/rb_others"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:text="Others" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/btn_sign_up"
+            style="@style/ButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_edge_red_background"
+            android:text="@string/sign_up"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@null"
-            android:text="@string/login"
-            android:textColor="@color/colorPrimary" />
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:text="@string/already_a_user" />
+
+            <TextView
+                android:id="@+id/tv_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:text="@string/login"
+                android:textColor="@color/colorPrimary" />
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</ScrollView>
