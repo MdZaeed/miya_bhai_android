@@ -8,7 +8,7 @@
     <string name="don_t_have_an_account">Don\'t have an account?</string>
     <string name="sign_up_in_less_than_a_minute">Sign up in less than a minute</string>
     <string name="username">Enter Name</string>
-    <string name="already_a_user" translatable="false">Already a user?</string>
+    <string name="already_a_user">Already a user?</string>
     <string name="create_a_free_private_secure_account_in_3_easy_steps" translatable="false">Create a free, private, secure account in 3 easy steps</string>
     <string name="sign_up">Sign Up</string>
     <string name="unique_name_label">Unique Name</string>
@@ -47,4 +47,8 @@
     <string name="facebook_group_link" translatable="false">https://www.facebook.com/BraveMenCampaign</string>
     <string name="youtube_chanel_link" translatable="false">https://www.youtube.com/cmms</string>
     <string name="sign_in">Sign In</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="others">Others</string>
+    <string name="click_here_to_enter">Click Here to Enter</string>
 </resources>

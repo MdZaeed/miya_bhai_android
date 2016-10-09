@@ -6,8 +6,10 @@ package rad.iit.com.baya.activities.template;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
@@ -23,6 +25,7 @@ import android.widget.TextView;
 import java.util.Locale;
 
 import rad.iit.com.baya.R;
+import rad.iit.com.baya.data.constants.ApplicationConstants;
 import rad.iit.com.baya.utils.CustomToast;
 
 public abstract class TemplateActivity extends AppCompatActivity {
@@ -50,8 +53,15 @@ public abstract class TemplateActivity extends AppCompatActivity {
             changeLanguage("EN");
         }
 
-
         new ViewLoadingTask().execute();
+    }
+
+    public void saveLanguageData(String token, String id) {
+        SharedPreferences sharedPreferences = getSharedPreferences(ApplicationConstants.SHARED_PREFERENCE, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(ApplicationConstants.TOKEN_KEY, token);
+        editor.putString(ApplicationConstants.ID_KEY, id);
+        editor.apply();
     }
 
     public void changeLanguage(String language_code) {

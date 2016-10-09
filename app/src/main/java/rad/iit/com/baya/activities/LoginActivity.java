@@ -139,7 +139,7 @@ public class LoginActivity extends TemplateActivity implements View.OnClickListe
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(ApplicationConstants.TOKEN_KEY, token);
         editor.putString(ApplicationConstants.ID_KEY, id);
-        editor.commit();
+        editor.apply();
     }
 
     @Override

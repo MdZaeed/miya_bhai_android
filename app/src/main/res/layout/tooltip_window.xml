@@ -22,7 +22,7 @@
         android:id="@+id/btn_popup_enter_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Click Here to Enter"
+        android:text="@string/click_here_to_enter"
         android:background="@null"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="5dp"

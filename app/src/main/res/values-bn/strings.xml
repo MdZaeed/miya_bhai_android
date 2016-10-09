@@ -8,6 +8,8 @@
     <string name="don_t_have_an_account">এখনও এক্যাউন্ট নাই?</string>
     <string name="sign_up_in_less_than_a_minute">১ মিনিটের ভিতরে রেজিস্ট্রেশন করুন</string>
     <string name="username">নাম</string>
+    <string name="already_a_user">পূর্বের অ্যাকাউন্ট আছে?</string>
+    <string name="sign_up">সাইন আপ</string>
     <string name="unique_name_label">ইউনিক নাম</string>
     <string name="mobile_label">মোবাইল নাম্বার</string>
     <string name="sex_label">লিঙ্গ</string>
@@ -26,15 +28,16 @@
     <string name="mail">মেইল করুন</string>
     <string name="dial">ডায়াল করুন</string>
     <string name="hotline">হট লাইন</string>
-    <string name="contact_us">Contact Us</string>
-    <string name="challenger_mamu">Challenger Mamu</string>
+    <string name="contact_us">আমাদের সাথে যোগাযোগ করুন</string>
+    <string name="challenger_mamu">চ্যালেঞ্জার মামু</string>
     <string name="sign_in">লগ ইন</string>
-
 
     <string name="my_videos">আমার ভিডিও চ্যালেঞ্জ</string>
     <string name="all_videos"> সংরক্ষিত ভিডিওসমূহ</string>
 
-    <string name="sign_up">সাইন আপ</string>
-
+    <string name="male">পুরুষ</string>
+    <string name="female">মহিলা</string>
+    <string name="others">অন্যান্য</string>
+    <string name="click_here_to_enter">এখানে ক্লিক করুন</string>
 
 </resources>
