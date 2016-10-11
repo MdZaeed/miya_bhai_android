@@ -58,10 +58,12 @@ public class ChallengerMamuActivity extends TemplateActivity implements OnRecycl
      */
     private void setTopicList() {
         topicStringList = new ArrayList<String>();
+        topicStringList.add("\\u09ac\\u09af\\u09bc\\u0983\\u09b8\\u09a8\\u09cd\\u09a7\\u09bf");
         topicStringList.add("Category One");
         topicStringList.add("Category One");
         topicStringList.add("Category One");
-        topicStringList.add("Category One");
+
+
     }
 
 
@@ -81,7 +83,7 @@ public class ChallengerMamuActivity extends TemplateActivity implements OnRecycl
         if (subTitleTextView != null){
             subTitleTextView.setText("Category");
         }
-        topicArrayAdapter = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,topicStringList);
+        topicArrayAdapter = new ArrayAdapter<>(this,R.layout.support_simple_spinner_dropdown_item,topicStringList);
         topicSpinner.setAdapter(topicArrayAdapter);
         toolbarTitle.setText("Expert Mamu");
     }
@@ -163,5 +165,4 @@ public class ChallengerMamuActivity extends TemplateActivity implements OnRecycl
         questionAnswerList.add(new QuestionAnswer(19,question,answer,1,4));
         questionAnswerList.add(new QuestionAnswer(20,question,answer,1,5));
     }
-
 }

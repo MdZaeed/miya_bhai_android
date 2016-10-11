@@ -51,4 +51,9 @@
     <string name="female">Female</string>
     <string name="others">Others</string>
     <string name="click_here_to_enter">Click Here to Enter</string>
+    <string name="bangla_string" translatable="false">bn</string>
+    <string name="english_string" translatable="false">en</string>
+    <string name="english">English</string>
+    <string name="bangla">Bangla</string>
+    <string name="choose_your_language">Choose your language</string>
 </resources>

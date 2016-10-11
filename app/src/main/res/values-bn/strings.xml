@@ -39,5 +39,8 @@
     <string name="female">মহিলা</string>
     <string name="others">অন্যান্য</string>
     <string name="click_here_to_enter">এখানে ক্লিক করুন</string>
+    <string name="english">ইংরেজি</string>
+    <string name="bangla">বাংলা</string>
+    <string name="choose_your_language">ভাষা নির্বাচন করুন</string>
 
 </resources>

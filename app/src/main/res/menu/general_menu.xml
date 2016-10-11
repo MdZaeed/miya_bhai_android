@@ -2,12 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/btn_bangla"
-        android:title="Bangla"
-        app:showAsAction="never"/>
-
-    <item
-        android:id="@+id/btn_english"
-        android:title="English"
-        app:showAsAction="never"/>
+        android:id="@+id/btn_settings"
+        android:title="Settings"
+        app:showAsAction="always"
+        android:icon="@android:drawable/ic_menu_manage"/>
 </menu>
