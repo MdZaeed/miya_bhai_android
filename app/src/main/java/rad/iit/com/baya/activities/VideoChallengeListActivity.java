@@ -13,17 +13,19 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.logging.StreamHandler;
 
 import rad.iit.com.baya.adapters.YoutubeListAdapter;
 import rad.iit.com.baya.R;
 import rad.iit.com.baya.data.constants.ApplicationConstants;
+import rad.iit.com.baya.datamodels.VideosResponse;
+import rad.iit.com.baya.datamodels.Video;
 import rad.iit.com.baya.datamodels.YoutubeVideoModel;
 import rad.iit.com.baya.utils.CustomToast;
 
@@ -85,20 +87,10 @@ public class VideoChallengeListActivity extends AppCompatActivity {
                     progressDialog.dismiss();
                 }
 
-                try {
-                    JSONArray videosArray = jsonObject.getJSONArray("videos");
-
-                    for (int i = 0; i < videosArray.length(); i++) {
-                        JSONObject videoObject = videosArray.getJSONObject(i);
-                        String url = videoObject.getString("Link");
-                        tempList.add(url);
-
-/*
-                        Toast.makeText(VideoChallengeListActivity.this,"Urls: " + url, Toast.LENGTH_LONG).show();
-*/
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                VideosResponse videosResponse =new Gson().fromJson(jsonObject.toString(),VideosResponse.class);
+                for (Video video:
+                     videosResponse.getVideos()) {
+                    tempList.add(video.getLink());
                 }
 
                 videoIds =createYoutubeIdList(tempList);

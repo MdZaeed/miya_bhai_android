@@ -1,5 +1,6 @@
 package rad.iit.com.baya.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -8,12 +9,14 @@ import android.widget.TextView;
 
 import rad.iit.com.baya.R;
 import rad.iit.com.baya.activities.template.TemplateActivity;
+import rad.iit.com.baya.datamodels.Challenge;
 
 public class ChallengerMamuQuestionAnswerActivity extends TemplateActivity {
 
     protected Toolbar templateToolbar;
     private static String LOG="ChallengerMamuQuestionAnswerActivity";
-    TextView subTitleTextView;
+    TextView subTitleTextView,questionTextView,answerTextView;
+    Challenge ownChallenge;
 
     @Override
     public void initView() {
@@ -21,6 +24,12 @@ public class ChallengerMamuQuestionAnswerActivity extends TemplateActivity {
         templateToolbar = (Toolbar) findViewById(R.id.toolbar);
         subTitleTextView = (TextView) findViewById(R.id.text_subtitle);
         toolbarTitle = (TextView) findViewById(R.id.toolbar_title);
+        questionTextView=(TextView) findViewById(R.id.tv_question);
+        answerTextView=(TextView) findViewById(R.id.tv_answer);
+
+
+        Intent intent=getIntent();
+        ownChallenge=(Challenge)intent.getSerializableExtra(ChallengerMamuActivity.PASSED_QUESTION_MODEL);
     }
 
     @Override
@@ -39,6 +48,9 @@ public class ChallengerMamuQuestionAnswerActivity extends TemplateActivity {
         });
         subTitleTextView.setText("Category");
         toolbarTitle.setText("Answer of Expert Mamu");
+
+        questionTextView.setText(ownChallenge.getQuestion());
+        answerTextView.setText(ownChallenge.getAnswer());
     }
 
     @Override

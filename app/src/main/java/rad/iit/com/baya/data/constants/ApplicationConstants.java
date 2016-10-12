@@ -13,6 +13,8 @@ public class ApplicationConstants {
 
     public static final String YOUTUBE_VIDEO_DETAILS_URL="https://www.googleapis.com/youtube/v3/videos?part=snippet&key=AIzaSyAeZwtQvxh4vrNag7InMh8KCxp2N3HeK-4&id=";
     public static final String YOUTBE_VIDEOS_LIST_URL=INDEX_URL+"getVideos.php/";
+    public static final String CATEGORIES_GET_URL=INDEX_URL + "getCategories.php/";
+    public static final String CHALLENGES_GET_URL=INDEX_URL+"getChallenges.php/";
 
     public static  final String TOKEN_KEY ="token";
     public static final String ID_KEY ="ID";

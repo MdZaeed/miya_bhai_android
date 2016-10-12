@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -43,7 +45,7 @@ public class YoutubeListAdapter extends RecyclerView.Adapter<YoutubeListAdapter.
         String url = youtubeVideoModel.getUrl();
 
         holder.youtubeVideoNameTextView.setText(title);
-        Picasso.with(context).load(url).fit().into(holder.youtubeVideoImageView);
+        Picasso.with(context).load(url).placeholder(R.drawable.anim_progress).fit().into(holder.youtubeVideoImageView);
     }
 
     @Override

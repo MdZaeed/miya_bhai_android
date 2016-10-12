@@ -148,4 +148,15 @@ public abstract class TemplateActivity extends AppCompatActivity {
         finish();
         startActivity(intent);
     }
+
+    public static String handleBanglaString(String string)
+    {
+        String newString=string;
+        if(string.startsWith("\\"))
+        {
+            newString=string.replaceAll("\\\\", "\\\\\\\\");;
+        }
+
+        return newString;
+    }
 }
