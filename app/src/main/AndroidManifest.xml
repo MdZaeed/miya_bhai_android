@@ -46,6 +46,24 @@
 
         <activity android:name=".activities.SettingsActivity"
             android:configChanges="locale"/>
+        <activity android:name=".activities.ChallengeMamuQuestionActivity"
+            android:theme="@style/AppTheme.NoActionBarNTitle"
+            />
+        <activity android:name=".activities.ChallengeMamuQuestionAnswerActivity"
+            android:theme="@style/AppTheme.NoActionBarNTitle"
+            />
+        <activity android:name=".activities.ChallengeMamuComposeChallengeActivity"
+            android:theme="@style/AppTheme.NoActionBarNTitle"
+            />
+
+        <activity android:name=".activities.ExpertMamuQuestionActivity"
+            android:theme="@style/AppTheme.NoActionBarNTitle"/>
+
+        <activity android:name=".activities.ExpertAnswerActivity"
+            android:theme="@style/AppTheme.NoActionBarNTitle"/>
+
+        <activity android:name=".activities.ExpertMamuComposeQuestionActivity"
+            android:theme="@style/AppTheme.NoActionBarNTitle"/>
 
     </application>
 

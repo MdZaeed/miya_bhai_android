@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -208,43 +209,10 @@ public class ChallengerMamuActivity extends TemplateActivity implements Recycler
         });
     }
 
-    /**
-     * demo Question-Answer
-     */
-    private void demoQuestionAnswer(){
-        String question = ApplicationConstants.demo_question;
-        String answer = ApplicationConstants.demo_answer;
-
-        questionAnswerList.add(new QuestionAnswer(1,question,answer,1,1));
-        questionAnswerList.add(new QuestionAnswer(2,question,answer,1,2));
-        questionAnswerList.add(new QuestionAnswer(3,question,answer,1,3));
-        questionAnswerList.add(new QuestionAnswer(4,question,answer,1,4));
-        questionAnswerList.add(new QuestionAnswer(5,question,answer,1,5));
-
-
-        questionAnswerList.add(new QuestionAnswer(6,question,answer,1,1));
-        questionAnswerList.add(new QuestionAnswer(7,question,answer,1,2));
-        questionAnswerList.add(new QuestionAnswer(8,question,answer,1,3));
-        questionAnswerList.add(new QuestionAnswer(9,question,answer,1,4));
-        questionAnswerList.add(new QuestionAnswer(10,question,answer,1,5));
-
-        questionAnswerList.add(new QuestionAnswer(11,question,answer,1,1));
-        questionAnswerList.add(new QuestionAnswer(12,question,answer,1,2));
-        questionAnswerList.add(new QuestionAnswer(13,question,answer,1,3));
-        questionAnswerList.add(new QuestionAnswer(14,question,answer,1,4));
-        questionAnswerList.add(new QuestionAnswer(15,question,answer,1,5));
-
-        questionAnswerList.add(new QuestionAnswer(16,question,answer,1,1));
-        questionAnswerList.add(new QuestionAnswer(17,question,answer,1,2));
-        questionAnswerList.add(new QuestionAnswer(18,question,answer,1,3));
-        questionAnswerList.add(new QuestionAnswer(19,question,answer,1,4));
-        questionAnswerList.add(new QuestionAnswer(20,question,answer,1,5));
-    }
-
     @Override
-    public void onIndividualQuestionClicked(int position) {
+    public void onIndividualQuestionClicked(Challenge position) {
         Intent intent=new Intent(this,ChallengerMamuQuestionAnswerActivity.class);
-        intent.putExtra(PASSED_QUESTION_MODEL,challenges.get(position));
+        intent.putExtra(PASSED_QUESTION_MODEL,position);
         startActivity(intent);
     }
 }

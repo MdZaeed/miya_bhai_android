@@ -6,15 +6,16 @@
     android:background="@color/colorPrimary"
     android:layout_height="wrap_content">
     <Button
+        android:id="@+id/bt_oq"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Others' Question"
         android:layout_weight="1.0"
         android:textColor="@color/colorAccent"
-        android:id="@+id/bt_oq"
         android:layout_marginRight=".5dp"
         />
     <Button
+        android:id="@+id/btn_my_questions"
         android:layout_width="wrap_content"
         android:layout_weight="1.0"
         android:layout_marginLeft=".5dp"

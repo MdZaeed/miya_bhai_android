@@ -1,21 +1,20 @@
-package rad.iit.com.baya.activities;
+package rad.iit.com.baya.activities.template;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
 import rad.iit.com.baya.R;
-import rad.iit.com.baya.activities.template.TemplateActivity;
+import rad.iit.com.baya.activities.ChallengerMamuActivity;
 import rad.iit.com.baya.datamodels.Challenge;
 
-public class ChallengerMamuQuestionAnswerActivity extends TemplateActivity {
+public abstract class TemplateQuestionAnswerActivity extends TemplateActivity {
 
     protected Toolbar templateToolbar;
-    TextView subTitleTextView,questionTextView,answerTextView;
-    Challenge ownChallenge;
+    protected TextView subTitleTextView,questionTextView,answerTextView;
+    protected CardView subtitleCardView;
 
     @Override
     public void initView() {
@@ -25,11 +24,12 @@ public class ChallengerMamuQuestionAnswerActivity extends TemplateActivity {
         toolbarTitle = (TextView) findViewById(R.id.toolbar_title);
         questionTextView=(TextView) findViewById(R.id.tv_question);
         answerTextView=(TextView) findViewById(R.id.tv_answer);
+        subtitleCardView= (CardView) findViewById(R.id.subtitle);
 
-
-        Intent intent=getIntent();
-        ownChallenge=(Challenge)intent.getSerializableExtra(ChallengerMamuActivity.PASSED_QUESTION_MODEL);
+        getSentData();
     }
+
+    public abstract void getSentData();
 
     @Override
     public void loadData() {
@@ -45,12 +45,15 @@ public class ChallengerMamuQuestionAnswerActivity extends TemplateActivity {
                 onBackPressed();
             }
         });
-        subTitleTextView.setText("Category");
-        toolbarTitle.setText("Answer of Expert Mamu");
 
-        questionTextView.setText(ownChallenge.getQuestion());
-        answerTextView.setText(ownChallenge.getAnswer());
+        setCategorySubtitle();
+        setToolbarText();
+        bindDataInViews();
     }
+
+    public abstract void setCategorySubtitle();
+    public abstract void setToolbarText();
+    public abstract void bindDataInViews();
 
     @Override
     public void listenView() {

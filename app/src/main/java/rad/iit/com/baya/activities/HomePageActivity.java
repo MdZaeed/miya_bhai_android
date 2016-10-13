@@ -1,6 +1,5 @@
 package rad.iit.com.baya.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.percent.PercentRelativeLayout;
@@ -136,7 +135,7 @@ public class HomePageActivity extends TemplateActivity implements View.OnClickLi
             switch (anchorView.getId())
             {
                 case R.id.btn_expert_mamu_hmpgb1:
-                    goToActivity(new ChallengerMamuActivity());
+                    goToActivity(new ExpertMamuQuestionActivity());
                     break;
 
                 case R.id.btn_normal_mamu_hmpgb2:
@@ -147,7 +146,7 @@ public class HomePageActivity extends TemplateActivity implements View.OnClickLi
                     break;
 
                 case R.id.challenge_mamau_hmpgb4:
-                    goToActivity(new ChallengerMamuQuestionAnswerActivity());
+                    goToActivity(new ChallengeMamuQuestionActivity());
                     break;
 
                 case R.id.btn_contact_us_hmpgb5:

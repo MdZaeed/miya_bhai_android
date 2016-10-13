@@ -6,14 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import rad.iit.com.baya.R;
-import rad.iit.com.baya.activities.template.TemplateActivity;
 import rad.iit.com.baya.datamodels.Challenge;
-import rad.iit.com.baya.datamodels.OnRecyclerViewItemListener;
 
 
 /**
@@ -22,13 +19,14 @@ import rad.iit.com.baya.datamodels.OnRecyclerViewItemListener;
 public class RecyclerViewListAdapter extends RecyclerView.Adapter<RecyclerViewListAdapter.MyViewHolder>{
 
     int cardID;
-    ArrayList<Challenge> challenges;
+    private ArrayList<Challenge> challenges;
     Context context;
     private OnQuestionClicked onQuestionClicked;
+    private String filterId;
 
     public RecyclerViewListAdapter(Context context, int cardID, ArrayList<Challenge> challenges) {
         this.cardID = cardID;
-        this.challenges=challenges;
+        this.setChallenges(challenges);
         this.context=context;
     }
 
@@ -40,14 +38,14 @@ public class RecyclerViewListAdapter extends RecyclerView.Adapter<RecyclerViewLi
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        Challenge challenge=challenges.get(position);
+        Challenge challenge= getChallenges().get(position);
 
         holder.questionTextView.setText(challenge.getQuestion());
     }
 
     @Override
     public int getItemCount() {
-        return challenges.size();
+        return getChallenges().size();
     }
 
     public OnQuestionClicked getOnQuestionClicked() {
@@ -56,6 +54,22 @@ public class RecyclerViewListAdapter extends RecyclerView.Adapter<RecyclerViewLi
 
     public void setOnQuestionClicked(OnQuestionClicked onQuestionClicked) {
         this.onQuestionClicked = onQuestionClicked;
+    }
+
+    public String getFilterId() {
+        return filterId;
+    }
+
+    public void setFilterId(String filterId) {
+        this.filterId = filterId;
+    }
+
+    public ArrayList<Challenge> getChallenges() {
+        return challenges;
+    }
+
+    public void setChallenges(ArrayList<Challenge> challenges) {
+        this.challenges = challenges;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -71,12 +85,12 @@ public class RecyclerViewListAdapter extends RecyclerView.Adapter<RecyclerViewLi
 
         @Override
         public void onClick(View view) {
-            onQuestionClicked.onIndividualQuestionClicked(getAdapterPosition());
+            onQuestionClicked.onIndividualQuestionClicked(getChallenges().get(getAdapterPosition()));
         }
     }
 
     public interface OnQuestionClicked
     {
-        void onIndividualQuestionClicked(int position);
+        void onIndividualQuestionClicked(Challenge challenge);
     }
 }
