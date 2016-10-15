@@ -38,7 +38,7 @@ public class ChallengeMamuQuestionActivity extends TemplateQuestionActivity impl
     public void setQuestionAnswers() {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         if(!progressDialog.isShowing()) {
-            progressDialog.setMessage("Loading");
+            progressDialog.setMessage(getResources().getString(R.string.loading));
             progressDialog.show();
         }
 
@@ -54,6 +54,7 @@ public class ChallengeMamuQuestionActivity extends TemplateQuestionActivity impl
 
                 progressDialog.hide();
                 populateQuestionList();
+                productListSwipeRefreshLayout.setRefreshing(false);
             }
 
         }, new Response.ErrorListener() {
@@ -72,8 +73,8 @@ public class ChallengeMamuQuestionActivity extends TemplateQuestionActivity impl
         myRecyclerView.setAdapter(recyclerViewListAdapter);
         createFilteredChallengeArray();
 
-        othersChallengesButton.setText("Others Challenges");
-        ownChallengesButton.setText("Own Challenges");
+        othersChallengesButton.setText(R.string.others_challenges);
+        ownChallengesButton.setText(R.string.my_challenges);
         othersChallengesButton.setOnClickListener(this);
         ownChallengesButton.setOnClickListener(this);
 
@@ -124,8 +125,7 @@ public class ChallengeMamuQuestionActivity extends TemplateQuestionActivity impl
 
     public void createFilteredChallengeArray()
     {
-        SharedPreferences sharedPreferences = getSharedPreferences(ApplicationConstants.SHARED_PREFERENCE, Context.MODE_PRIVATE);
-        String id=sharedPreferences.getString(ApplicationConstants.ID_KEY,"-1");
+        String id=getSavedOwnId();
         recyclerViewListAdapter.setFilterId(id);
         challenges1=new ArrayList<>();
         for (Challenge challenge : challenges) {

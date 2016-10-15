@@ -6,21 +6,22 @@
     android:background="@color/colorPrimary"
     android:layout_height="wrap_content">
     <Button
-        android:layout_width="wrap_content"
+        android:id="@+id/btn_contact_us"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Contact"
+        android:text="@string/contact_us"
         android:layout_weight="1.0"
         android:drawableLeft="@drawable/ic_contact_mail_white_24dp"
-        android:id="@+id/bt_oq"
         android:textColor="@color/colorAccent"
         android:layout_marginRight="2dp"
         />
     <Button
-        android:layout_width="wrap_content"
+        android:id="@+id/btn_dial"
+        android:layout_width="0dp"
         android:layout_weight="1.0"
         android:layout_marginLeft="2dp"
         android:drawableLeft="@drawable/ic_call_white_24dp"
         android:textColor="@color/colorAccent"
         android:layout_height="wrap_content"
-        android:text="Call"/>
+        android:text="@string/dial"/>
 </LinearLayout>

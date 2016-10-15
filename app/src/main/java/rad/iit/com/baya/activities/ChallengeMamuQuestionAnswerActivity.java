@@ -3,6 +3,7 @@ package rad.iit.com.baya.activities;
 import android.content.Intent;
 import android.view.View;
 
+import rad.iit.com.baya.R;
 import rad.iit.com.baya.activities.template.TemplateQuestionAnswerActivity;
 import rad.iit.com.baya.datamodels.Challenge;
 
@@ -14,7 +15,7 @@ public class ChallengeMamuQuestionAnswerActivity extends TemplateQuestionAnswerA
     @Override
     public void getSentData() {
         Intent intent=getIntent();
-        ownChallenge=(Challenge)intent.getSerializableExtra(ChallengerMamuActivity.PASSED_QUESTION_MODEL);
+        ownChallenge=(Challenge)intent.getSerializableExtra(TemplateQuestionAnswerActivity.PASSED_QUESTION_MODEL);
     }
 
     @Override
@@ -24,12 +25,20 @@ public class ChallengeMamuQuestionAnswerActivity extends TemplateQuestionAnswerA
 
     @Override
     public void setToolbarText() {
-        toolbarTitle.setText("Answer to the challenge");
+        toolbarTitle.setText(R.string.challenge_answer_title);
     }
 
     @Override
     public void bindDataInViews() {
         questionTextView.setText(ownChallenge.getQuestion());
-        answerTextView.setText(ownChallenge.getAnswer());
+        if(null!=ownChallenge.getAnswer() && ownChallenge.getAnswer().equals("")) {
+            answerTextView.setText(ownChallenge.getAnswer());
+            answerDateTextView.setText(ownChallenge.getAnswerDate());
+        }else
+        {
+            answerTextView.setText(R.string.no_answer_text);
+        }
+
+        questionDateTextView.setText(ownChallenge.getQuestionDate());
     }
 }

@@ -1,13 +1,16 @@
 package rad.iit.com.baya.activities;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -20,12 +23,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
-import rad.iit.com.baya.adapters.YoutubeListAdapter;
 import rad.iit.com.baya.R;
+import rad.iit.com.baya.adapters.YoutubeListAdapter;
 import rad.iit.com.baya.data.constants.ApplicationConstants;
-import rad.iit.com.baya.datamodels.VideosResponse;
 import rad.iit.com.baya.datamodels.Video;
+import rad.iit.com.baya.datamodels.VideosResponse;
 import rad.iit.com.baya.datamodels.YoutubeVideoModel;
 import rad.iit.com.baya.utils.CustomToast;
 
@@ -44,6 +48,14 @@ public class VideoChallengeListActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        if(getLanguage().equals(getResources().getString(R.string.bangla_string)))
+        {
+            setLanguageInApp(getResources().getString(R.string.bangla_string));
+        } else if(getLanguage().equals(getResources().getString(R.string.english_string)))
+        {
+            setLanguageInApp(getResources().getString(R.string.english_string));
+        }
+
         setContentView(R.layout.activity_video_challenge_list);
 
         youtubeVideoRecyclerView = (RecyclerView) findViewById(R.id.rclv_youtube_videos);
@@ -51,6 +63,21 @@ public class VideoChallengeListActivity extends AppCompatActivity {
         responseFromServer = new ArrayList<>();
         videoIds=new ArrayList<>();
         responseFromServer = loadDataInUrlList();
+
+        setTitle(getResources().getString(R.string.video_challenge));
+    }
+
+    public void setLanguageInApp(String language_code) {
+        Resources res = this.getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        android.content.res.Configuration conf = res.getConfiguration();
+        conf.locale = new Locale(language_code.toLowerCase());
+        res.updateConfiguration(conf, dm);
+    }
+
+    public String getLanguage() {
+        SharedPreferences sharedPreferences = getSharedPreferences(ApplicationConstants.SHARED_PREFERENCE, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(ApplicationConstants.LANGUAGE,getString(R.string.bangla_string));
     }
 
     public ArrayList<String> createYoutubeIdList(ArrayList<String> urls) {
@@ -62,10 +89,6 @@ public class VideoChallengeListActivity extends AppCompatActivity {
             if (url.startsWith("https://www.youtube.com/watch?v=")) {
                 String[] parts = url.split("v=");
                 ids.add(parts[1]);
-
-/*
-                Toast.makeText(this,parts[1],Toast.LENGTH_LONG).show();
-*/
             }
         }
 
@@ -76,7 +99,7 @@ public class VideoChallengeListActivity extends AppCompatActivity {
         final ArrayList<String> tempList = new ArrayList<String>();
 
         final ProgressDialog progressDialog = new ProgressDialog(VideoChallengeListActivity.this);
-        progressDialog.setMessage("Loading");
+        progressDialog.setMessage(getResources().getString(R.string.loading));
         progressDialog.show();
 
         final CustomToast customToast = new CustomToast(VideoChallengeListActivity.this);
@@ -128,12 +151,10 @@ public class VideoChallengeListActivity extends AppCompatActivity {
     public void loadData() {
 
         final ProgressDialog progressDialog = new ProgressDialog(VideoChallengeListActivity.this);
-        progressDialog.setMessage("Loading");
+        progressDialog.setMessage(getResources().getString(R.string.loading));
         progressDialog.show();
 
         final CustomToast customToast = new CustomToast(VideoChallengeListActivity.this);
-
-        Toast.makeText(VideoChallengeListActivity.this,"Ids:" + getUrlsAsString(videoIds),Toast.LENGTH_LONG).show();
 
         JsonObjectRequest addUserRequest = new JsonObjectRequest(ApplicationConstants.YOUTUBE_VIDEO_DETAILS_URL + getUrlsAsString(videoIds), null, new Response.Listener<JSONObject>() {
             @Override
@@ -153,9 +174,6 @@ public class VideoChallengeListActivity extends AppCompatActivity {
                         String title = snippetJsonObject.getString("title");
 
                         youtubeVideos.add(new YoutubeVideoModel(title, imageURL));
-
-                        Toast.makeText(VideoChallengeListActivity.this,"Vidoes:" + title,Toast.LENGTH_LONG).show();
-
                     }
 
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(VideoChallengeListActivity.this);
@@ -164,9 +182,6 @@ public class VideoChallengeListActivity extends AppCompatActivity {
                     YoutubeListAdapter youtubeListAdapter = new YoutubeListAdapter(VideoChallengeListActivity.this, youtubeVideos);
                     youtubeVideoRecyclerView.setAdapter(youtubeListAdapter);
 
-/*
-                    Toast.makeText(VideoChallengeListActivity.this,"Ids:" + getUrlsAsString(videoIds),Toast.LENGTH_LONG).show();
-*/
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

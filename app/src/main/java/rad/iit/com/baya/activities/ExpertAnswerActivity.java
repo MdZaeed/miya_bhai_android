@@ -2,6 +2,7 @@ package rad.iit.com.baya.activities;
 
 import android.content.Intent;
 
+import rad.iit.com.baya.R;
 import rad.iit.com.baya.activities.template.TemplateQuestionAnswerActivity;
 import rad.iit.com.baya.datamodels.Challenge;
 import rad.iit.com.baya.datamodels.ExpertiseAnswer;
@@ -16,7 +17,7 @@ public class ExpertAnswerActivity extends TemplateQuestionAnswerActivity{
     @Override
     public void getSentData() {
         Intent intent=getIntent();
-        expertiseAnswer=(ExpertiseAnswer)intent.getSerializableExtra(ChallengerMamuActivity.PASSED_QUESTION_MODEL);
+        expertiseAnswer=(ExpertiseAnswer)intent.getSerializableExtra(TemplateQuestionAnswerActivity.PASSED_QUESTION_MODEL);
         categoryName=intent.getStringExtra(ExpertMamuQuestionActivity.PASSED_CATEGORY_NAME);
     }
 
@@ -27,17 +28,20 @@ public class ExpertAnswerActivity extends TemplateQuestionAnswerActivity{
 
     @Override
     public void setToolbarText() {
-        toolbarTitle.setText("Answer of expert mamu");
+        toolbarTitle.setText(R.string.question_answer_title);
     }
 
     @Override
     public void bindDataInViews() {
         questionTextView.setText(handleBanglaString(expertiseAnswer.getQuestion()));
-        if(null!=expertiseAnswer.getAnswer()) {
+        if(null!=expertiseAnswer.getAnswer() && expertiseAnswer.getAnswer().equals("")) {
             answerTextView.setText(handleBanglaString(expertiseAnswer.getAnswer().toString()));
+            answerDateTextView.setText(expertiseAnswer.getAnswerDate().toString());
         }else
         {
-            answerTextView.setText("No answer is given yet");
+            answerTextView.setText(getResources().getString(R.string.no_answer_text));
         }
+
+        questionDateTextView.setText(expertiseAnswer.getQuestionDate());
     }
 }

@@ -2,8 +2,10 @@ package rad.iit.com.baya.activities.template;
 
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -19,6 +21,7 @@ public abstract class TemplateComposeQuestionActivity extends TemplateActivity {
     protected ArrayAdapter<String> topicArrayAdapter;
     protected List<String> topicStringList;
     protected CategoriesResponse categoriesResponse;
+    protected EditText messageBodyEditText;
 
     @Override
     public void initView() {
@@ -28,7 +31,8 @@ public abstract class TemplateComposeQuestionActivity extends TemplateActivity {
         templateToolbar.setNavigationIcon(R.drawable.arrow_back_white_24x24);
         toolbarTitle = (TextView) findViewById(R.id.toolbar_title);
         topicSpinner = (Spinner) findViewById(R.id.spinner_topic_list);
-        topicStringList = new ArrayList<String>();
+        topicStringList = new ArrayList<>();
+        messageBodyEditText=(EditText) findViewById(R.id.et_content_message_body);
 
         // temp method
         initializeTopicList();
@@ -62,4 +66,18 @@ public abstract class TemplateComposeQuestionActivity extends TemplateActivity {
         getMenuInflater().inflate(R.menu.compose_question,menu);
         return true;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.menu_item_message_send:
+                sendMessage();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+
+    }
+
+    protected abstract void sendMessage();
 }

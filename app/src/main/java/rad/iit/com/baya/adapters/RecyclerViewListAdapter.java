@@ -7,7 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import rad.iit.com.baya.R;
 import rad.iit.com.baya.datamodels.Challenge;
@@ -41,6 +46,12 @@ public class RecyclerViewListAdapter extends RecyclerView.Adapter<RecyclerViewLi
         Challenge challenge= getChallenges().get(position);
 
         holder.questionTextView.setText(challenge.getQuestion());
+        try {
+            holder.timeTextView.setText(formatToYesterdayOrToday(challenge.getQuestionDate()));
+        } catch (ParseException e) {
+            holder.timeTextView.setText(challenge.getQuestionDate());
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -75,10 +86,12 @@ public class RecyclerViewListAdapter extends RecyclerView.Adapter<RecyclerViewLi
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView questionTextView;
+        public TextView timeTextView;
         public MyViewHolder(View itemView) {
             super(itemView);
 
             questionTextView= (TextView) itemView.findViewById(R.id.tv_question);
+            timeTextView=(TextView) itemView.findViewById(R.id.tv_question_time);
 
             itemView.setOnClickListener(this);
         }
@@ -92,5 +105,24 @@ public class RecyclerViewListAdapter extends RecyclerView.Adapter<RecyclerViewLi
     public interface OnQuestionClicked
     {
         void onIndividualQuestionClicked(Challenge challenge);
+    }
+
+    public static String formatToYesterdayOrToday(String date) throws ParseException {
+        Date dateTime = new SimpleDateFormat("yyyy-dd-MM HH:mm:ss").parse(date);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(dateTime);
+        Calendar today = Calendar.getInstance();
+        Calendar yesterday = Calendar.getInstance();
+        yesterday.add(Calendar.DATE, -5);
+        DateFormat timeFormatter = new SimpleDateFormat("HH:mm");
+
+
+        if (calendar.get(Calendar.YEAR) == today.get(Calendar.YEAR) && calendar.get(Calendar.DAY_OF_YEAR) == today.get(Calendar.DAY_OF_YEAR)) {
+            return "Today " + timeFormatter.format(dateTime);
+        } else if (calendar.get(Calendar.YEAR) == yesterday.get(Calendar.YEAR) && calendar.get(Calendar.DAY_OF_YEAR) == yesterday.get(Calendar.DAY_OF_YEAR)) {
+            return "Yesterday " + timeFormatter.format(dateTime);
+        } else {
+            return date;
+        }
     }
 }

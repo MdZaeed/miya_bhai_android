@@ -47,6 +47,7 @@ public class LoginActivity extends TemplateActivity implements View.OnClickListe
 
         setContentView(R.layout.activity_login);
 
+        setTitle(getResources().getString(R.string.app_name));
         userNameEditText = (EditText) findViewById(R.id.et_user_name);
         mobileNumberText = (EditText) findViewById(R.id.et_mobile);
         registerTextView=(TextView) findViewById(R.id.tv_sign_up_now);
@@ -78,7 +79,6 @@ public class LoginActivity extends TemplateActivity implements View.OnClickListe
             case R.id.btn_login:
                 if (isAllInputFieldNotNull()){
                     getAllInputFieldData();
-                    customToast.showLongToast(candidateUser.getSignInJSON().toString());
                     loginUser(candidateUser);
                 }
                 break;
@@ -92,7 +92,7 @@ public class LoginActivity extends TemplateActivity implements View.OnClickListe
 
     public void loginUser(User user) {
         final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading");
+        progressDialog.setMessage(getResources().getString(R.string.loading));
         progressDialog.show();
         final CustomToast customToast = new CustomToast(this);
 
@@ -103,7 +103,9 @@ public class LoginActivity extends TemplateActivity implements View.OnClickListe
                     progressDialog.dismiss();
                 }
                 Log.d("Res", jsonObject.toString());
+/*
                 customToast.showLongToast(jsonObject.toString());
+*/
                 if (jsonObject.has(ApplicationConstants.SUCCESS_KEY)) {
                     if (jsonObject.has(ApplicationConstants.TOKEN_KEY) && jsonObject.has(ApplicationConstants.ID_KEY)) {
                         try {
@@ -127,7 +129,9 @@ public class LoginActivity extends TemplateActivity implements View.OnClickListe
                     progressDialog.dismiss();
                 }
                 Log.d("Err", volleyError.toString());
+/*
                 customToast.showLongToast(volleyError.toString());
+*/
             }
         }) ;
 

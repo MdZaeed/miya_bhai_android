@@ -10,8 +10,11 @@
         android:layout_width="match_parent"
         android:layout_marginTop="2dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/app_bar"/>
-    <include layout="@layout/footer_my_or_others"
+        android:layout_below="@+id/app_bar"
+        android:layout_above="@+id/lay_bottom_bar"/>
+    <include
+        android:id="@+id/lay_bottom_bar"
+        layout="@layout/footer_my_or_others"
         android:layout_alignParentBottom="true"
         android:layout_height="50dp"
         android:layout_width="match_parent"/>

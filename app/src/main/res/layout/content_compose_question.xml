@@ -21,7 +21,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Select Topic"
+            android:text="@string/select_topic"
             android:layout_weight="0.5"/>
         <Spinner
             android:layout_weight="0.5"
@@ -31,11 +31,11 @@
         </Spinner>
     </LinearLayout>
     <EditText
-        android:id="@+id/text_content_message_body"
+        android:id="@+id/et_content_message_body"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="start"
-        android:hint="Compose Question Here"
+        android:hint="@string/compose_question_here"
         android:singleLine="false"
         android:scrollIndicators="top"
         android:layout_below="@+id/topic_header"

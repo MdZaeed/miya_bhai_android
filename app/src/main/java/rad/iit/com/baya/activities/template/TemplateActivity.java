@@ -159,4 +159,11 @@ public abstract class TemplateActivity extends AppCompatActivity {
 
         return newString;
     }
+
+    public String getSavedOwnId()
+    {
+        SharedPreferences sharedPreferences = getSharedPreferences(ApplicationConstants.SHARED_PREFERENCE, Context.MODE_PRIVATE);
+        String id=sharedPreferences.getString(ApplicationConstants.ID_KEY,"-1");
+        return id;
+    }
 }

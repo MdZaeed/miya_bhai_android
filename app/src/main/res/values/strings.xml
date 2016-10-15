@@ -56,4 +56,19 @@
     <string name="english">English</string>
     <string name="bangla">Bangla</string>
     <string name="choose_your_language">Choose your language</string>
+    <string name="loading">Loading</string>
+    <string name="select_topic">Select Topic</string>
+    <string name="others_question">Others\' Question</string>
+    <string name="my_questions">My Questions</string>
+    <string name="others_challenges">Others Challenges</string>
+    <string name="my_challenges">Own Challenges</string>
+    <string name="all_topics">All Topics</string>
+    <string name="expert_question_title">Expert Questions</string>
+    <string name="challenge_answer_title">Answer to the challenge</string>
+    <string name="no_answer_text">No answer is given yet</string>
+    <string name="question_answer_title">Answer of expert mamu</string>
+    <string name="compose_question_here">Compose Question Here</string>
+    <string name="add_a_challenge">Add a Challenge</string>
+    <string name="challenge_add_success_message">Challenge Successfully Added</string>
+    <string name="add_a_question">Add a question</string>
 </resources>

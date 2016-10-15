@@ -28,6 +28,8 @@ public class HomePageActivity extends TemplateActivity implements View.OnClickLi
     public void initView() {
 
         setContentView(R.layout.activtiy_homepage);
+
+        setTitle(getResources().getString(R.string.app_name));
         expertMamuButton=(Button) findViewById(R.id.btn_expert_mamu_hmpgb1);
         normalMamuButton=(Button) findViewById(R.id.btn_normal_mamu_hmpgb2);
         videoChallengeButton=(Button) findViewById(R.id.btn_video_challenge_hmpgb3);

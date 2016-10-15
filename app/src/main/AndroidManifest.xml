@@ -15,55 +15,66 @@
             android:name=".activities.SignUpActivity"
             android:screenOrientation="portrait"
             android:configChanges="locale"/>
+
         <activity android:name=".activities.HomePageActivity"
+            android:screenOrientation="portrait"
             android:configChanges="locale"/>
+
         <activity android:name=".activities.VideoChallengeListActivity"
-            android:configChanges="locale" />
+            android:configChanges="locale"
+            android:screenOrientation="portrait"/>
+
         <activity android:name=".activities.VideoChallengeActivity"
-            android:configChanges="locale"/>
+            android:configChanges="locale"
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name=".activities.LoginActivity"
-            android:configChanges="locale">
+            android:configChanges="locale"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".activities.ComposeQuestionActivity"
+            android:theme="@style/AppTheme.NoActionBarNTitle"
+            android:configChanges="locale"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".activities.SettingsActivity"
+            android:configChanges="locale"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".activities.ChallengeMamuQuestionActivity"
+            android:theme="@style/AppTheme.NoActionBarNTitle"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".activities.ChallengeMamuQuestionAnswerActivity"
+            android:theme="@style/AppTheme.NoActionBarNTitle"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".activities.ChallengeMamuComposeChallengeActivity"
+            android:theme="@style/AppTheme.NoActionBarNTitle"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".activities.ExpertMamuQuestionActivity"
+            android:theme="@style/AppTheme.NoActionBarNTitle"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".activities.ExpertAnswerActivity"
+            android:theme="@style/AppTheme.NoActionBarNTitle"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".activities.ExpertMamuComposeQuestionActivity"
+            android:theme="@style/AppTheme.NoActionBarNTitle"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".activities.SplashScreenActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activities.ChallengerMamuActivity"
-            android:label="@string/title_activity_challenger_mamu"
-            android:theme="@style/AppTheme.NoActionBarNTitle"
-            android:configChanges="locale"/>
-        <activity
-            android:name=".activities.ChallengerMamuQuestionAnswerActivity"
-            android:theme="@style/AppTheme.NoActionBarNTitle"
-            android:configChanges="locale"/>
-        <activity android:name=".activities.ComposeQuestionActivity"
-            android:theme="@style/AppTheme.NoActionBarNTitle"
-            android:configChanges="locale"/>
-
-        <activity android:name=".activities.SettingsActivity"
-            android:configChanges="locale"/>
-        <activity android:name=".activities.ChallengeMamuQuestionActivity"
-            android:theme="@style/AppTheme.NoActionBarNTitle"
-            />
-        <activity android:name=".activities.ChallengeMamuQuestionAnswerActivity"
-            android:theme="@style/AppTheme.NoActionBarNTitle"
-            />
-        <activity android:name=".activities.ChallengeMamuComposeChallengeActivity"
-            android:theme="@style/AppTheme.NoActionBarNTitle"
-            />
-
-        <activity android:name=".activities.ExpertMamuQuestionActivity"
-            android:theme="@style/AppTheme.NoActionBarNTitle"/>
-
-        <activity android:name=".activities.ExpertAnswerActivity"
-            android:theme="@style/AppTheme.NoActionBarNTitle"/>
-
-        <activity android:name=".activities.ExpertMamuComposeQuestionActivity"
-            android:theme="@style/AppTheme.NoActionBarNTitle"/>
 
     </application>
 

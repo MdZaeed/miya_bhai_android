@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import rad.iit.com.baya.R;
@@ -39,6 +40,12 @@ public class RecyclerViewListAdapterForExpertAnswers extends RecyclerView.Adapte
     public void onBindViewHolder(MyViewHolder holder, int position) {
         ExpertiseAnswer expertiseAnswer= getExpertiseAnswers().get(position);
         holder.questionTextView.setText(expertiseAnswer.getQuestion());
+        try {
+            holder.timeTextView.setText(RecyclerViewListAdapter.formatToYesterdayOrToday(expertiseAnswer.getQuestionDate()));
+        } catch (ParseException e) {
+            holder.timeTextView.setText(expertiseAnswer.getQuestionDate());
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -65,10 +72,12 @@ public class RecyclerViewListAdapterForExpertAnswers extends RecyclerView.Adapte
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView questionTextView;
+        public TextView timeTextView;
         public MyViewHolder(View itemView) {
             super(itemView);
 
             questionTextView= (TextView) itemView.findViewById(R.id.tv_question);
+            timeTextView=(TextView) itemView.findViewById(R.id.tv_question_time);
 
             itemView.setOnClickListener(this);
         }

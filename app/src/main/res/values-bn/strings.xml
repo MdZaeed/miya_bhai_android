@@ -42,5 +42,20 @@
     <string name="english">ইংরেজি</string>
     <string name="bangla">বাংলা</string>
     <string name="choose_your_language">ভাষা নির্বাচন করুন</string>
+    <string name="loading">অপেক্ষা করুন...</string>
+    <string name="select_topic">বিষয় নির্বাচন করুন</string>
+    <string name="others_question">অন্যদের প্রস্ন</string>
+    <string name="my_questions">আমার প্রস্ন</string>
+    <string name="others_challenges">অন্যদের চ্যালেঞ্জ</string>
+    <string name="my_challenges">আমার চ্যালেঞ্জ</string>
+    <string name="all_topics">সকল বিষয়সমূহ</string>
+    <string name="expert_question_title">এক্সপার্টদের কাছে প্রস্ন</string>
+    <string name="challenge_answer_title">চ্যালেঞ্জের উত্তর</string>
+    <string name="no_answer_text">এই প্রস্নের উত্তর এখনও পর্যন্ত দেওয়া হয় নাই</string>
+    <string name="question_answer_title">এক্সপার্ট মামুর উত্তর</string>
+    <string name="compose_question_here">এখানে আপনার প্রস্নটি লিখুন</string>
+    <string name="add_a_challenge">চ্যালেঞ্জ করুন মামুকে</string>
+    <string name="challenge_add_success_message">প্রস্নটি করার জন্য আপনাকে ধন্যবাদ</string>
+    <string name="add_a_question">মামুকে প্রস্ন করুন</string>
 
 </resources>

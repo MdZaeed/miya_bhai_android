@@ -31,6 +31,7 @@ public class VideoChallengeActivity extends TemplateActivity implements View.OnC
         facebookGroupButton.setOnClickListener(this);
         youtubeChanelButton.setOnClickListener(this);
 
+        setTitle(getResources().getString(R.string.video_challenge));
     }
 
     @Override

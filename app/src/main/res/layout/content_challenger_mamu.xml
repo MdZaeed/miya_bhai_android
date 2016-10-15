@@ -5,9 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="rad.iit.com.baya.activities.ChallengerMamuActivity"
-    tools:showIn="@layout/app_bar_challenger_mamu">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh_layout_home"
         android:layout_width="match_parent"
@@ -35,8 +33,8 @@
                 android:layout_gravity="bottom|end"
                 android:id="@+id/ft_question_ask"
                 android:src="@drawable/raising_hand_for_question"
-                android:layout_marginBottom="52dp"
                 android:layout_alignParentBottom="true"
+                android:layout_marginBottom="5dp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
         </RelativeLayout>

@@ -16,6 +16,8 @@ public class ApplicationConstants {
     public static final String CATEGORIES_GET_URL=INDEX_URL + "getCategories.php/";
     public static final String CHALLENGES_GET_URL=INDEX_URL+"getChallenges.php/";
     public static final String EXPERT_ANSWERS_GET_URL=INDEX_URL+"getExpertAnswers.php/";
+    public static final String ADD_CHALLENGE_URL = INDEX_URL + "addChallenge.php/";
+    public static final String ADD_QUESTION_URL = INDEX_URL + "addExpertQuestion.php/";
 
     public static  final String TOKEN_KEY ="token";
     public static final String ID_KEY ="ID";

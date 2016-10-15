@@ -1,9 +1,7 @@
 package rad.iit.com.baya.activities;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,7 +23,6 @@ import rad.iit.com.baya.adapters.RecyclerViewListAdapterForExpertAnswers;
 import rad.iit.com.baya.data.constants.ApplicationConstants;
 import rad.iit.com.baya.datamodels.CategoriesResponse;
 import rad.iit.com.baya.datamodels.Category;
-import rad.iit.com.baya.datamodels.Challenge;
 import rad.iit.com.baya.datamodels.ExpertAnswerResponse;
 import rad.iit.com.baya.datamodels.ExpertiseAnswer;
 
@@ -43,7 +40,7 @@ public class ExpertMamuQuestionActivity extends TemplateQuestionActivity impleme
     public void setQuestionAnswers() {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         if(!progressDialog.isShowing()) {
-            progressDialog.setMessage("Loading");
+            progressDialog.setMessage(getString(R.string.loading));
             progressDialog.show();
         }
 
@@ -60,6 +57,8 @@ public class ExpertMamuQuestionActivity extends TemplateQuestionActivity impleme
 
                 progressDialog.hide();
                 populateQuestionList();
+
+                productListSwipeRefreshLayout.setRefreshing(false);
             }
 
         }, new Response.ErrorListener() {
@@ -89,11 +88,11 @@ public class ExpertMamuQuestionActivity extends TemplateQuestionActivity impleme
     @Override
     public void setTopicList() {
         topicStringList = new ArrayList< >();
-        topicStringList.add("All Topics");
+        topicStringList.add(getString(R.string.all_topics));
 
         final ProgressDialog progressDialog = new ProgressDialog(this);
         if(!progressDialog.isShowing()) {
-            progressDialog.setMessage("Loading");
+            progressDialog.setMessage(getResources().getString(R.string.loading));
             progressDialog.show();
         }
 
@@ -131,6 +130,8 @@ public class ExpertMamuQuestionActivity extends TemplateQuestionActivity impleme
         topicSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                final ProgressDialog progressDialog=new ProgressDialog(ExpertMamuQuestionActivity.this);
+                progressDialog.show();
                 if(i!=0) {
                     String categoryName = adapterView.getItemAtPosition(i).toString();
                     createFilteredAnswerArrayByCategory(categoryName);
@@ -141,6 +142,7 @@ public class ExpertMamuQuestionActivity extends TemplateQuestionActivity impleme
                     recyclerViewListAdapterForExpertAnswers.setExpertiseAnswers(expertiseAnswers);
                     recyclerViewListAdapterForExpertAnswers.notifyDataSetChanged();
                 }
+                progressDialog.hide();
             }
 
             @Override
@@ -163,7 +165,7 @@ public class ExpertMamuQuestionActivity extends TemplateQuestionActivity impleme
         }
         filteredExpertiseAnswer=new ArrayList<>();
         for (ExpertiseAnswer expertiseAnswer: expertiseAnswers) {
-            if(expertiseAnswer.getAskedBy().equals(id))
+            if(expertiseAnswer.getCategoryID().equals(id))
             {
                 filteredExpertiseAnswer.add(expertiseAnswer);
             }
@@ -172,7 +174,7 @@ public class ExpertMamuQuestionActivity extends TemplateQuestionActivity impleme
 
     @Override
     public void setToolBarTitle() {
-        toolbarTitle.setText("Expert Questions");
+        toolbarTitle.setText(R.string.expert_question_title);
     }
 
     @Override
@@ -213,8 +215,7 @@ public class ExpertMamuQuestionActivity extends TemplateQuestionActivity impleme
 
     public void createFilteredChallengeArray()
     {
-        SharedPreferences sharedPreferences = getSharedPreferences(ApplicationConstants.SHARED_PREFERENCE, Context.MODE_PRIVATE);
-        String id=sharedPreferences.getString(ApplicationConstants.ID_KEY,"-1");
+        String id=getSavedOwnId();
         filteredExpertiseAnswer=new ArrayList<>();
         for (ExpertiseAnswer expertiseAnswer: expertiseAnswers) {
             if(expertiseAnswer.getAskedBy().equals(id))

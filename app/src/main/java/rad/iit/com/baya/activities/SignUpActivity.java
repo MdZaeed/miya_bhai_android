@@ -56,6 +56,7 @@ public class SignUpActivity extends TemplateActivity implements View.OnClickList
     public void initView() {
         setContentView(R.layout.activity_sign_up);
 
+        setTitle(getResources().getString(R.string.app_name));
         userNameEditText = (EditText) findViewById(R.id.et_user_name);
         mobileEditText = (EditText) findViewById(R.id.et_mobile);
         bdayEditText = (TextView) findViewById(R.id.et_bday);
