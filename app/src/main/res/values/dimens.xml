@@ -14,4 +14,6 @@
     <dimen name="nav_padding_top">15dp</dimen>
     <dimen name="subtitle_text_size">7pt</dimen>
 
+    <dimen name="spacing">8dp</dimen>
+
 </resources>

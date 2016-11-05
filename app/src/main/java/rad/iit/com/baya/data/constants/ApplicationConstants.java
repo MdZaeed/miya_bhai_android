@@ -39,4 +39,7 @@ public class ApplicationConstants {
     public static String demo_question="This is a demo question. This is a demo question. This is a demo question. This is a demo question.";
     public static String demo_answer="This is a demo answer. This is a demo answer. This is a demo answer. This is a demo answer.";
     public static String LANGUAGE="bn";
+    // chat server url
+    public static final String CHAT_SERVER_URL = "http://10.100.107.5:3000/";
+
 }

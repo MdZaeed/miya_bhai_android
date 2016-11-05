@@ -76,6 +76,11 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".activities.chat.ChatActivity"
+            android:theme="@style/AppTheme.NoActionBarNTitle"
+            android:screenOrientation="portrait"/>
+
+
     </application>
 
 </manifest>

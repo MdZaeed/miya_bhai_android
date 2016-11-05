@@ -25,6 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import rad.iit.com.baya.R;
+import rad.iit.com.baya.activities.chat.ChatActivity;
 import rad.iit.com.baya.activities.template.TemplateActivity;
 import rad.iit.com.baya.data.constants.ApplicationConstants;
 import rad.iit.com.baya.datamodels.IFormValidation;
@@ -111,7 +112,8 @@ public class LoginActivity extends TemplateActivity implements View.OnClickListe
                         try {
                             saveTokenAndID((String) jsonObject.get(ApplicationConstants.TOKEN_KEY), (String) jsonObject.get(ApplicationConstants.ID_KEY));
 
-                            goToActivity(new HomePageActivity());
+//                            goToActivity(new HomePageActivity());
+                                goToActivity(new ChatActivity());
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -135,8 +137,9 @@ public class LoginActivity extends TemplateActivity implements View.OnClickListe
             }
         }) ;
 
+        goToActivity(new ChatActivity());
 
-        Volley.newRequestQueue(this).add(loginRequest);
+       // Volley.newRequestQueue(this).add(loginRequest);
     }
 
     public void saveTokenAndID(String token, String id) {
