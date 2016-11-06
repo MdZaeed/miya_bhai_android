@@ -20,6 +20,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
     public MessageAdapter(Context context, List<Message> messages) {
         mMessages = messages;
+
         mUsernameColors = context.getResources().getIntArray(R.array.username_colors);
     }
 
@@ -27,14 +28,11 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         int layout = -1;
         switch (viewType) {
-        case Message.TYPE_MESSAGE:
-            layout = R.layout.item_message;
+        case Message.TYPE_MESSAGE_USER:
+            layout = R.layout.item_message_user;
             break;
-        case Message.TYPE_LOG:
-            layout = R.layout.item_log;
-            break;
-        case Message.TYPE_ACTION:
-            layout = R.layout.item_action;
+        case Message.TYPE_MESSAGE_ADMIN:
+            layout = R.layout.item_message_admin;
             break;
         }
         View v = LayoutInflater
@@ -47,7 +45,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
         Message message = mMessages.get(position);
         viewHolder.setMessage(message.getMessage());
-        viewHolder.setUsername(message.getUsername());
+        viewHolder.setUsername(message.getSender());
     }
 
     @Override
@@ -66,7 +64,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
         public ViewHolder(View itemView) {
             super(itemView);
-
             mUsernameView = (TextView) itemView.findViewById(R.id.username);
             mMessageView = (TextView) itemView.findViewById(R.id.message);
         }

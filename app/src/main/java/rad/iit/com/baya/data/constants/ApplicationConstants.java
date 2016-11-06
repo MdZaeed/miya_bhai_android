@@ -8,6 +8,7 @@ public class ApplicationConstants {
     public static int CATEGORY_ID = 0;
     public static  final String INDEX_URL="http://trimarkworld.com/mamu/";
     public static final String ADD_USER_URL = INDEX_URL+"register.php/";
+    public static final String CHAT_URL = "http://10.100.107.5/mamu/a/"+"getAllChat.php?user=";
     public static final String LOGIN_URL = INDEX_URL+"login.php/";
     public static final String HELLO_URL=INDEX_URL+"annual.php/";
 
@@ -20,6 +21,7 @@ public class ApplicationConstants {
     public static final String ADD_QUESTION_URL = INDEX_URL + "addExpertQuestion.php/";
 
     public static  final String TOKEN_KEY ="token";
+    public static  final String USER_KEY ="user";
     public static final String ID_KEY ="ID";
     public static final String SUCCESS_KEY ="success";
     public static final String ERROR_KEY ="error";
@@ -41,5 +43,6 @@ public class ApplicationConstants {
     public static String LANGUAGE="bn";
     // chat server url
     public static final String CHAT_SERVER_URL = "http://10.100.107.5:3000/";
+    public static String user ="";
 
 }

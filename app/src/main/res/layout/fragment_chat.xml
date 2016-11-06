@@ -4,7 +4,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context="Ma">
+        tools:context=".activities.chat.ChatActivity">
 
     <android.support.v7.widget.RecyclerView
             android:id="@+id/messages"
@@ -29,18 +29,13 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="@string/prompt_message"
-                android:imeActionId="@+id/send"
-                android:imeActionLabel="@string/action_send"
-                android:imeOptions="actionSend"
-                android:inputType="text"
-                android:maxLines="1"
-                android:singleLine="true"/>
+                android:maxLines="10"
+                android:inputType="text"/>
         <ImageButton
                 android:id="@+id/send_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_menu_send"
-                android:contentDescription="@string/action_send"/>
+                android:src="@android:drawable/ic_menu_send" />
 
     </LinearLayout>
 
