@@ -6,8 +6,9 @@ package rad.iit.com.baya.data.constants;
 public class ApplicationConstants {
 
     public static int CATEGORY_ID = 0;
-    public static  final String INDEX_URL="http://trimarkworld.com/mamu/";
+    public static  final String INDEX_URL="http://192.168.159.1/ChallengerMamu/";
     public static final String ADD_USER_URL = INDEX_URL+"register.php/";
+    public static final String CHAT_URL = INDEX_URL+"getAllChat.php?user=";
     public static final String LOGIN_URL = INDEX_URL+"login.php/";
     public static final String HELLO_URL=INDEX_URL+"annual.php/";
 
@@ -20,6 +21,7 @@ public class ApplicationConstants {
     public static final String ADD_QUESTION_URL = INDEX_URL + "addExpertQuestion.php/";
 
     public static  final String TOKEN_KEY ="token";
+    public static  final String USER_KEY ="user";
     public static final String ID_KEY ="ID";
     public static final String SUCCESS_KEY ="success";
     public static final String ERROR_KEY ="error";
@@ -39,4 +41,8 @@ public class ApplicationConstants {
     public static String demo_question="This is a demo question. This is a demo question. This is a demo question. This is a demo question.";
     public static String demo_answer="This is a demo answer. This is a demo answer. This is a demo answer. This is a demo answer.";
     public static String LANGUAGE="bn";
+    // chat server url
+    public static final String CHAT_SERVER_URL = "http://192.168.159.1:3000/";
+    public static String user ="";
+
 }

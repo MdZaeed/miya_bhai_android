@@ -1,5 +1,6 @@
 package rad.iit.com.baya.activities;
 
+import android.app.Application;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -25,6 +26,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import rad.iit.com.baya.R;
+import rad.iit.com.baya.activities.chat.ChatActivity;
 import rad.iit.com.baya.activities.template.TemplateActivity;
 import rad.iit.com.baya.data.constants.ApplicationConstants;
 import rad.iit.com.baya.datamodels.IFormValidation;
@@ -90,7 +92,7 @@ public class LoginActivity extends TemplateActivity implements View.OnClickListe
         }
     }
 
-    public void loginUser(User user) {
+    public void loginUser(final User user) {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage(getResources().getString(R.string.loading));
         progressDialog.show();
@@ -103,14 +105,10 @@ public class LoginActivity extends TemplateActivity implements View.OnClickListe
                     progressDialog.dismiss();
                 }
                 Log.d("Res", jsonObject.toString());
-/*
-                customToast.showLongToast(jsonObject.toString());
-*/
                 if (jsonObject.has(ApplicationConstants.SUCCESS_KEY)) {
                     if (jsonObject.has(ApplicationConstants.TOKEN_KEY) && jsonObject.has(ApplicationConstants.ID_KEY)) {
                         try {
-                            saveTokenAndID((String) jsonObject.get(ApplicationConstants.TOKEN_KEY), (String) jsonObject.get(ApplicationConstants.ID_KEY));
-
+                            saveTokenAndIDAndUser((String) jsonObject.get(ApplicationConstants.TOKEN_KEY), (String) jsonObject.get(ApplicationConstants.ID_KEY),user.userName);
                             goToActivity(new HomePageActivity());
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -129,23 +127,23 @@ public class LoginActivity extends TemplateActivity implements View.OnClickListe
                     progressDialog.dismiss();
                 }
                 Log.d("Err", volleyError.toString());
-/*
-                customToast.showLongToast(volleyError.toString());
-*/
+//                customToast.showLongToast(volleyError.toString());
             }
         }) ;
-
 
         Volley.newRequestQueue(this).add(loginRequest);
     }
 
-    public void saveTokenAndID(String token, String id) {
+    public void saveTokenAndIDAndUser(String token, String id,String user) {
         SharedPreferences sharedPreferences = getSharedPreferences(ApplicationConstants.SHARED_PREFERENCE, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(ApplicationConstants.TOKEN_KEY, token);
         editor.putString(ApplicationConstants.ID_KEY, id);
+        editor.putString(ApplicationConstants.USER_KEY,user);
+        ApplicationConstants.user = user;
         editor.apply();
     }
+
 
     @Override
     public boolean isAllInputFieldNotNull() {

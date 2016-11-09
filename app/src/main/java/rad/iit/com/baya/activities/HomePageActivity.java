@@ -13,6 +13,7 @@ import com.fenchtose.tooltip.Tooltip;
 import java.util.ArrayList;
 
 import rad.iit.com.baya.R;
+import rad.iit.com.baya.activities.chat.ChatActivity;
 import rad.iit.com.baya.activities.template.TemplateActivity;
 
 /**
@@ -141,6 +142,7 @@ public class HomePageActivity extends TemplateActivity implements View.OnClickLi
                     break;
 
                 case R.id.btn_normal_mamu_hmpgb2:
+                    goToActivity(new ChatActivity());
                     break;
 
                 case R.id.btn_video_challenge_hmpgb3:
