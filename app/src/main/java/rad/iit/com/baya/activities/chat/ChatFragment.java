@@ -160,7 +160,7 @@ public class ChatFragment extends Fragment {
                         progressDialog.dismiss();
                     }
                     Log.d("Err", volleyError.toString());
-                customToast.showLongToast(volleyError.toString());
+                customToast.showLongToast("Sorry! Network Timed Out");
                 }
             }) ;
              Volley.newRequestQueue(getActivity()).add(chatRequest);

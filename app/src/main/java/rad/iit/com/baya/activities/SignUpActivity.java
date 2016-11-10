@@ -132,7 +132,7 @@ public class SignUpActivity extends TemplateActivity implements View.OnClickList
                 }
                 Log.d("Res",jsonObject.toString());
                 Log.d("Res", jsonObject.toString());
-                customToast.showLongToast(jsonObject.toString());
+//                customToast.showLongToast(jsonObject.toString());
 
                 goToActivity(new LoginActivity());
             }
@@ -144,7 +144,7 @@ public class SignUpActivity extends TemplateActivity implements View.OnClickList
                     progressDialog.dismiss();
                 }
                 Log.d("Err", volleyError.toString());
-                customToast.showLongToast(volleyError.toString());
+                customToast.showLongToast("Sorry ! Network Timed Out");
             }
         }) ;
         Volley.newRequestQueue(SignUpActivity.this).add(addUserRequest);
