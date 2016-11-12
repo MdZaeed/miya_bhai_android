@@ -3,6 +3,8 @@ package rad.iit.com.baya.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -16,10 +18,14 @@ public class VideoChallengeActivity extends TemplateActivity implements View.OnC
 
     Button myVideosButton,allVideosButton, facebookGroupButton,youtubeChanelButton;
 
+    public static final String INTENT_EXTRA = "Own";
+
     @Override
     public void initView() {
 
         setContentView(R.layout.activity_video_challenge_first_page);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         myVideosButton=(Button) findViewById(R.id.btn_my_videos_button);
         allVideosButton=(Button) findViewById(R.id.btn_all_videos);
@@ -54,11 +60,11 @@ public class VideoChallengeActivity extends TemplateActivity implements View.OnC
         switch (view.getId())
         {
             case R.id.btn_my_videos_button:
-                goToActivity(new VideoChallengeListActivity());
+                goToActivity(new VideoChallengeListActivity(),"yes");
                 break;
 
             case R.id.btn_all_videos:
-                goToActivity(new VideoChallengeListActivity());
+                goToActivity(new VideoChallengeListActivity(),"no");
                 break;
 
             case R.id.btn_facebook_group_link:
@@ -72,9 +78,25 @@ public class VideoChallengeActivity extends TemplateActivity implements View.OnC
         }
     }
 
-    public void goToActivity(Activity activity)
+    public void goToActivity(Activity activity,String ownOrNot)
     {
         Intent intent=new Intent(this,activity.getClass());
+        intent.putExtra(INTENT_EXTRA,ownOrNot);
         startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

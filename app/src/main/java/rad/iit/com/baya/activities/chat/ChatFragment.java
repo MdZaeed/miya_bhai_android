@@ -160,7 +160,7 @@ public class ChatFragment extends Fragment {
                         progressDialog.dismiss();
                     }
                     Log.d("Err", volleyError.toString());
-                customToast.showLongToast("Sorry! Network Timed Out");
+                customToast.showLongToast("Error! Check your internet connection.");
                 }
             }) ;
              Volley.newRequestQueue(getActivity()).add(chatRequest);
@@ -268,7 +268,10 @@ public class ChatFragment extends Fragment {
 
     private void attemptSend() {
         if (null == sender) return;
-        if (!mSocket.connected()) return;
+        if (!mSocket.connected()) {
+            Toast.makeText(getActivity(),"Check your internet connection",Toast.LENGTH_LONG).show();
+            return;
+        }
         String message = mInputMessageView.getText().toString().trim();
         String message_json ="{\"sender\":\""+ sender +"\",\"receiver\":\""+receiver+"\",\"message\":\""+message+"\"}";
         if (TextUtils.isEmpty(message)) {
@@ -297,7 +300,9 @@ public class ChatFragment extends Fragment {
     private void leave() {
         sender = null;
         mSocket.disconnect();
+/*
         mSocket.connect();
+*/
         Intent intent = new Intent(getContext(),HomePageActivity.class);
         startActivity(intent);
     }
@@ -331,9 +336,9 @@ public class ChatFragment extends Fragment {
                 @Override
                 public void run() {
                     isConnected = false;
-                    Toast.makeText(getActivity().getApplicationContext(),
+         /*           Toast.makeText(getActivity().getApplicationContext(),
                             R.string.disconnect, Toast.LENGTH_LONG).show();
-                }
+         */       }
             });
         }
     };

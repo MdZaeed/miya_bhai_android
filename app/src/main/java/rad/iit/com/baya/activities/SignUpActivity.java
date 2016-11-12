@@ -88,8 +88,12 @@ public class SignUpActivity extends TemplateActivity implements View.OnClickList
             public void onClick(View view) {
                 if (isAllInputFieldNotNull()){
                     getAllInputFieldData();
+/*
                     CustomToast toast = new CustomToast(SignUpActivity.this);
+*/
+/*
                     toast.showLongToast(candidateUser.toString());
+*/
                     addUser(candidateUser);
                 }
             }
@@ -123,7 +127,9 @@ public class SignUpActivity extends TemplateActivity implements View.OnClickList
         progressDialog.setMessage("Loading");
         progressDialog.show();
 
+/*
         final CustomToast customToast = new CustomToast(SignUpActivity.this);
+*/
         JsonObjectRequest addUserRequest = addUserRequest = new JsonObjectRequest(Request.Method.POST, ApplicationConstants.ADD_USER_URL, user.getSignUpJSON(),new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
@@ -131,7 +137,7 @@ public class SignUpActivity extends TemplateActivity implements View.OnClickList
                     progressDialog.dismiss();
                 }
                 Log.d("Res",jsonObject.toString());
-                Log.d("Res", jsonObject.toString());
+                Log.d("Sent", user.getSignUpJSON().toString());
 //                customToast.showLongToast(jsonObject.toString());
 
                 goToActivity(new LoginActivity());
@@ -144,7 +150,9 @@ public class SignUpActivity extends TemplateActivity implements View.OnClickList
                     progressDialog.dismiss();
                 }
                 Log.d("Err", volleyError.toString());
+/*
                 customToast.showLongToast("Sorry ! Network Timed Out");
+*/
             }
         }) ;
         Volley.newRequestQueue(SignUpActivity.this).add(addUserRequest);

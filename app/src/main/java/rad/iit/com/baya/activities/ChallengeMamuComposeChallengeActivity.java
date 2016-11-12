@@ -71,7 +71,9 @@ public class ChallengeMamuComposeChallengeActivity extends TemplateComposeQuesti
                 {
                     try {
                         String errorMessage=jsonObject.getString("error");
+/*
                         Toast.makeText(ChallengeMamuComposeChallengeActivity.this,errorMessage,Toast.LENGTH_LONG).show();
+*/
                     } catch (JSONException e1) {
                         e1.printStackTrace();
                     }
@@ -84,8 +86,12 @@ public class ChallengeMamuComposeChallengeActivity extends TemplateComposeQuesti
                 if (progressDialog.isShowing()) {
                     progressDialog.dismiss();
                 }
+/*
                 Log.d("Err", volleyError.toString());
+*/
+/*
                 customToast.showLongToast(volleyError.toString());
+*/
             }
         }) ;
 

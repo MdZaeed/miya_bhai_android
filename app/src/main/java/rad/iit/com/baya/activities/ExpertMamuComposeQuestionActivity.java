@@ -60,7 +60,10 @@ public class ExpertMamuComposeQuestionActivity extends TemplateComposeQuestionAc
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
+
+/*
                 customToast.showLongToast(volleyError.toString());
+*/
             }
         });
         Volley.newRequestQueue(ExpertMamuComposeQuestionActivity.this).add(getCategoriesRequest);
@@ -106,7 +109,9 @@ public class ExpertMamuComposeQuestionActivity extends TemplateComposeQuestionAc
                 {
                     try {
                         String errorMessage=jsonObject.getString("error");
+/*
                         Toast.makeText(ExpertMamuComposeQuestionActivity.this,errorMessage,Toast.LENGTH_LONG).show();
+*/
                     } catch (JSONException e1) {
                         e1.printStackTrace();
                     }
@@ -120,7 +125,9 @@ public class ExpertMamuComposeQuestionActivity extends TemplateComposeQuestionAc
                     progressDialog.dismiss();
                 }
                 Log.d("Err", volleyError.toString());
+/*
                 customToast.showLongToast(volleyError.toString());
+*/
             }
         }) ;
 

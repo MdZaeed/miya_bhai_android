@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.MenuItem;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -43,10 +44,14 @@ public class VideoChallengeListActivity extends AppCompatActivity {
     ArrayList<String> responseFromServer;
     ArrayList<String> videoIds;
     ArrayList<YoutubeVideoModel> youtubeVideos;
+    String ownOrNot;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ownOrNot=getIntent().getStringExtra(VideoChallengeActivity.INTENT_EXTRA);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         if(getLanguage().equals(getResources().getString(R.string.bangla_string)))
         {
@@ -83,12 +88,14 @@ public class VideoChallengeListActivity extends AppCompatActivity {
     public ArrayList<String> createYoutubeIdList(ArrayList<String> urls) {
         ArrayList<String> ids = new ArrayList<>();
 
-        for (String url :
-                urls) {
+        if(!urls.isEmpty()) {
+            for (String url :
+                    urls) {
 
-            if (url.startsWith("https://www.youtube.com/watch?v=")) {
-                String[] parts = url.split("v=");
-                ids.add(parts[1]);
+                if (url.startsWith("https://www.youtube.com/watch?v=")) {
+                    String[] parts = url.split("v=");
+                    ids.add(parts[1]);
+                }
             }
         }
 
@@ -113,11 +120,19 @@ public class VideoChallengeListActivity extends AppCompatActivity {
                 VideosResponse videosResponse =new Gson().fromJson(jsonObject.toString(),VideosResponse.class);
                 for (Video video:
                      videosResponse.getVideos()) {
-                    tempList.add(video.getLink());
+                    if(ownOrNot.equals("yes") && video.getUploadedBy().equals(getSavedOwnId()))
+                    {
+                        tempList.add(video.getLink());
+                    }else if(ownOrNot.equals("no")) {
+                        tempList.add(video.getLink());
+                    }
                 }
 
                 videoIds =createYoutubeIdList(tempList);
-                loadData();
+
+                if (!videoIds.isEmpty()) {
+                    loadData();
+                }
 
             }
 
@@ -128,7 +143,9 @@ public class VideoChallengeListActivity extends AppCompatActivity {
                     progressDialog.dismiss();
                 }
                 Log.d("Err", volleyError.toString());
+/*
                 customToast.showLongToast(volleyError.toString());
+*/
             }
         });
         Volley.newRequestQueue(VideoChallengeListActivity.this).add(addUserRequest);
@@ -194,10 +211,35 @@ public class VideoChallengeListActivity extends AppCompatActivity {
                     progressDialog.dismiss();
                 }
                 Log.d("Err", volleyError.toString());
+/*
                 customToast.showLongToast(volleyError.toString());
+*/
             }
         });
         Volley.newRequestQueue(VideoChallengeListActivity.this).add(addUserRequest);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public String getSavedOwnId()
+    {
+        SharedPreferences sharedPreferences = getSharedPreferences(ApplicationConstants.SHARED_PREFERENCE, Context.MODE_PRIVATE);
+        String id=sharedPreferences.getString(ApplicationConstants.ID_KEY,"-1");
+        return id;
     }
 }

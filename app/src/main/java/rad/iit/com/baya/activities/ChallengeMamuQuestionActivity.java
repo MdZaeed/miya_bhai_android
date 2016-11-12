@@ -60,7 +60,10 @@ public class ChallengeMamuQuestionActivity extends TemplateQuestionActivity impl
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
+
+/*
                 customToast.showLongToast(volleyError.toString());
+*/
             }
         });
         Volley.newRequestQueue(ChallengeMamuQuestionActivity.this).add(getCategoriesRequest);

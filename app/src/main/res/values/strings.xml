@@ -38,7 +38,7 @@
     <string name="sixth_button_tooltip_text">Talk with mamu on our hotline number</string>
     <string name="mail">Mail</string>
     <string name="dial">Dial</string>
-    <string name="hotline_number" translatable="false">01815176477</string>
+    <string name="hotline_number" translatable="false">123456</string>
     <string name="hotline">Hotline</string>
     <string name="contact_us">Contact Us</string>
     <string name="challenger_mamu">Challenger Mamu</string>

@@ -1,6 +1,7 @@
 package rad.iit.com.baya.activities;
 
 import android.content.Intent;
+import android.text.Html;
 import android.view.View;
 
 import rad.iit.com.baya.R;
@@ -31,8 +32,8 @@ public class ChallengeMamuQuestionAnswerActivity extends TemplateQuestionAnswerA
     @Override
     public void bindDataInViews() {
         questionTextView.setText(ownChallenge.getQuestion());
-        if(null!=ownChallenge.getAnswer() && ownChallenge.getAnswer().equals("")) {
-            answerTextView.setText(ownChallenge.getAnswer());
+        if(null!=ownChallenge.getAnswer() && !ownChallenge.getAnswer().equals("")) {
+            answerTextView.setText(Html.fromHtml(handleBanglaString(ownChallenge.getAnswer())));
             answerDateTextView.setText(ownChallenge.getAnswerDate());
         }else
         {

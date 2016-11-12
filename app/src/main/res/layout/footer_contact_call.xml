@@ -11,17 +11,19 @@
         android:layout_height="wrap_content"
         android:text="@string/contact_us"
         android:layout_weight="1.0"
-        android:drawableLeft="@drawable/ic_contact_mail_white_24dp"
+        android:drawableLeft="@android:drawable/ic_dialog_email"
+        android:drawableStart="@android:drawable/ic_dialog_email"
         android:textColor="@color/colorAccent"
-        android:layout_marginRight="2dp"
+        android:layout_gravity="start"
         />
     <Button
         android:id="@+id/btn_dial"
         android:layout_width="0dp"
         android:layout_weight="1.0"
-        android:layout_marginLeft="2dp"
-        android:drawableLeft="@drawable/ic_call_white_24dp"
+        android:drawableLeft="@android:drawable/ic_menu_call"
+        android:drawableStart="@android:drawable/ic_menu_call"
         android:textColor="@color/colorAccent"
         android:layout_height="wrap_content"
-        android:text="@string/dial"/>
+        android:text="@string/dial"
+        android:layout_gravity="start"/>
 </LinearLayout>

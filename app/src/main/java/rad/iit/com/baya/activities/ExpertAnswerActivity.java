@@ -1,6 +1,7 @@
 package rad.iit.com.baya.activities;
 
 import android.content.Intent;
+import android.text.Html;
 
 import rad.iit.com.baya.R;
 import rad.iit.com.baya.activities.template.TemplateQuestionAnswerActivity;
@@ -34,8 +35,8 @@ public class ExpertAnswerActivity extends TemplateQuestionAnswerActivity{
     @Override
     public void bindDataInViews() {
         questionTextView.setText(handleBanglaString(expertiseAnswer.getQuestion()));
-        if(null!=expertiseAnswer.getAnswer() && expertiseAnswer.getAnswer().equals("")) {
-            answerTextView.setText(handleBanglaString(expertiseAnswer.getAnswer().toString()));
+        if(null!=expertiseAnswer.getAnswer() && !expertiseAnswer.getAnswer().equals("")) {
+            answerTextView.setText(Html.fromHtml(handleBanglaString(expertiseAnswer.getAnswer().toString())));
             answerDateTextView.setText(expertiseAnswer.getAnswerDate().toString());
         }else
         {

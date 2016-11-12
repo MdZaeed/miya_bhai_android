@@ -50,6 +50,8 @@ public class ExpertMamuQuestionActivity extends TemplateQuestionActivity impleme
 
                 ExpertAnswerResponse expertAnswerResponse=new Gson().fromJson(jsonObject.toString(),ExpertAnswerResponse.class);
 
+                expertiseAnswers=new ArrayList<>();
+
                 for (ExpertiseAnswer expertiseAnswer:
                      expertAnswerResponse.getExpertiseAnswers()) {
                     expertiseAnswers.add(expertiseAnswer);
@@ -64,7 +66,10 @@ public class ExpertMamuQuestionActivity extends TemplateQuestionActivity impleme
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
+
+/*
                 customToast.showLongToast(volleyError.toString());
+*/
             }
         });
         Volley.newRequestQueue(ExpertMamuQuestionActivity.this).add(getCategoriesRequest);
@@ -77,7 +82,11 @@ public class ExpertMamuQuestionActivity extends TemplateQuestionActivity impleme
         recyclerViewListAdapterForExpertAnswers.setOnQuestionClicked(this);
         myRecyclerView.setAdapter(recyclerViewListAdapterForExpertAnswers);
 
+/*
         createFilteredChallengeArray();
+*/
+        filteredExpertiseAnswer=new ArrayList<>();
+        filteredExpertiseAnswer=expertiseAnswers;
 
         othersChallengesButton.setOnClickListener(this);
         ownChallengesButton.setOnClickListener(this);
@@ -114,7 +123,10 @@ public class ExpertMamuQuestionActivity extends TemplateQuestionActivity impleme
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
+
+/*
                 customToast.showLongToast(volleyError.toString());
+*/
             }
         });
         Volley.newRequestQueue(ExpertMamuQuestionActivity.this).add(getCategoriesRequest);
@@ -139,6 +151,7 @@ public class ExpertMamuQuestionActivity extends TemplateQuestionActivity impleme
                     recyclerViewListAdapterForExpertAnswers.notifyDataSetChanged();
                 }else
                 {
+                    filteredExpertiseAnswer=expertiseAnswers;
                     recyclerViewListAdapterForExpertAnswers.setExpertiseAnswers(expertiseAnswers);
                     recyclerViewListAdapterForExpertAnswers.notifyDataSetChanged();
                 }
@@ -150,6 +163,20 @@ public class ExpertMamuQuestionActivity extends TemplateQuestionActivity impleme
 
             }
         });
+    }
+
+    public ArrayList<ExpertiseAnswer> applyOwnChallengeFilter()
+    {
+        String id=getSavedOwnId();
+        ArrayList<ExpertiseAnswer> tempExpertiseAnswers=new ArrayList<>();
+        for (ExpertiseAnswer expertiseAnswer: filteredExpertiseAnswer) {
+            if(expertiseAnswer.getAskedBy().equals(id))
+            {
+                tempExpertiseAnswers.add(expertiseAnswer);
+            }
+        }
+
+        return tempExpertiseAnswers;
     }
 
     public void createFilteredAnswerArrayByCategory(String categoryName)
@@ -202,12 +229,13 @@ public class ExpertMamuQuestionActivity extends TemplateQuestionActivity impleme
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.bt_oq:
-                recyclerViewListAdapterForExpertAnswers.setExpertiseAnswers(expertiseAnswers);
+                recyclerViewListAdapterForExpertAnswers.setExpertiseAnswers(filteredExpertiseAnswer);
                 recyclerViewListAdapterForExpertAnswers.notifyDataSetChanged();
                 break;
 
             case R.id.btn_my_questions:
-                recyclerViewListAdapterForExpertAnswers.setExpertiseAnswers(filteredExpertiseAnswer);
+                applyOwnChallengeFilter();
+                recyclerViewListAdapterForExpertAnswers.setExpertiseAnswers(applyOwnChallengeFilter());
                 recyclerViewListAdapterForExpertAnswers.notifyDataSetChanged();
                 break;
         }
