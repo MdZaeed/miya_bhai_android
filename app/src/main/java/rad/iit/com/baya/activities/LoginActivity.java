@@ -16,7 +16,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
@@ -46,9 +45,12 @@ public class LoginActivity extends TemplateActivity implements View.OnClickListe
 
     @Override
     public void initView() {
-
+        // checking logged in or not
+        if (isLoggedIn()){
+            Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
+            startActivity(intent);
+        }
         setContentView(R.layout.activity_login);
-
         setTitle(getResources().getString(R.string.app_name));
         userNameEditText = (EditText) findViewById(R.id.et_user_name);
         mobileNumberText = (EditText) findViewById(R.id.et_mobile);
@@ -165,5 +167,20 @@ public class LoginActivity extends TemplateActivity implements View.OnClickListe
         candidateUser = new User();
         candidateUser.userName = userNameEditText.getText().toString();
         candidateUser.mobileNumber = mobileNumberText.getText().toString();
+    }
+
+    /**
+     * to check whether a user is logged in or not via token key
+     * if token key is "" then return false
+     * else return true
+     * @return
+     */
+    private  boolean isLoggedIn(){
+        SharedPreferences sharedPreferences = getSharedPreferences(ApplicationConstants.SHARED_PREFERENCE, Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString(ApplicationConstants.TOKEN_KEY,"");
+        if (!token.equals("")){
+            return  true;
+        }
+        return false;
     }
 }

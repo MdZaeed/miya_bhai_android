@@ -27,6 +27,7 @@ import android.widget.Toast;
 import java.util.Locale;
 
 import rad.iit.com.baya.R;
+import rad.iit.com.baya.activities.LoginActivity;
 import rad.iit.com.baya.activities.SettingsActivity;
 import rad.iit.com.baya.data.constants.ApplicationConstants;
 import rad.iit.com.baya.utils.CustomToast;
@@ -83,7 +84,6 @@ public abstract class TemplateActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.general_menu, menu);
-
         return true;
     }
 
@@ -117,13 +117,28 @@ public abstract class TemplateActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
             case R.id.btn_settings:
                 goToActivity(new SettingsActivity());
+                break;
+            case R.id.btn_logout:
+                deleteSharedPreferenceValues();
+                goToActivity(new LoginActivity());
+                break;
             default:
                 return super.onOptionsItemSelected(item);
         }
+        return  super.onOptionsItemSelected(item);
+    }
+
+    private void deleteSharedPreferenceValues() {
+        SharedPreferences sharedPreferences = getSharedPreferences(ApplicationConstants.SHARED_PREFERENCE, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(ApplicationConstants.TOKEN_KEY, "");
+        editor.putString(ApplicationConstants.ID_KEY, "");
+        editor.putString(ApplicationConstants.USER_KEY,"");
+        ApplicationConstants.user = "";
+        editor.apply();
     }
 
     @Override
