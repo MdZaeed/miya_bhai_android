@@ -46,6 +46,7 @@ import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 import rad.iit.com.baya.R;
 import rad.iit.com.baya.activities.HomePageActivity;
+import rad.iit.com.baya.activities.LoginActivity;
 import rad.iit.com.baya.adapters.MessageAdapter;
 import rad.iit.com.baya.data.constants.ApplicationConstants;
 import rad.iit.com.baya.datamodels.Message;
@@ -86,6 +87,7 @@ public class ChatFragment extends Fragment {
 
     public ChatFragment() {
         super();
+
     }
 
     @Override
@@ -108,7 +110,14 @@ public class ChatFragment extends Fragment {
 //        mSocket.on("init", onUserJoined);
 //        mSocket.on("user_left", onUserLeft);
         mSocket.connect();
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(ApplicationConstants.SHARED_PREFERENCE,Context.MODE_PRIVATE);
+        ApplicationConstants.user = sharedPreferences.getString(ApplicationConstants.USER_KEY,"");
         sender = ApplicationConstants.user;
+        if (sender.equals("")){
+            Toast.makeText(getContext(),"Sorry! Some Error! Please login",Toast.LENGTH_LONG);
+            Intent intent = new Intent(getContext(), LoginActivity.class);
+            startActivity(intent);
+        }
         attemptLogin();
         readPreviousMessages();
     }
