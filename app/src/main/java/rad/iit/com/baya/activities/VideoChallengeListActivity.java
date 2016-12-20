@@ -189,8 +189,9 @@ public class VideoChallengeListActivity extends AppCompatActivity {
                         JSONObject mediumObject = thumbObject.getJSONObject("medium");
                         String imageURL = mediumObject.getString("url");
                         String title = snippetJsonObject.getString("title");
+                        String url=jsonObject1.getString("id");
 
-                        youtubeVideos.add(new YoutubeVideoModel(title, imageURL));
+                        youtubeVideos.add(new YoutubeVideoModel(title, url,imageURL));
                     }
 
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(VideoChallengeListActivity.this);

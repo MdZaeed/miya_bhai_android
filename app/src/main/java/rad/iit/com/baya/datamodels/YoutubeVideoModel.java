@@ -6,6 +6,7 @@ package rad.iit.com.baya.datamodels;
 public class YoutubeVideoModel {
     private String title;
     private String url;
+    private String imageUrl;
 
     public String getTitle() {
         return title;
@@ -23,9 +24,18 @@ public class YoutubeVideoModel {
         this.url = url;
     }
 
-    public YoutubeVideoModel(String title,String url)
+    public YoutubeVideoModel(String title,String url,String imageUrl)
     {
         this.title=title;
         this.url =url;
+        this.setImageUrl(imageUrl);
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
