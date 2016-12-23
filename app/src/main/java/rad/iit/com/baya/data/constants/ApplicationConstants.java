@@ -45,4 +45,8 @@ public class ApplicationConstants {
     public static final String CHAT_SERVER_URL = "http://139.59.34.8:3000/";
     public static String user ="";
 
+
+    public static final String OFFLINE_QUESTIONS="offlinequestions";
+    public static final String OFFLINE_TOPICS="offtopics";
+    public static final String OFFLINE_CHALLENGES="offlinechallenges";
 }

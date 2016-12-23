@@ -45,16 +45,9 @@ public class ChallengeMamuQuestionActivity extends TemplateQuestionActivity impl
         JsonObjectRequest getCategoriesRequest = new JsonObjectRequest(ApplicationConstants.CHALLENGES_GET_URL, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
-
-                QuestionsResponse questionsResponse=new Gson().fromJson(jsonObject.toString(),QuestionsResponse.class);
-                for (Challenge challenge :
-                        questionsResponse.getChallenges()) {
-                    challenges.add(challenge);
-                }
-
+                saveOfflineData(ApplicationConstants.OFFLINE_CHALLENGES,jsonObject.toString());
+                setChallengeData(jsonObject.toString());
                 progressDialog.hide();
-                populateQuestionList();
-                productListSwipeRefreshLayout.setRefreshing(false);
             }
 
         }, new Response.ErrorListener() {
@@ -64,9 +57,29 @@ public class ChallengeMamuQuestionActivity extends TemplateQuestionActivity impl
 /*
                 customToast.showLongToast(volleyError.toString());
 */
+                String data=getOfflineData(ApplicationConstants.OFFLINE_CHALLENGES);
+                if(!data.equals("-1"))
+                {
+                    setChallengeData(data);
+                }
+
+                progressDialog.hide();
+                Toast.makeText(ChallengeMamuQuestionActivity.this,R.string.disconnect,Toast.LENGTH_LONG).show();
             }
         });
         Volley.newRequestQueue(ChallengeMamuQuestionActivity.this).add(getCategoriesRequest);
+    }
+
+    public void setChallengeData(String value)
+    {
+        QuestionsResponse questionsResponse=new Gson().fromJson(value,QuestionsResponse.class);
+        for (Challenge challenge :
+                questionsResponse.getChallenges()) {
+            challenges.add(challenge);
+        }
+
+        populateQuestionList();
+        productListSwipeRefreshLayout.setRefreshing(false);
     }
 
     public void populateQuestionList() {

@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -48,19 +49,9 @@ public class ExpertMamuQuestionActivity extends TemplateQuestionActivity impleme
             @Override
             public void onResponse(JSONObject jsonObject) {
 
-                ExpertAnswerResponse expertAnswerResponse=new Gson().fromJson(jsonObject.toString(),ExpertAnswerResponse.class);
-
-                expertiseAnswers=new ArrayList<>();
-
-                for (ExpertiseAnswer expertiseAnswer:
-                     expertAnswerResponse.getExpertiseAnswers()) {
-                    expertiseAnswers.add(expertiseAnswer);
-                }
-
+                saveOfflineData(ApplicationConstants.OFFLINE_QUESTIONS,jsonObject.toString());
+                setQuestionData(jsonObject.toString());
                 progressDialog.hide();
-                populateQuestionList();
-
-                productListSwipeRefreshLayout.setRefreshing(false);
             }
 
         }, new Response.ErrorListener() {
@@ -70,9 +61,31 @@ public class ExpertMamuQuestionActivity extends TemplateQuestionActivity impleme
 /*
                 customToast.showLongToast(volleyError.toString());
 */
+                String data=getOfflineData(ApplicationConstants.OFFLINE_QUESTIONS);
+                if(!data.equals("-1")) {
+                    setQuestionData(data);
+                }
+                progressDialog.hide();
+                Toast.makeText(ExpertMamuQuestionActivity.this, R.string.disconnect, Toast.LENGTH_LONG).show();
             }
         });
         Volley.newRequestQueue(ExpertMamuQuestionActivity.this).add(getCategoriesRequest);
+    }
+
+    public void setQuestionData(String value)
+    {
+        ExpertAnswerResponse expertAnswerResponse = new Gson().fromJson(value, ExpertAnswerResponse.class);
+
+        expertiseAnswers = new ArrayList<>();
+
+        for (ExpertiseAnswer expertiseAnswer :
+                expertAnswerResponse.getExpertiseAnswers()) {
+            expertiseAnswers.add(expertiseAnswer);
+        }
+
+        populateQuestionList();
+
+        productListSwipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
@@ -108,15 +121,9 @@ public class ExpertMamuQuestionActivity extends TemplateQuestionActivity impleme
         JsonObjectRequest getCategoriesRequest = new JsonObjectRequest(ApplicationConstants.CATEGORIES_GET_URL, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
-                categoriesResponse=new Gson().fromJson(jsonObject.toString(), CategoriesResponse.class);
-
-                for (Category topic :
-                        categoriesResponse.getCategories()) {
-                    topicStringList.add(handleBanglaString(topic.getTopic()));
-                }
-
+                saveOfflineData(ApplicationConstants.OFFLINE_TOPICS,jsonObject.toString());
+                setTopicData(jsonObject.toString());
                 progressDialog.hide();
-                populateDropDown();
 
             }
 
@@ -124,6 +131,11 @@ public class ExpertMamuQuestionActivity extends TemplateQuestionActivity impleme
             @Override
             public void onErrorResponse(VolleyError volleyError) {
 
+                String data=getOfflineData(ApplicationConstants.OFFLINE_TOPICS);
+                if(!data.equals("-1")) {
+                    setTopicData(data);
+                    progressDialog.hide();
+                }
 /*
                 customToast.showLongToast(volleyError.toString());
 */
@@ -131,6 +143,19 @@ public class ExpertMamuQuestionActivity extends TemplateQuestionActivity impleme
         });
         Volley.newRequestQueue(ExpertMamuQuestionActivity.this).add(getCategoriesRequest);
 
+
+    }
+
+    public void setTopicData(String value)
+    {
+        categoriesResponse = new Gson().fromJson(value, CategoriesResponse.class);
+
+        for (Category topic :
+                categoriesResponse.getCategories()) {
+            topicStringList.add(handleBanglaString(topic.getTopic()));
+        }
+
+        populateDropDown();
 
     }
 

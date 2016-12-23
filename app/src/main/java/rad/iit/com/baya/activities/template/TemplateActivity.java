@@ -141,6 +141,21 @@ public abstract class TemplateActivity extends AppCompatActivity {
         editor.apply();
     }
 
+    public void saveOfflineData(String keyword,String value)
+    {
+        SharedPreferences sharedPreferences = getSharedPreferences(ApplicationConstants.SHARED_PREFERENCE, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(keyword, value);
+        editor.apply();
+    }
+
+    public String getOfflineData(String keyword)
+    {
+        SharedPreferences sharedPreferences = getSharedPreferences(ApplicationConstants.SHARED_PREFERENCE, Context.MODE_PRIVATE);
+        String id=sharedPreferences.getString(keyword,"-1");
+        return id;
+    }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
