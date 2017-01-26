@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import rad.iit.com.baya.R;
 import rad.iit.com.baya.activities.chat.ChatActivity;
 import rad.iit.com.baya.activities.template.TemplateActivity;
+import rad.iit.com.baya.fragments.ExitAppFragment;
 
 /**
  * Created by Zayed on 04-Oct-16.
@@ -183,4 +184,11 @@ public class HomePageActivity extends TemplateActivity implements View.OnClickLi
         popup.setBackgroundDrawable(new BitmapDrawable());
         popup.showAsDropDown(anchorView);
     }*/
+
+    @Override
+    public void onBackPressed() {
+
+        ExitAppFragment exitAppFragment=new ExitAppFragment();
+        exitAppFragment.show(this.getSupportFragmentManager(),null);
+    }
 }
