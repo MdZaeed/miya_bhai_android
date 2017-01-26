@@ -187,7 +187,6 @@ public class HomePageActivity extends TemplateActivity implements View.OnClickLi
 
     @Override
     public void onBackPressed() {
-
         ExitAppFragment exitAppFragment=new ExitAppFragment();
         exitAppFragment.show(this.getSupportFragmentManager(),null);
     }

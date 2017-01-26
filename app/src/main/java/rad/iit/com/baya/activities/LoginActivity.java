@@ -30,6 +30,7 @@ import rad.iit.com.baya.activities.template.TemplateActivity;
 import rad.iit.com.baya.data.constants.ApplicationConstants;
 import rad.iit.com.baya.datamodels.IFormValidation;
 import rad.iit.com.baya.datamodels.User;
+import rad.iit.com.baya.fragments.ExitAppFragment;
 import rad.iit.com.baya.utils.CustomToast;
 
 /**
@@ -184,5 +185,11 @@ public class LoginActivity extends TemplateActivity implements View.OnClickListe
             return  true;
         }
         return false;
+    }
+
+    @Override
+    public void onBackPressed() {
+        ExitAppFragment exitAppFragment=new ExitAppFragment();
+        exitAppFragment.show(this.getSupportFragmentManager(),null);
     }
 }
