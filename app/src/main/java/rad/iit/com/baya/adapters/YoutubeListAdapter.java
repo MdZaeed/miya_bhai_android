@@ -42,7 +42,7 @@ public class YoutubeListAdapter extends RecyclerView.Adapter<YoutubeListAdapter.
     public void onBindViewHolder(YoutubeVideoHolder holder, int position) {
         YoutubeVideoModel youtubeVideoModel = getItem(position);
         String title = youtubeVideoModel.getTitle();
-        String url = youtubeVideoModel.getUrl();
+        String url = youtubeVideoModel.getImageUrl();
 
         holder.youtubeVideoNameTextView.setText(title);
         Picasso.with(context).load(url).placeholder(R.drawable.anim_progress).fit().into(holder.youtubeVideoImageView);
