@@ -126,12 +126,14 @@ public class LoginActivity extends TemplateActivity implements View.OnClickListe
         },new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-/*                if (progressDialog.isShowing()) {
+                if (progressDialog.isShowing()) {
                     progressDialog.dismiss();
                 }
-                Log.d("Err", volleyError.toString());*/
+                Log.d("Err", volleyError.toString());
 
+/*
                 goToActivity(new HomePageActivity());
+*/
 //                customToast.showLongToast(volleyError.toString());
             }
         }) ;
