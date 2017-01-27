@@ -18,6 +18,8 @@ public class SettingsActivity extends TemplateActivity {
 
         setContentView(R.layout.activity_settings);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         banglaRadioButton=(RadioButton) findViewById(R.id.rb_bangla);
         englishRadioButton=(RadioButton) findViewById(R.id.rb_english);
 

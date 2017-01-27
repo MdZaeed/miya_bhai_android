@@ -134,7 +134,7 @@ public abstract class TemplateActivity extends AppCompatActivity {
         return  super.onOptionsItemSelected(item);
     }
 
-    private void deleteSharedPreferenceValues() {
+    protected void deleteSharedPreferenceValues() {
         SharedPreferences sharedPreferences = getSharedPreferences(ApplicationConstants.SHARED_PREFERENCE, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(ApplicationConstants.TOKEN_KEY, "");

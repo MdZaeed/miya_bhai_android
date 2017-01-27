@@ -96,5 +96,6 @@
     <string name="error_field_required">This field is required</string>
     <string name="action_refresh">Refresh</string>
     <string name="send">Send</string>
+    <string name="log_out">Log out</string>
 
 </resources>

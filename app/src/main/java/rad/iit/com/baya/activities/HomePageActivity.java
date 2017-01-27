@@ -1,8 +1,13 @@
 package rad.iit.com.baya.activities;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.percent.PercentRelativeLayout;
+import android.support.v4.content.res.ResourcesCompat;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -21,28 +26,47 @@ import rad.iit.com.baya.fragments.ExitAppFragment;
  * Created by Zayed on 04-Oct-16.
  */
 public class HomePageActivity extends TemplateActivity implements View.OnClickListener {
-    Button expertMamuButton,normalMamuButton,videoChallengeButton,challengeMamuButton,contactUsButton,hotlineButton;
-    ArrayList<Button> homepageButtons=new ArrayList<>();
+    Button expertMamuButton, normalMamuButton, videoChallengeButton, challengeMamuButton, contactUsButton, hotlineButton;
+    ArrayList<Button> homepageButtons = new ArrayList<>();
     FrameLayout frameLayout;
     PercentRelativeLayout percentRelativeLayout;
+    DrawerLayout drawerLayout;
+    Button settingsButton,logoutButton;
 
     @Override
     public void initView() {
-
         setContentView(R.layout.activtiy_homepage);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_mamu_home);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
+        drawerLayout = (DrawerLayout) findViewById(R.id.dl_home_page_drawer);
         setTitle(getResources().getString(R.string.app_name));
-        expertMamuButton=(Button) findViewById(R.id.btn_expert_mamu_hmpgb1);
-        normalMamuButton=(Button) findViewById(R.id.btn_normal_mamu_hmpgb2);
-        videoChallengeButton=(Button) findViewById(R.id.btn_video_challenge_hmpgb3);
-        challengeMamuButton=(Button) findViewById(R.id.challenge_mamau_hmpgb4);
-        contactUsButton=(Button) findViewById(R.id.btn_contact_us_hmpgb5);
-        hotlineButton=(Button) findViewById(R.id.btn_hotline_hmpgb6);
+        expertMamuButton = (Button) findViewById(R.id.btn_expert_mamu_hmpgb1);
+        normalMamuButton = (Button) findViewById(R.id.btn_normal_mamu_hmpgb2);
+        videoChallengeButton = (Button) findViewById(R.id.btn_video_challenge_hmpgb3);
+        challengeMamuButton = (Button) findViewById(R.id.challenge_mamau_hmpgb4);
+        contactUsButton = (Button) findViewById(R.id.btn_contact_us_hmpgb5);
+        hotlineButton = (Button) findViewById(R.id.btn_hotline_hmpgb6);
+        settingsButton=(Button) findViewById(R.id.btn_settings);
+        logoutButton=(Button) findViewById(R.id.btn_logout);
 
-        frameLayout=(FrameLayout) findViewById(R.id.fl_root_layout);
-        percentRelativeLayout= (PercentRelativeLayout) findViewById(R.id.prl_root_layout);
+        frameLayout = (FrameLayout) findViewById(R.id.fl_root_layout);
+        percentRelativeLayout = (PercentRelativeLayout) findViewById(R.id.prl_root_layout);
 
-        homepageButtons=createListWithHomeButtons();
+        homepageButtons = createListWithHomeButtons();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                drawerLayout.openDrawer(GravityCompat.START);
+                break;
+        }
+
+        return true;
     }
 
     @Override
@@ -57,34 +81,34 @@ public class HomePageActivity extends TemplateActivity implements View.OnClickLi
 
     @Override
     public void listenView() {
-        for (Button homePageButton:
-             homepageButtons) {
+        for (Button homePageButton :
+                homepageButtons) {
             homePageButton.setOnClickListener(this);
         }
 
     }
 
-    public ArrayList<Button> createListWithHomeButtons()
-    {
-        ArrayList<Button> tempHomepageButtons=new ArrayList<>();
+    public ArrayList<Button> createListWithHomeButtons() {
+        ArrayList<Button> tempHomepageButtons = new ArrayList<>();
         tempHomepageButtons.add(expertMamuButton);
         tempHomepageButtons.add(normalMamuButton);
         tempHomepageButtons.add(videoChallengeButton);
         tempHomepageButtons.add(challengeMamuButton);
         tempHomepageButtons.add(contactUsButton);
         tempHomepageButtons.add(hotlineButton);
+        tempHomepageButtons.add(settingsButton);
+        tempHomepageButtons.add(logoutButton);
 
         return tempHomepageButtons;
     }
 
     @Override
     public void onClick(View view) {
-        View child=getLayoutInflater().inflate(R.layout.tooltip_window,null);
-        TextView textView=(TextView) child.findViewById(R.id.tv_popup_text);
-        Button popupButton=(Button) child.findViewById(R.id.btn_popup_enter_button);
+        View child = getLayoutInflater().inflate(R.layout.tooltip_window, null);
+        TextView textView = (TextView) child.findViewById(R.id.tv_popup_text);
+        Button popupButton = (Button) child.findViewById(R.id.btn_popup_enter_button);
 
-        switch (view.getId())
-        {
+        switch (view.getId()) {
             case R.id.btn_expert_mamu_hmpgb1:
                 textView.setText(R.string.first_button_tooltip_text);
                 popupButton.setOnClickListener(new popupButtonOnClickListener(view));
@@ -116,28 +140,35 @@ public class HomePageActivity extends TemplateActivity implements View.OnClickLi
                 popupButton.setText(R.string.dial);
                 popupButton.setOnClickListener(new popupButtonOnClickListener(view));
                 break;
+
+            case R.id.btn_settings:
+                goToActivity(new SettingsActivity());
+                break;
+
+            case R.id.btn_logout:
+                deleteSharedPreferenceValues();
+                goToActivity(new LoginActivity());
+                break;
         }
 
         new Tooltip.Builder(this)
                 .anchor(view, Tooltip.TOP)
                 .content(child)
                 .into(frameLayout)
-                .withTip(new Tooltip.Tip(10,10,android.R.color.holo_blue_dark))
+                .withTip(new Tooltip.Tip(10, 10, android.R.color.holo_blue_dark))
                 .show();
     }
 
-    public class popupButtonOnClickListener implements View.OnClickListener
-    {
+    public class popupButtonOnClickListener implements View.OnClickListener {
         View anchorView;
-        public popupButtonOnClickListener(View view)
-        {
-            this.anchorView=view;
+
+        public popupButtonOnClickListener(View view) {
+            this.anchorView = view;
         }
 
         @Override
         public void onClick(View view) {
-            switch (anchorView.getId())
-            {
+            switch (anchorView.getId()) {
                 case R.id.btn_expert_mamu_hmpgb1:
                     goToActivity(new ExpertMamuQuestionActivity());
                     break;
@@ -162,8 +193,8 @@ public class HomePageActivity extends TemplateActivity implements View.OnClickLi
                     break;
 
                 case R.id.btn_hotline_hmpgb6:
-                    String phone_number=getString(R.string.hotline_number);
-                    startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel" , phone_number, null)));
+                    String phone_number = getString(R.string.hotline_number);
+                    startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone_number, null)));
                     break;
             }
 
@@ -187,7 +218,7 @@ public class HomePageActivity extends TemplateActivity implements View.OnClickLi
 
     @Override
     public void onBackPressed() {
-        ExitAppFragment exitAppFragment=new ExitAppFragment();
-        exitAppFragment.show(this.getSupportFragmentManager(),null);
+        ExitAppFragment exitAppFragment = new ExitAppFragment();
+        exitAppFragment.show(this.getSupportFragmentManager(), null);
     }
 }
