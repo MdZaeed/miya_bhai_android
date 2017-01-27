@@ -76,7 +76,9 @@ public class ExpertMamuComposeQuestionActivity extends TemplateComposeQuestionAc
 
     @Override
     public void setToolbarText() {
+/*
         toolbarTitle.setText(R.string.add_a_question);
+*/
     }
 
     @Override

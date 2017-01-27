@@ -68,7 +68,7 @@
             android:screenOrientation="portrait"/>
 
         <activity android:name=".activities.ExpertMamuComposeQuestionActivity"
-            android:theme="@style/AppTheme.NoActionBarNTitle"
+            android:configChanges="locale"
             android:screenOrientation="portrait"/>
 
         <activity android:name=".activities.SplashScreenActivity"

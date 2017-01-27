@@ -16,7 +16,9 @@ import rad.iit.com.baya.R;
 import rad.iit.com.baya.datamodels.CategoriesResponse;
 
 public abstract class TemplateComposeQuestionActivity extends TemplateActivity {
+/*
     protected Toolbar templateToolbar;
+*/
     protected Spinner topicSpinner;
     protected ArrayAdapter<String> topicArrayAdapter;
     protected List<String> topicStringList;
@@ -26,10 +28,16 @@ public abstract class TemplateComposeQuestionActivity extends TemplateActivity {
     @Override
     public void initView() {
         setContentView(R.layout.activity_compose_question);
+/*
         templateToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(templateToolbar);
-        templateToolbar.setNavigationIcon(R.drawable.arrow_back_white_24x24);
+*/
+/*        setSupportActionBar(templateToolbar);
+        templateToolbar.setNavigationIcon(R.drawable.arrow_back_white_24x24);*/
+/*
         toolbarTitle = (TextView) findViewById(R.id.toolbar_title);
+*/
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         topicSpinner = (Spinner) findViewById(R.id.spinner_topic_list);
         topicStringList = new ArrayList<>();
         messageBodyEditText=(EditText) findViewById(R.id.et_content_message_body);
@@ -53,12 +61,12 @@ public abstract class TemplateComposeQuestionActivity extends TemplateActivity {
 
     @Override
     public void listenView() {
-        templateToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+/*        templateToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
-        });
+        });*/
     }
 
     @Override
