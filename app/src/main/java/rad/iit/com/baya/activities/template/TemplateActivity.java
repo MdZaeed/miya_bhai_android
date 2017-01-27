@@ -125,6 +125,9 @@ public abstract class TemplateActivity extends AppCompatActivity {
                 deleteSharedPreferenceValues();
                 goToActivity(new LoginActivity());
                 break;
+            case android.R.id.home:
+                onBackPressed();
+                break;
             default:
                 return super.onOptionsItemSelected(item);
         }

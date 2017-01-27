@@ -27,6 +27,18 @@ public class Challenge implements Serializable{
     @Expose
     private String answerDate;
 
+    public static Challenge getMock(boolean mockOrnot)
+    {
+        Challenge challenge=new Challenge();
+        challenge.iD="asd";
+        challenge.challenger="asda";
+        challenge.question="sadas";
+        challenge.questionDate="asdas";
+        challenge.answer="tegdf";
+        challenge.answerDate="ijhg";
+        return challenge;
+    }
+
     /**
      * 
      * @return

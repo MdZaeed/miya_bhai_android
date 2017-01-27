@@ -31,4 +31,17 @@ public class QuestionsResponse {
         this.challenges = challenges;
     }
 
+    public static QuestionsResponse mockData()
+    {
+        QuestionsResponse questionsResponse=new QuestionsResponse();
+
+        List<Challenge> challenges=new ArrayList<>();
+        for(int i=0;i<5;i++)
+        {
+            challenges.add(Challenge.getMock(true));
+        }
+        questionsResponse.setChallenges(challenges);
+        return questionsResponse;
+    }
+
 }

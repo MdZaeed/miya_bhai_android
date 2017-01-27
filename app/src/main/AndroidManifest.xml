@@ -11,6 +11,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:screenOrientation="portrait">
+
+        <activity android:name=".activities.ChallengeMamuNewLayout"
+            android:configChanges="locale"
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name=".activities.SignUpActivity"
             android:screenOrientation="portrait"

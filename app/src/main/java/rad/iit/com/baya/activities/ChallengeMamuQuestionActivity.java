@@ -1,14 +1,10 @@
 package rad.iit.com.baya.activities;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -36,6 +32,8 @@ public class ChallengeMamuQuestionActivity extends TemplateQuestionActivity impl
     protected ArrayList<Challenge> challenges1;
 
     public void setQuestionAnswers() {
+        questionAskFloatingActionButton.hide();
+
         final ProgressDialog progressDialog = new ProgressDialog(this);
         if(!progressDialog.isShowing()) {
             progressDialog.setMessage(getResources().getString(R.string.loading));
@@ -57,14 +55,20 @@ public class ChallengeMamuQuestionActivity extends TemplateQuestionActivity impl
 /*
                 customToast.showLongToast(volleyError.toString());
 */
-                String data=getOfflineData(ApplicationConstants.OFFLINE_CHALLENGES);
+
+
+/*                String data=getOfflineData(ApplicationConstants.OFFLINE_CHALLENGES);
                 if(!data.equals("-1"))
                 {
                     setChallengeData(data);
                 }
 
                 progressDialog.hide();
-                Toast.makeText(ChallengeMamuQuestionActivity.this,R.string.disconnect,Toast.LENGTH_LONG).show();
+                Toast.makeText(ChallengeMamuQuestionActivity.this,R.string.disconnect,Toast.LENGTH_LONG).show();*/
+
+                setChallengeData(new Gson().toJson(QuestionsResponse.mockData()));
+                progressDialog.hide();
+
             }
         });
         Volley.newRequestQueue(ChallengeMamuQuestionActivity.this).add(getCategoriesRequest);
@@ -153,7 +157,7 @@ public class ChallengeMamuQuestionActivity extends TemplateQuestionActivity impl
     }
     @Override
     public void onIndividualQuestionClicked(Challenge challenge) {
-        Intent intent=new Intent(this,ChallengeMamuQuestionAnswerActivity.class);
+        Intent intent=new Intent(this,ChallengeMamuNewLayout.class);
         intent.putExtra(PASSED_QUESTION_MODEL,challenge);
         startActivity(intent);
     }
