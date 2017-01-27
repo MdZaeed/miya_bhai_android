@@ -84,6 +84,8 @@ public abstract class TemplateActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.general_menu, menu);
+        MenuItem menuItem=menu.getItem(2);
+        menuItem.setTitle("Not");
         return true;
     }
 
