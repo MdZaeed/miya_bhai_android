@@ -84,7 +84,7 @@ public abstract class TemplateQuestionActivity extends TemplateActivity {
     public void initializeViewByData() {
         templateToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(templateToolbar);
-        templateToolbar.setNavigationIcon(R.drawable.ic_mamu_home);
+        templateToolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
         productListSwipeRefreshLayout.setColorSchemeResources(R.color.orange, R.color.green, R.color.red);
         if (subTitleTextView != null) {
             subTitleTextView.setText("Category");
