@@ -85,7 +85,14 @@ public abstract class TemplateActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.general_menu, menu);
         MenuItem menuItem=menu.getItem(2);
-        menuItem.setTitle("Not");
+        menuItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_WITH_TEXT | MenuItem.SHOW_AS_ACTION_ALWAYS);
+        if(ApplicationConstants.user.equals(""))
+        {
+            menuItem.setTitle("User");
+        }else
+        {
+            menuItem.setTitle(ApplicationConstants.user);
+        }
         return true;
     }
 
