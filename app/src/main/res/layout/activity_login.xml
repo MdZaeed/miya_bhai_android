@@ -145,6 +145,21 @@
                 android:layout_height="2dip"
                 android:background="@android:color/darker_gray" />
 
+            <Button
+                android:id="@+id/faq"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:text="@string/faq"
+                android:drawableLeft="@drawable/ic_faq"
+                android:drawableStart="@drawable/ic_faq"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dip"
+                android:background="@android:color/darker_gray" />
+
         </LinearLayout>
     </android.support.design.widget.NavigationView>
 </android.support.v4.widget.DrawerLayout>

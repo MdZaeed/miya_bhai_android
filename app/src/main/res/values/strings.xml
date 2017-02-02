@@ -98,5 +98,6 @@
     <string name="send">Send</string>
     <string name="log_out">Log out</string>
     <string name="user">User</string>
+    <string name="faq">FAQ</string>
 
 </resources>
