@@ -5,7 +5,11 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -43,6 +47,8 @@ public class LoginActivity extends TemplateActivity implements View.OnClickListe
     EditText mobileNumberText;
     TextView registerTextView;
     Button logInButton;
+    DrawerLayout drawerLayout;
+
 
     @Override
     public void initView() {
@@ -53,6 +59,13 @@ public class LoginActivity extends TemplateActivity implements View.OnClickListe
         }
         setContentView(R.layout.activity_login);
         setTitle(getResources().getString(R.string.app_name));
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_mamu_home);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
+        drawerLayout = (DrawerLayout) findViewById(R.id.dl_home_page_drawer);
+
         userNameEditText = (EditText) findViewById(R.id.et_user_name);
         mobileNumberText = (EditText) findViewById(R.id.et_mobile);
         registerTextView=(TextView) findViewById(R.id.tv_sign_up_now);
@@ -60,6 +73,23 @@ public class LoginActivity extends TemplateActivity implements View.OnClickListe
         logInButton = (Button) findViewById(R.id.btn_login);
 
         logInButton.setOnClickListener(this);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                drawerLayout.openDrawer(GravityCompat.START);
+                break;
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        return true;
     }
 
     @Override
