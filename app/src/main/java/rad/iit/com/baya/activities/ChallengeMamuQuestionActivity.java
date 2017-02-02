@@ -30,6 +30,7 @@ public class ChallengeMamuQuestionActivity extends TemplateQuestionActivity impl
 
     RecyclerViewListAdapter recyclerViewListAdapter;
     protected ArrayList<Challenge> challenges1;
+    View bottomBar;
 
     public void setQuestionAnswers() {
         questionAskFloatingActionButton.hide();
@@ -107,6 +108,8 @@ public class ChallengeMamuQuestionActivity extends TemplateQuestionActivity impl
             CardView cardView = (CardView) findViewById(R.id.subtitle);
             assert cardView != null;
             cardView.setVisibility(View.GONE);
+            bottomBar=findViewById(R.id.lay_bottom_bar);
+            bottomBar.setVisibility(View.GONE);
         }catch(Exception e)
         {
             e.printStackTrace();

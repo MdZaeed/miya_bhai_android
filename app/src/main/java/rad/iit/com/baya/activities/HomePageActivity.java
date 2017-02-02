@@ -1,10 +1,8 @@
 package rad.iit.com.baya.activities;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.percent.PercentRelativeLayout;
-import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
@@ -31,7 +29,7 @@ public class HomePageActivity extends TemplateActivity implements View.OnClickLi
     FrameLayout frameLayout;
     PercentRelativeLayout percentRelativeLayout;
     DrawerLayout drawerLayout;
-    Button settingsButton,logoutButton;
+    Button settingsButton,logoutButton,faqButton;
 
     @Override
     public void initView() {
@@ -51,6 +49,7 @@ public class HomePageActivity extends TemplateActivity implements View.OnClickLi
         hotlineButton = (Button) findViewById(R.id.btn_hotline_hmpgb6);
         settingsButton=(Button) findViewById(R.id.btn_settings);
         logoutButton=(Button) findViewById(R.id.btn_logout);
+        faqButton=(Button) findViewById(R.id.btn_faq);
 
         frameLayout = (FrameLayout) findViewById(R.id.fl_root_layout);
         percentRelativeLayout = (PercentRelativeLayout) findViewById(R.id.prl_root_layout);
@@ -98,6 +97,7 @@ public class HomePageActivity extends TemplateActivity implements View.OnClickLi
         tempHomepageButtons.add(hotlineButton);
         tempHomepageButtons.add(settingsButton);
         tempHomepageButtons.add(logoutButton);
+        tempHomepageButtons.add(faqButton);
 
         return tempHomepageButtons;
     }
@@ -148,6 +148,10 @@ public class HomePageActivity extends TemplateActivity implements View.OnClickLi
             case R.id.btn_logout:
                 deleteSharedPreferenceValues();
                 goToActivity(new LoginActivity());
+                break;
+
+            case R.id.btn_faq:
+                goToActivity(new FaqQustionsActivity());
                 break;
         }
 
