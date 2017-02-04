@@ -3,8 +3,12 @@ package rad.iit.com.baya.activities;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -46,6 +50,9 @@ public class SignUpActivity extends TemplateActivity implements View.OnClickList
     TextView loginButton;
     Calendar birthdayCalendar = Calendar.getInstance();
 
+    DrawerLayout drawerLayout;
+
+
     RadioGroup radioSexGroup;
     RadioButton radioSexButton;
 
@@ -56,6 +63,13 @@ public class SignUpActivity extends TemplateActivity implements View.OnClickList
     @Override
     public void initView() {
         setContentView(R.layout.activity_sign_up);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_mamu_home);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
+        drawerLayout = (DrawerLayout) findViewById(R.id.dl_home_page_drawer);
+
 
         setTitle(getResources().getString(R.string.app_name));
         userNameEditText = (EditText) findViewById(R.id.et_user_name);
@@ -69,6 +83,23 @@ public class SignUpActivity extends TemplateActivity implements View.OnClickList
         signUpButton = (Button) findViewById(R.id.btn_sign_up);
 
         signUpButton.setOnClickListener(this);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                drawerLayout.openDrawer(GravityCompat.START);
+                break;
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        return true;
     }
 
     @Override

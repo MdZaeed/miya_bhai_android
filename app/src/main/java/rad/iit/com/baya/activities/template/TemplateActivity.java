@@ -49,11 +49,9 @@ public abstract class TemplateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(getLanguage().equals(getResources().getString(R.string.bangla_string)))
-        {
+        if (getLanguage().equals(getResources().getString(R.string.bangla_string))) {
             setLanguageInApp(getResources().getString(R.string.bangla_string));
-        } else if(getLanguage().equals(getResources().getString(R.string.english_string)))
-        {
+        } else if (getLanguage().equals(getResources().getString(R.string.english_string))) {
             setLanguageInApp(getResources().getString(R.string.english_string));
         }
 
@@ -77,21 +75,21 @@ public abstract class TemplateActivity extends AppCompatActivity {
 
     public String getLanguage() {
         SharedPreferences sharedPreferences = getSharedPreferences(ApplicationConstants.SHARED_PREFERENCE, Context.MODE_PRIVATE);
-        return sharedPreferences.getString(ApplicationConstants.LANGUAGE,getString(R.string.bangla_string));
+        return sharedPreferences.getString(ApplicationConstants.LANGUAGE, getString(R.string.bangla_string));
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.general_menu, menu);
-        MenuItem menuItem=menu.getItem(2);
+        MenuItem menuItem = menu.getItem(2);
         menuItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_WITH_TEXT | MenuItem.SHOW_AS_ACTION_ALWAYS);
-        if(ApplicationConstants.user.equals(""))
-        {
-            menuItem.setTitle("User");
-        }else
-        {
-            menuItem.setTitle(ApplicationConstants.user);
+        if (ApplicationConstants.user.equals("")) {
+            if (ApplicationConstants.user.equals("")) {
+                menuItem.setTitle("User");
+            } else {
+                menuItem.setTitle(ApplicationConstants.user);
+            }
         }
         return true;
     }
@@ -124,7 +122,6 @@ public abstract class TemplateActivity extends AppCompatActivity {
         }
     }
 
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.btn_settings:
@@ -140,7 +137,7 @@ public abstract class TemplateActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-        return  super.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(item);
     }
 
     protected void deleteSharedPreferenceValues() {
@@ -148,23 +145,21 @@ public abstract class TemplateActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(ApplicationConstants.TOKEN_KEY, "");
         editor.putString(ApplicationConstants.ID_KEY, "");
-        editor.putString(ApplicationConstants.USER_KEY,"");
+        editor.putString(ApplicationConstants.USER_KEY, "");
         ApplicationConstants.user = "";
         editor.apply();
     }
 
-    public void saveOfflineData(String keyword,String value)
-    {
+    public void saveOfflineData(String keyword, String value) {
         SharedPreferences sharedPreferences = getSharedPreferences(ApplicationConstants.SHARED_PREFERENCE, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(keyword, value);
         editor.apply();
     }
 
-    public String getOfflineData(String keyword)
-    {
+    public String getOfflineData(String keyword) {
         SharedPreferences sharedPreferences = getSharedPreferences(ApplicationConstants.SHARED_PREFERENCE, Context.MODE_PRIVATE);
-        String id=sharedPreferences.getString(keyword,"-1");
+        String id = sharedPreferences.getString(keyword, "-1");
         return id;
     }
 
@@ -191,21 +186,19 @@ public abstract class TemplateActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public static String handleBanglaString(String string)
-    {
-        String newString=string;
-        if(string.startsWith("\\"))
-        {
-            newString=string.replaceAll("\\\\", "\\\\\\\\");;
+    public static String handleBanglaString(String string) {
+        String newString = string;
+        if (string.startsWith("\\")) {
+            newString = string.replaceAll("\\\\", "\\\\\\\\");
+            ;
         }
 
         return newString;
     }
 
-    public String getSavedOwnId()
-    {
+    public String getSavedOwnId() {
         SharedPreferences sharedPreferences = getSharedPreferences(ApplicationConstants.SHARED_PREFERENCE, Context.MODE_PRIVATE);
-        String id=sharedPreferences.getString(ApplicationConstants.ID_KEY,"-1");
+        String id = sharedPreferences.getString(ApplicationConstants.ID_KEY, "-1");
         return id;
     }
 }

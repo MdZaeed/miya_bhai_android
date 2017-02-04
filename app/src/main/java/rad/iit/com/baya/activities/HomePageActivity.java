@@ -1,10 +1,8 @@
 package rad.iit.com.baya.activities;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.percent.PercentRelativeLayout;
-import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
@@ -153,6 +151,7 @@ public class HomePageActivity extends TemplateActivity implements View.OnClickLi
                 break;
 
             case R.id.btn_faq:
+                goToActivity(new FaqQustionsActivity());
                 break;
         }
 
