@@ -24,7 +24,7 @@ public class FaqQustionsActivity extends TemplateQuestionActivity implements Rec
 
     @Override
     public void setQuestionAnswers() {
-        QuestionsResponse questionsResponse=QuestionsResponse.mockData();
+        QuestionsResponse questionsResponse=QuestionsResponse.faqData();
         for (Challenge challenge :
                 questionsResponse.getChallenges()) {
             challenges.add(challenge);
