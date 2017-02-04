@@ -132,7 +132,8 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:scaleType="centerInside"
                 android:src="@drawable/ic_mamu_png_new_new" />
 
@@ -165,21 +166,6 @@
                 android:text="@string/action_settings"
                 android:drawableLeft="@drawable/ic_settings_black_24dp"
                 android:drawableStart="@drawable/ic_settings_black_24dp"
-                android:textSize="18sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dip"
-                android:background="@android:color/darker_gray" />
-
-            <Button
-                android:id="@+id/btn_faq"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackground"
-                android:text="@string/faq"
-                android:drawableLeft="@drawable/ic_faq"
-                android:drawableStart="@drawable/ic_faq"
                 android:textSize="18sp" />
 
             <View
